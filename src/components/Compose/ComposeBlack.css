@@ -18,13 +18,26 @@
 }
 
 .compose-input {
-  padding-left: 20px;
+  padding: 0 0 0 20px !important;
+  /* padding-left: 20px; */
   flex: 1;
   color: white;
   border: none;
   font-size: 14px;
-  height: 40px;
+  height: 42px;
   background: rgb(22, 33, 43);
+}
+
+.toolbar-input {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  margin-right: 320px;
+  background: rgb(22, 33, 43);
+}
+
+.toolbar-input:last-child {
+ padding-right: 30px;
 }
 
 .compose-input::placeholder {
@@ -33,10 +46,11 @@
 }
 
 .compose .toolbar-button {
-  color: #bbbbbf;
+  color: rgb(108,120,131);
   margin-left: 15px;
 }
 
 .compose .toolbar-button:hover {
-  color: #99999c;
+  color: rgb(220, 220, 220);
+  background-color: transparent;
 }
