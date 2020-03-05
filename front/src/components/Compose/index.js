@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ToolbarButton from '../ToolbarButton';
 import './ComposeBlack.css';
 
 // Redux
@@ -26,9 +27,11 @@ const Compose = (props) => {
         onKeyPress={(event) => { event.key === 'Enter' && messegeHandler(event) }}
       />
 
-      {
-        props.rightItems
-      }
+      <div className='toolbar-input'>
+        <ToolbarButton key="photo" icon="ion-ios-camera" />
+        <ToolbarButton key="audio" icon="ion-ios-mic" />
+        <ToolbarButton key="money" icon="ion-ios-card" />
+      </div>
     </div>
   );
 }

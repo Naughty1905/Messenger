@@ -1,4 +1,6 @@
 export const GET_MESSEGE = 'GET_MESSEGE';
 export const MESSEGE_LOADED = 'MESSEGE_LOADED';
 export const GET_MESSEGE_ERROR = 'GET_MESSEGE_ERROR';
-  
+
+export const SET_SIDEBAR = 'SET_SIDEBAR'
+export const SET_NAVLOADER = 'SET_NAVLOADER'
