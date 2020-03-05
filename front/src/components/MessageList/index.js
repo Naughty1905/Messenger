@@ -2,15 +2,16 @@ import React, { useEffect } from 'react';
 import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
-import Message from '../Message';
-import moment from 'moment';
 
 // Redux
 import { connect } from 'react-redux';
 
+//Redux actions
+import { setMessages } from '../../redux/actions/actions';
+
 // Server connection
 import io from 'socket.io-client';
-import queryString from 'query-string';
+// import queryString from 'query-string';
 
 // Styles
 import './MessageList.css';
@@ -20,14 +21,18 @@ import {
   ENDPOINT,
   JOIN,
   DISCONNECT,
-  MESSEGE
+  MESSAGE,
+  SEND_MESSAGE
 } from '../../Socket-client/socket-actions';
+
+//Functions
+import renderMessages from './renderMessage';
 
 // Sockets 
 let socket;
 
 const MessageList = props => {
-
+  const { message, messages, user } = props;
 
   useEffect(() => {
     socket = io(ENDPOINT);
@@ -36,15 +41,19 @@ const MessageList = props => {
 
     });
 
-    socket.emit(MESSEGE, { messege : props.message }, () => {
+    socket.emit(MESSAGE, { message }, () => {
 
     });
+
+    socket.on(SEND_MESSAGE, ({ message }, callback) => {
+      props.setMessages(message)
+    })
 
     return () => {
       socket.emit(DISCONNECT);
       socket.off();
     }
-  })
+  }, [props.message])
 
 
 
@@ -61,7 +70,7 @@ const MessageList = props => {
 
       <div className="message-list-container">
         {
-
+          renderMessages(messages, user)
         }
       </div>
 
@@ -79,10 +88,13 @@ const MessageList = props => {
 
 const mapStateToProps = state => {
   return {
-    message: state.messege
+    message: state.message,
+    messages: state.messages,
+    user: state.user,
   }
 }
 
 export default connect(
   mapStateToProps,
+  { setMessages }
 )(MessageList)  

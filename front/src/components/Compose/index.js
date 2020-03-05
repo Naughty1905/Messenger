@@ -4,15 +4,16 @@ import './ComposeBlack.css';
 
 // Redux
 import { connect } from 'react-redux';
-import { getMessge } from '../../redux/actions/actions';
+import { getMessage } from '../../redux/actions/actions';
 
 const Compose = (props) => {
-  const [messege, setMessege] = useState('');
+  const [message, setMessage] = useState('');
+  const { user } = props;
 
   const messegeHandler = (event) => {
     event.preventDefault();
-    props.getMessge(messege);
-    setMessege('');
+    props.getMessage({ message, user });
+    setMessage('');
   }
 
   return (
@@ -22,8 +23,8 @@ const Compose = (props) => {
         type="text"
         className="compose-input"
         placeholder="Type a message, @name"
-        value={messege}
-        onChange={(event) => setMessege(event.target.value)}
+        value={message}
+        onChange={(event) => setMessage(event.target.value)}
         onKeyPress={(event) => { event.key === 'Enter' && messegeHandler(event) }}
       />
 
@@ -37,9 +38,13 @@ const Compose = (props) => {
 }
 
 
-
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
 
 export default connect(
-  null,
-  { getMessge }
+  mapStateToProps,
+  { getMessage }
 )(Compose)

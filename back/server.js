@@ -7,7 +7,6 @@ const PORT = process.env.PORT || 5000;
 // Routs dir
 const rout = require('./routs/rout');
 
-
 // Server
 const app = express();
 const server = http.createServer(app);
@@ -18,7 +17,8 @@ const {
   DISCONNECT,
   CONNECTION,
   JOIN,
-  MESSEGE
+  MESSAGE,
+  SEND_MESSAGE
 } = require('./actions/io-actions');
 
 // Sockets
@@ -27,10 +27,11 @@ io.on(CONNECTION, (socket) => {
 
   socket.on(JOIN, ({ name }, callback) => {
     console.log(name)
-    socket.on(MESSEGE, ({ messege }, callback) => {
-      console.log(messege)
-    })
-  })
+    socket.on(MESSAGE, ({ message }, callback) => {
+      console.log(message)
+      io.emit(SEND_MESSAGE, { message })
+    });
+  });
 
 
 
@@ -38,6 +39,8 @@ io.on(CONNECTION, (socket) => {
     console.log('User has disconnected!!!');
   });
 });
+
+
 // Routs
 app.use(rout);
 

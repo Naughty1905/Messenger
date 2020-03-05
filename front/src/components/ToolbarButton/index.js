@@ -11,7 +11,7 @@ const ToolbarButton = (props) => {
 
   const showBtn = (event) => {
     const btnName = event.target.className;
-    if (btnName == 'toolbar-button ion-ios-cog') {
+    if (btnName === 'toolbar-button ion-ios-cog') {
       setSidebar()
     }
   }
