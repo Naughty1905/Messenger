@@ -1,35 +1,25 @@
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 
-# Created by https://www.gitignore.io/api/visualstudiocode,macos,node
-# Edit at https://www.gitignore.io/?templates=visualstudiocode,macos,node
+# Created by https://www.gitignore.io/api/visualstudiocode,linux,dotenv,node
+# Edit at https://www.gitignore.io/?templates=visualstudiocode,linux,dotenv,node
 
-### macOS ###
-# General
-.DS_Store
-.AppleDouble
-.LSOverride
+### dotenv ###
+.env
 
-# Icon must end with two \r
-Icon
+### Linux ###
+*~
 
-# Thumbnails
-._*
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
 
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
+# KDE directory preferences
+.directory
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
 
 ### Node ###
 # Logs
@@ -97,7 +87,10 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
+<<<<<<< HEAD
+=======
 .env
+>>>>>>> f1bef7901744f2397eee54c722cc7c26382f6295
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -148,7 +141,11 @@ temp/
 # Ignore all local history of files
 .history
 
+<<<<<<< HEAD
+# End of https://www.gitignore.io/api/visualstudiocode,linux,dotenv,node
+=======
 # End of https://www.gitignore.io/api/visualstudiocode,macos,node
+>>>>>>> f1bef7901744f2397eee54c722cc7c26382f6295
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 

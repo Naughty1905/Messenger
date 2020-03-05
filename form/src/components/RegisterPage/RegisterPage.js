@@ -32,27 +32,47 @@ class RegisterPage extends Component {
     }
     
     return (
-      <div>
-        <h3>RegisterPage</h3>
-        {!isSuccess ? <div>{message}</div> : <Redirect to='login' />}
-        <form onSubmit={this.onHandleRegistration}>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name" />
-          </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" />
-          </div>
-          <div>
-            <button>Register</button>
-          </div>
-        </form>
-      </div>
+      // <div>
+      //   <h3>RegisterPage</h3>
+      //   {!isSuccess ? <div>{message}</div> : <Redirect to='login' />}
+      //   <form onSubmit={this.onHandleRegistration}>
+      //     <div>
+      //       <label htmlFor="name">Name</label>
+      //       <input type="text" name="name" id="name" />
+      //     </div>
+      //     <div>
+      //       <label htmlFor="email">Email</label>
+      //       <input type="email" name="email" id="email" />
+      //     </div>
+      //     <div>
+      //       <label htmlFor="password">Password</label>
+      //       <input type="password" name="password" id="password" />
+      //     </div>
+      //     <div>
+      //       <button>Register</button>
+      //     </div>
+      //   </form>
+      // </div>
+      <form>
+  <h1>Register Page</h1>
+  <div class="inset">
+  <p>
+    <label for="email">EMAIL ADDRESS</label>
+    <input type="text" name="email" id="email"/>
+  </p>
+  <p>
+    <label for="name">NAME</label>
+    <input type="text" name="name" id="name"/>
+  </p>
+  <p>
+    <label for="password">PASSWORD</label>
+    <input type="password" name="password" id="password"/>
+  </p>
+  </div>
+  <p class="p-container">
+    <input type="submit" name="go" id="go" value="Register"/>
+  </p>
+</form>
     )
   }
 }
