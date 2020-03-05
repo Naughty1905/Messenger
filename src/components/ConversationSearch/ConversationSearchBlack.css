@@ -1,0 +1,22 @@
+.conversation-search {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.conversation-search-input {
+  background: rgb(36,47,61);
+  color: rgb(109,120,131);
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+}
+
+.conversation-search-input::placeholder {
+  text-align: left;
+}
+
+.conversation-search-input:focus::placeholder {
+  text-align: left;
+}

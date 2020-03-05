@@ -87,6 +87,10 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
+<<<<<<< HEAD
+=======
+.env
+>>>>>>> f1bef7901744f2397eee54c722cc7c26382f6295
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -137,7 +141,11 @@ temp/
 # Ignore all local history of files
 .history
 
+<<<<<<< HEAD
 # End of https://www.gitignore.io/api/visualstudiocode,linux,dotenv,node
+=======
+# End of https://www.gitignore.io/api/visualstudiocode,macos,node
+>>>>>>> f1bef7901744f2397eee54c722cc7c26382f6295
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
