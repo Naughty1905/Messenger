@@ -5,7 +5,7 @@ import ToolbarButton from '../ToolbarButton';
 import './SidebarMenu.css'
 
 
-export default function ConversationList(props) {
+export default function SidebarMenu(props) {
 
 
   return (
@@ -19,10 +19,14 @@ export default function ConversationList(props) {
           <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
         ]}
       />
-      <ul className="sideBar">
+      <ul className="sideBar" active={false}>
         <li className='menu'><i className='ion-md-person' /> <span>Contacts</span></li>
         <li className='menu'><i className='ion-ios-call' /> <span>Calls</span> </li>
-        <li className='menu'><i className='ion-md-people' /> <span>New Group</span>  </li>
+        <li className='menu'><i className='ion-md-people' />
+          <span className='fixAnimation'>
+            <p style={{ marginRight: '4px' }}>New</p><p>Group</p>
+          </span>
+        </li>
         <li className='menu'><i className='ion-md-settings' /> <span>Settings</span> </li>
       </ul>
     </div>
