@@ -13,17 +13,37 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+// Actions
+const {
+  DISCONNECT,
+  CONNECTION,
+  JOIN,
+  MESSEGE
+} = require('./actions/io-actions');
+
 // Sockets
-io.on('conncetion', (socket) => {
+io.on(CONNECTION, (socket) => {
   console.log('Connection on socket is started!!!');
 
-  socket.on('dissconnect', () => {
+  socket.on(JOIN, ({ name }, callback) => {
+    console.log(name)
+    socket.on(MESSEGE, ({ messege }, callback) => {
+      console.log(messege)
+    })
+  })
+
+
+
+  socket.on(DISCONNECT, () => {
     console.log('User has disconnected!!!');
   });
 });
-
-
 // Routs
 app.use(rout);
 
 server.listen(PORT, () => console.log(`Server has started on ${PORT}`));
+
+
+module.exports = {
+  server
+}
