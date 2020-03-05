@@ -1,5 +1,6 @@
 import React from 'react';
 import './ComposeBlack.css';
+import ToolbarButton from '../ToolbarButton';
 
 export default function Compose(props) {
   return (
@@ -11,9 +12,12 @@ export default function Compose(props) {
         placeholder="Type a message, @name"
       />
 
-      {
-        props.rightItems
-      }
+      <div className='toolbar-input'>
+        <ToolbarButton key="photo" icon="ion-ios-camera" />
+        <ToolbarButton key="audio" icon="ion-ios-mic" />
+        <ToolbarButton key="money" icon="ion-ios-card" />
+      </div>
+
     </div>
   );
 }
