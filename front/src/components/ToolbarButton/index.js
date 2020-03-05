@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import './ToolbarButtonBlack.css';
-import { setSidebar } from '../../store/actions'
+import { setSidebar } from '../../redux/actions/actions'
 
 
 

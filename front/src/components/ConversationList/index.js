@@ -6,7 +6,7 @@ import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import axios from 'axios';
 import { connect } from 'react-redux'
-import { setLoaderNav } from '../../store/actions'
+import { setLoaderNav } from '../../redux/actions/actions';
 
 import './ConversationList.css';
 
