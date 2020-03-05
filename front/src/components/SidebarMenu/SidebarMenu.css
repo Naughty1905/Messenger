@@ -8,14 +8,12 @@
 }
 
 
-.fixAnimation {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
 @keyframes ui-move{
   from {
     margin-left: 100%;
+  }
+  75% {
+    margin-left: -1.5%;
   }
   to {
     margin-left: 0%;
@@ -58,6 +56,7 @@ span {
   justify-self: last baseline;
   color: white;
   vertical-align: auto;
+  white-space: nowrap;
 }
 
 li:hover {

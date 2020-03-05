@@ -3,16 +3,23 @@ import ConversationList from '../ConversationList';
 import MessageList from '../MessageList';
 import './MessengerBlack.css';
 import SidebarMenu from '../SidebarMenu';
+import ContactList from '../ContactsList';
 import { connect } from 'react-redux';
 
 const Messenger = (props) => {
-  const { isNav } = props;
+  const { isNav, isConversation, isContact } = props;
 
   return (
     <div className="messenger">
       <div className="scrollable sidebar">
         {
-          isNav ? (<SidebarMenu />) : (<ConversationList />)
+          isNav && <SidebarMenu />
+        }
+        {
+          isConversation && <ConversationList />
+        }
+        {
+          isContact && <ContactList />
         }
       </div>
 
@@ -25,7 +32,9 @@ const Messenger = (props) => {
 
 
 const mapStateToProps = state => ({
-  isNav: state.isNav
+  isNav: state.isNav,
+  isContact: state.isContact,
+  isConversation: state.isConversation
 })
 
 export default connect(mapStateToProps)(Messenger)
