@@ -18,7 +18,7 @@
 }
 
 .compose-input {
-  flex: 1;
+  /* flex: 1; */
   border: none;
   font-size: 14px;
   height: 40px;
@@ -30,6 +30,7 @@
 }
 
 .compose .toolbar-button {
+  /* flex: 2; */
   color: #bbbbbf;
   margin-left: 15px;
 }
