@@ -1,0 +1,41 @@
+.messenger {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  background: #17212B;
+
+  grid-template-columns: 350px auto;
+  grid-template-rows: 60px auto 60px;
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+}
+
+.container {
+  padding: 10px;
+}
+
+.scrollable {
+  position: relative;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sidebar {
+  background: rgb(22, 33, 43);
+  grid-row-start: 1;
+  grid-row-end: span 3;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  border-right: 0.033em solid black;
+}
+
+.content {
+  background: rgb(14 , 22, 33);
+  grid-row-start: 1;
+  grid-row-end: span 3;
+}
+
+.footer {
+  grid-column-start: 2;
+  background: white;
+}
