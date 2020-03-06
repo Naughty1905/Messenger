@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcryptjs');
 const User = require('../../models/user');
 
 const router = express.Router();
@@ -8,6 +9,7 @@ const auth = require('../../middleware/auth');
 router.post('/', async (req, res) => {
   const { login, email, password } = req.body;
   try {
+    password = await bcrypt.hash(password, 10);
     const user = new User({ login, email, password });
     await user.save();
     const token = await user.generateAuthToken();
@@ -25,7 +27,11 @@ router.post('/login', async (req, res) => {
       return res.status(401).send({ error: 'Login failed! Wrong password or email' });
     }
     const token = await user.generateAuthToken();
-    res.send({ user, token });
+    res.send({
+      user: {
+        "user.login": user
+      }, token
+    });
   } catch (error) {
     res.status(400).send(error);
   }

@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require('dotenv').config();
 
-
 const PORT = process.env.PORT || 5000;
 
 // DB conncetion
@@ -41,7 +40,6 @@ const {
 // Sockets
 io.on(CONNECTION, (socket) => {
   console.log('Connection on socket is started!!!');
-
   socket.on(JOIN, ({ name }, callback) => {
     console.log(name)
     socket.on(MESSAGE, ({ message }, callback) => {
@@ -50,8 +48,6 @@ io.on(CONNECTION, (socket) => {
       io.emit(SEND_MESSAGE, { message })
     });
   });
-
-
 
   socket.on(DISCONNECT, () => {
     console.log('User has disconnected!!!');

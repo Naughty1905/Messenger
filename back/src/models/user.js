@@ -7,6 +7,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    minlength: 5,
+  },
+  fullname: {
+    type: String,
+    required: true
   },
   email: {
     type: String,
@@ -19,21 +24,15 @@ const userSchema = new mongoose.Schema({
     required: true,
     minLength: 7
   },
+  contacts: [{
+    type: String
+  }],
   tokens: [{
     token: {
       type: String,
       required: true
     }
   }]
-})
-
-
-userSchema.pre('save', async function (next) {
-  const user = this
-  if (user.isModified('password')) {
-    user.password = await bcrypt.hash(user.password, 8)
-  }
-  next()
 })
 
 userSchema.methods.generateAuthToken = async function () {

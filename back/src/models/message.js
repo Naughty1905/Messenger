@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
 const messageSchema = new mongoose.Schema({
-  chate: {
+  chat: {
     type: mongoose.Schema.ObjectId,
     ref: 'Chat'
   },
   constent: {
     type: String,
   },
-  from: {
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
