@@ -28,6 +28,7 @@ io.on(CONNECTION, (socket) => {
   socket.on(JOIN, ({ name }, callback) => {
     console.log(name)
     socket.on(MESSAGE, ({ message }, callback) => {
+      if (!message.owner || !message.content) return
       console.log(message)
       io.emit(SEND_MESSAGE, { message })
     });

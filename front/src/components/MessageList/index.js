@@ -42,7 +42,6 @@ const MessageList = props => {
     });
 
     socket.emit(MESSAGE, { message }, () => {
-
     });
 
     socket.on(SEND_MESSAGE, ({ message }, callback) => {
@@ -53,7 +52,7 @@ const MessageList = props => {
       socket.emit(DISCONNECT);
       socket.off();
     }
-  }, [props.message])
+  }, [message])
 
 
 
