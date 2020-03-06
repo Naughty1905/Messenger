@@ -9,21 +9,49 @@ class DashboardPage extends Component {
   render() {
     return (
       <div className="auth-wrap">
-        <form method="POST" className="form">
-          <div className="wrap-input-auth" id="login">
-            <input type="search" className="input-auth" placeholder='Login' />
-          </div>
-          <div className="wrap-input-auth" id="email">
-            <input type="search" className="input-auth" placeholder='Email' />
-          </div>
-          <div className="wrap-input-auth" id="password">
-            <input type="search" className="input-auth" placeholder='Password' />
-          </div>
-          <div id='buttons'>
-            <button type='submit'>Submit</button>
-            <button type='submit'>Sign up</button>
-          </div>
-        </form>
+        {
+          this.state.isReg ?
+            <form method="POST" className="form">
+              <div className="wrap-input-auth" id="email">
+                <input type="search" className="input-auth" placeholder='Email' />
+              </div>
+              <div className="wrap-input-auth" id="password">
+                <input type="search" className="input-auth" placeholder='Password' />
+              </div>
+              <div id='buttons'>
+                <button className='firstButt' type='submit'>Login
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                </button>
+                <button className='secondButt' type='submit' onClick={(event) => { event.preventDefault(); this.setState({ isReg: false }) }}>Sign Up
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                </button>
+              </div>
+            </form> :
+            <form method="POST" className="form">
+              <div className="wrap-input-auth" id="email">
+                <input type="search" className="input-auth" placeholder='Email' />
+              </div>
+              <div className="wrap-input-auth" id="password">
+                <input type="search" className="input-auth" placeholder='Password' />
+              </div>
+              <div className="wrap-input-auth" id="conpass">
+                <input type="search" className="input-auth" placeholder='Confirm Password' />
+              </div>
+              <div id='buttons'>
+                <button className='firstButt' type='submit'>Register
+                </button>
+
+                <button className='secondButt' type='submit' onClick={(event) => { event.preventDefault(); this.setState({ isReg: true }) }}>Sign In
+                </button>
+              </div>
+            </form>
+  }
       </div>
     );
   }
