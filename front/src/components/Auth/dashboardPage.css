@@ -52,6 +52,8 @@
 
 
 .input-auth::placeholder {
+  color: hsl(178, 65%, 40%);
+  opacity: 0.4;
   text-align: center;
   font-weight: 500;
 }
@@ -121,7 +123,7 @@
 
 @keyframes ui-neon-hover {
   from {
-    box-shadow: 0 0 30px rgb(83, 123, 155);
+    box-shadow: 0 0 20px hsl(178, 94%, 65%);
   }
   to {
     box-shadow:  0 0 30px rgb(29,50,70);
