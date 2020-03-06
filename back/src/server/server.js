@@ -3,13 +3,16 @@ const socketio = require('socket.io');
 const http = require('http');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+require('dotenv').config();
 
 
 const PORT = process.env.PORT || 5000;
 
 // DB conncetion
-const DB = require('./dbConnection');
-DB();
+const DB = require('../DB/dbConnection');
+DB()
+  .then(() => console.log('DB connected'))
+  .catch(() => console.error('Errors'));
 
 // Routs dir
 const rout = require('./routes/rout');
@@ -33,7 +36,7 @@ const {
   JOIN,
   MESSAGE,
   SEND_MESSAGE
-} = require('./actions/io-actions');
+} = require('../actions/io-actions');
 
 // Sockets
 io.on(CONNECTION, (socket) => {
