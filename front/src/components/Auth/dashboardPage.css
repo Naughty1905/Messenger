@@ -2,7 +2,7 @@
     display: grid;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgb(50, 74, 96),rgb(69, 102, 128));
+    background: rgb(14,22,33);
     grid-template-columns: 33% auto 33%;
     grid-template-rows: 22% auto 22%;
     grid-column-gap: 1px;
@@ -13,10 +13,10 @@
 .form {
   font-size: 25px;
   color: white;
-  background: rgb(220, 220, 220);
+  background: rgb(29,50,70);
   grid-row-start: 2;
   grid-column-start: 2;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   display: grid;
   grid-template-columns: 10% auto 10%;
   grid-template-rows: 10% auto auto auto 30%;
@@ -39,38 +39,41 @@
   box-sizing: border-box;
   border: none;
   padding-bottom: 0.2rem;
-  border-bottom: 0.05rem solid rgb(50, 74, 96);
+  border-bottom: 0.05rem solid rgb(58, 133, 198);
   font-size: 1.5rem;
-  background: rgb(220, 220, 220);
+  background: rgb(29,50,70);
 }
 
 
 .input-auth:hover {
-  border-bottom: 0.1rem solid rgb(50, 74, 96);
+  border-bottom: 0.1rem solid rgb(58, 133, 198);
+  padding-bottom: 0.15rem
 }
 
 
 .input-auth::placeholder {
+  color: hsl(178, 65%, 40%);
+  opacity: 0.4;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 
-#login {
+#email {
   align-self: center;
   justify-self: center;
   grid-row-start: 2;
   grid-column-start: 2;
 }
 
-#email {
+#password {
   align-self: center;
   justify-self: center;
   grid-row-start: 3;
   grid-column-start: 2;
 }
 
-#password {
+#conpass {
   align-self: center;
   justify-self: center;
   grid-row-start: 4;
@@ -78,6 +81,7 @@
 }
 
 #buttons {
+  position: relative;
   align-self: start;
   grid-row-start: 5;
   grid-column-start: 2;
@@ -85,19 +89,52 @@
   justify-content: space-evenly;
 }
 
-#buttons button {
+#buttons button  {
+  text-transform: uppercase;
   font-size: 1.2rem;
   font-weight: 540;
-  color: rgb(220, 220, 220);
-  width: 6rem;
+  color: rgb(58, 133, 198);
+  width: 8rem;
   height: 3rem;
-  background: linear-gradient(rgb(50, 74, 96),rgb(69, 102, 128));
-  border-radius: 0.7rem;
-  border: none;
+  border: 0.04rem solid rgb(58, 133, 198);
+  background: transparent;
+  border-radius: 0.30rem;
 }
 
 #buttons button:first-child {
-  margin-right: 0.1rem;
+  margin-right: 0.55rem; 
+}
+
+.firstButt {
+  color: #2196f3;
+  margin-bottom: 30px;
+}
+
+
+.firstButt:hover {
+  color: #333333;
+  background: #2196f3;
+  animation-name: ui-neon-hover;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+
+@keyframes ui-neon-hover {
+  from {
+    box-shadow: 0 0 20px hsl(178, 94%, 65%);
+  }
+  to {
+    box-shadow:  0 0 30px rgb(29,50,70);
+  }
+}
+
+.secondButt:hover {
+  animation-name: ui-neon-hover;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 
