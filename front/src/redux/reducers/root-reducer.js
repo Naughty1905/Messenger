@@ -5,7 +5,8 @@ import {
   SET_NAVLOADER,
   SET_CONTACTS,
   SET_CONVERSATIONS,
-  SET_MODAL_ADD_CONTACT
+  SET_MODAL_ADD_CONTACT,
+  REG_NEW_USER_RECIEVE
 } from '../actions/action-types';
 
 const initialState = {
@@ -67,6 +68,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         isModalAddContact: !state.isModalAddContact
+      }
+    case REG_NEW_USER_RECIEVE:
+      debugger
+      return {
+        ...state,
+        user: action.payload.user
       }
     default:
       return state;

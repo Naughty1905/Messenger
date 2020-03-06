@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@stardust-ui/docs-components": "^0.40.0",
-    "axios": "^0.18.1",
+    "axios": "^0.19.2",
     "immer": "^6.0.1",
     "moment": "^2.23.0",
     "query-string": "^6.11.1",

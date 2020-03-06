@@ -5,7 +5,11 @@ import {
   SET_NAVLOADER,
   SET_CONTACTS,
   SET_CONVERSATIONS,
-  SET_MODAL_ADD_CONTACT
+  SET_MODAL_ADD_CONTACT,
+  REG_NEW_USER_REQUEST,
+  REG_NEW_USER_RECIEVE,
+  LOGIN_REQUEST,
+  LOGIN_RECIEVE,
 } from './action-types';
 
 export const getMessage = (payload) => ({
@@ -39,4 +43,29 @@ export const setConversations = () => ({
 
 export const setModalAddContact = () => ({
   type: SET_MODAL_ADD_CONTACT
+})
+
+
+export const regNewUserReq = (login, fullName, email, password) => ({
+  type: REG_NEW_USER_REQUEST,
+  login,
+  fullName,
+  email,
+  password
+})
+
+export const regNewUserRec = (payload) => ({
+  type: REG_NEW_USER_RECIEVE,
+  payload
+})
+
+export const loginReq = (login, password) => ({
+  type: LOGIN_REQUEST,
+  login,
+  password
+})
+
+export const loginRec = (payload) => ({
+  type: LOGIN_RECIEVE,
+  payload
 })
