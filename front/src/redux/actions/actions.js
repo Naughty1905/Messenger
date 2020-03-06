@@ -2,8 +2,10 @@ import {
   GET_MESSAGE,
   SET_MESSAGES,
   SET_SIDEBAR,
-  SET_NAVLOADER
-
+  SET_NAVLOADER,
+  SET_CONTACTS,
+  SET_CONVERSATIONS,
+  SET_MODAL_ADD_CONTACT
 } from './action-types';
 
 export const getMessage = (payload) => ({
@@ -23,4 +25,18 @@ export const setSidebar = () => ({
 
 export const setLoaderNav = () => ({
   type: SET_NAVLOADER
+})
+
+export const setContacts = () => ({
+  type: SET_CONTACTS
+})
+
+
+export const setConversations = () => ({
+  type: SET_CONVERSATIONS
+})
+
+
+export const setModalAddContact = () => ({
+  type: SET_MODAL_ADD_CONTACT
 })
