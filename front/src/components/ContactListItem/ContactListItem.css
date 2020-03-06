@@ -1,0 +1,52 @@
+.contact-list-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  animation-name: ui-move;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  transition-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  margin-left: 100%;
+}
+
+
+@keyframes ui-move{
+  from {
+    margin-left: 100%;
+  }
+  75% {
+    margin-left: -1.5%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+.contact-list-item:hover {
+  background: rgb(32,43,54);
+  cursor: pointer;
+}
+
+.contact-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.contact-title {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.contact-snippet {
+  font-size: 14px;
+  color: rgb(109,120,131);
+  margin: 0;
+}
