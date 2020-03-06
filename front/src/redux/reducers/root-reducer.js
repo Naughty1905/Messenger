@@ -3,7 +3,8 @@ import {
   SET_SIDEBAR,
   SET_NAVLOADER,
   SET_CONTACTS,
-  SET_CONVERSATIONS
+  SET_CONVERSATIONS,
+  SET_MODAL_ADD_CONTACT
 } from '../actions/action-types';
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
   isNav: false,
   navLoader: false,
   isContact: false,
-  isConversation: true
+  isConversation: true,
+  isModalAddContact: false
 };
 
 function rootReducer(state = initialState, action) {
@@ -46,6 +48,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         navLoader: !state.navLoader
+      }
+    case SET_MODAL_ADD_CONTACT:
+      return {
+        ...state,
+        isModalAddContact: !state.isModalAddContact
       }
     default:
       return state;

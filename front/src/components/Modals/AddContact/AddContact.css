@@ -1,0 +1,112 @@
+.modal-wrap-add-contact {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);
+  display: grid;
+  grid-template-columns: 37% auto 37%;
+  grid-template-rows: 22% auto 22%;
+}
+
+.modal-form {
+  border-radius: 0.2rem;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(29, 50, 70);;
+  grid-row-start: 2;
+  grid-column-start: 2;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+  animation-name: ui-fade;
+  animation-duration: 0.6s;
+  animation-iteration-count: 1;
+  transition-timing-function: linear;
+  animation-fill-mode: forwards;
+
+}
+@keyframes ui-fade{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-form i {
+  font-size: 25px;
+  color: rgb(207, 203, 203);
+}
+
+.modal-form h3 {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  color: white;
+  font-size: 25px;
+  font-weight: 500;
+  justify-self: center;
+}
+
+.icon-input-1 {
+  grid-row-start: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  align-self: center;
+}
+
+.input-name {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.icon-input-2 {
+  grid-row-start: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  align-self: center;
+}
+
+.icon-input-3 {
+  grid-row-start: 4;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  align-self: center;
+}
+
+.inp {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: rgb(207, 203, 203);
+  border-bottom: 0.07rem solid rgb(58, 133, 198);
+}
+
+.buttons {
+  grid-row-start: 5;
+  grid-column-start: 2;
+  align-self: center;
+  justify-self: flex-end;
+}
+
+.buttons button {
+  text-transform: uppercase;
+  width: 5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: rgb(58, 133, 198);
+  font-weight: 500;
+
+}
+
+.buttons button:hover {
+  background: rgba(207, 203, 203, 0.1);
+  border-radius: 0.3rem;
+}  

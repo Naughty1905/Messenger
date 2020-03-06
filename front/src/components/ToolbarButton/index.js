@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import './ToolbarButtonBlack.css';
-import { setSidebar, setConversations, setContacts } from '../../redux/actions/actions'
+import { setSidebar, setConversations, setContacts, setModalAddContact } from '../../redux/actions/actions'
 
 
 
 const ToolbarButton = (props) => {
 
-  const { setSidebar, isNav, isConversation, setConversations, setContacts } = props;
+  const { setSidebar, isNav, isConversation, setConversations, setModalAddContact } = props;
 
   const showBtn = (event) => {
     const btnName = event.target.className;
@@ -18,7 +18,7 @@ const ToolbarButton = (props) => {
         setSidebar()
       }
     } else if (btnName == 'toolbar-button ion-ios-add-circle-outline') {
-      setContacts()
+      setModalAddContact()
     }
   }
 
@@ -36,4 +36,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { setSidebar, setConversations, setContacts })(ToolbarButton)
+export default connect(mapStateToProps, { setSidebar, setConversations, setContacts, setModalAddContact })(ToolbarButton)
