@@ -8,6 +8,7 @@ const auth = require('../../middleware/auth');
 // Create new user
 router.post('/', async (req, res) => {
   const { login, email, password } = req.body;
+  console.log(login)
   try {
     password = await bcrypt.hash(password, 10);
     const user = new User({ login, email, password });

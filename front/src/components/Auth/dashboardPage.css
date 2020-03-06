@@ -4,7 +4,7 @@
     height: 100vh;
     background: rgb(14,22,33);
     grid-template-columns: 33% auto 33%;
-    grid-template-rows: 22% auto 22%;
+    grid-template-rows: 10% auto 10%;
     grid-column-gap: 1px;
     grid-row-gap: 1px;
 } 
@@ -19,7 +19,7 @@
   border-radius: 0.5rem;
   display: grid;
   grid-template-columns: 10% auto 10%;
-  grid-template-rows: 10% auto auto auto 30%;
+  grid-template-rows: 5% auto auto auto auto auto 15%;
   grid-column-gap: 1px;
   grid-row-gap: 1px;
   justify-items: center;
@@ -59,31 +59,45 @@
 }
 
 
-#email {
+#fullName {
   align-self: center;
   justify-self: center;
   grid-row-start: 2;
   grid-column-start: 2;
 }
 
-#password {
+#email {
   align-self: center;
   justify-self: center;
   grid-row-start: 3;
   grid-column-start: 2;
 }
 
-#conpass {
+#login {
   align-self: center;
   justify-self: center;
   grid-row-start: 4;
   grid-column-start: 2;
 }
 
+#password {
+  align-self: center;
+  justify-self: center;
+  grid-row-start: 5;
+  grid-column-start: 2;
+}
+
+#conpass {
+  align-self: center;
+  justify-self: center;
+  grid-row-start: 6;
+  grid-column-start: 2;
+}
+
 #buttons {
   position: relative;
   align-self: start;
-  grid-row-start: 5;
+  grid-row-start: 7;
   grid-column-start: 2;
   display: flex;
   justify-content: space-evenly;
