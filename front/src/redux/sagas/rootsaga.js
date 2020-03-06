@@ -5,7 +5,6 @@ import { fetchReg, fetchLogin } from '../utils/authFetch';
 
 
 function* fetchRegAsync(obj) {
-  debugger
   const { login, fullName, email, password } = obj;
   try {
     const data = yield call(fetchReg, login, fullName, email, password)
@@ -19,7 +18,6 @@ function* fetchRegAsync(obj) {
 }
 
 function* fetchLoginAsync(obj) {
-  debugger
   const { login, password } = obj;
   try {
     const data = yield call(fetchLogin, login, password)

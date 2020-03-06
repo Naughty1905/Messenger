@@ -20,7 +20,8 @@ const initialState = {
   messages: [],
   isContact: false,
   isConversation: true,
-  isModalAddContact: false
+  isModalAddContact: false,
+  isAuth: localStorage.getItem('token') || false
 };
 
 
@@ -70,10 +71,10 @@ function rootReducer(state = initialState, action) {
         isModalAddContact: !state.isModalAddContact
       }
     case REG_NEW_USER_RECIEVE:
-      debugger
       return {
         ...state,
-        user: action.payload.user
+        user: action.payload.login,
+        isAuth: action.payload.token
       }
     default:
       return state;

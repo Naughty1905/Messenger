@@ -3,6 +3,7 @@ const socketio = require('socket.io');
 const http = require('http');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
@@ -23,10 +24,11 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 // Middlewares
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 
 // Actions
 const {

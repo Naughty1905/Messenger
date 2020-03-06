@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     minlength: 5,
   },
-  fullname: {
+  fullName: {
     type: String,
     required: true
   },
@@ -43,8 +43,8 @@ userSchema.methods.generateAuthToken = async function () {
   return token
 }
 
-userSchema.statics.findByCredentials = async (email, password) => {
-  const user = await User.findOne({ email })
+userSchema.statics.findByCredentials = async function (login, password) {
+  const user = await this.findOne({ login })
   if (!user) {
     throw new Error({ error: 'Invalid login credentials' })
   }

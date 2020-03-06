@@ -7,11 +7,10 @@ const auth = require('../../middleware/auth');
 
 // Create new user
 router.post('/', async (req, res) => {
-  const { login, email, password } = req.body;
-  console.log(login)
+  const { login, email, password, fullName } = req.body;
   try {
-    password = await bcrypt.hash(password, 10);
-    const user = new User({ login, email, password });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ login, email, password: hashedPassword, fullName });
     await user.save();
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
@@ -22,16 +21,15 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await User.findByCredentials(email, password);
+    const { login, password } = req.body;
+    const user = await User.findByCredentials(login, password);
     if (!user) {
-      return res.status(401).send({ error: 'Login failed! Wrong password or email' });
+      return res.status(401).send({ error: 'Login failed! Wrong password or login' });
     }
     const token = await user.generateAuthToken();
     res.send({
-      user: {
-        "user.login": user
-      }, token
+      login,
+      token
     });
   } catch (error) {
     res.status(400).send(error);
@@ -46,7 +44,7 @@ router.get('/contacts/new', async (req, res) => {
     console.log(newContact)
     res.status(200).json(newContact);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(404).send(error);
   }
 })
 
