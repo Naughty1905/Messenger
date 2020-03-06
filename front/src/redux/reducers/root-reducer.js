@@ -1,5 +1,6 @@
 import {
-  MESSEGE_LOADED,
+  GET_MESSAGE,
+  SET_MESSAGES,
   SET_SIDEBAR,
   SET_NAVLOADER,
   SET_CONTACTS,
@@ -8,22 +9,35 @@ import {
 } from '../actions/action-types';
 
 const initialState = {
-  messege: '',
-  messeges: [],
+  user: 'Eva',
   isNav: false,
   navLoader: false,
+  message: {
+    content: '',
+    owner: '',
+  },
+  messages: [],
   isContact: false,
   isConversation: true,
   isModalAddContact: false
 };
 
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case MESSEGE_LOADED:
+    case GET_MESSAGE:
+      const { message, user } = action.payload
       return {
         ...state,
-        messege: action.payload,
-        messeges: [state.messege, ...state.messeges]
+        message: {
+          content: message,
+          owner: user
+        }
+      };
+    case SET_MESSAGES:
+      return {
+        ...state,
+        messages: [...state.messages, action.payload]
       };
     case SET_CONVERSATIONS:
       return {

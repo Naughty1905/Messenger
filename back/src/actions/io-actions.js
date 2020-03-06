@@ -1,12 +1,13 @@
 const DISCONNECT = 'disconnect';
 const CONNECTION = 'connection';
 const JOIN = 'join';
-const MESSEGE = 'messege';
-
+const MESSAGE = 'messege';
+const SEND_MESSAGE = 'sendMessege';
 
 module.exports = {
   DISCONNECT,
   CONNECTION,
   JOIN,
-  MESSEGE
+  MESSAGE,
+  SEND_MESSAGE
 }

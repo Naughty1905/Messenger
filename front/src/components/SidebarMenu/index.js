@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import { connect } from 'react-redux'
