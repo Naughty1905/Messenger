@@ -35,7 +35,7 @@ class DashboardPage extends Component {
             </form> :
             <form method="POST" className="form">
               <div className="wrap-input-auth" id="email">
-                <input type="search" className="input-auth" placeholder='Email' />
+                <input autoFocus type="search" className="input-auth" placeholder='Email' />
               </div>
               <div className="wrap-input-auth" id="password">
                 <input type="search" className="input-auth" placeholder='Password' />
