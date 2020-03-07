@@ -10,6 +10,11 @@ import {
   REG_NEW_USER_RECIEVE,
   LOGIN_REQUEST,
   LOGIN_RECIEVE,
+  AUTH_ERROR,
+  ADD_NEW_CONTACT_REQUEST,
+  ADD_NEW_CONTACT_RECIEVE,
+  GET_CONTACTS_REQUEST,
+  GET_CONTACTS_RECIEVE
 } from './action-types';
 
 export const getMessage = (payload) => ({
@@ -67,5 +72,32 @@ export const loginReq = (login, password) => ({
 
 export const loginRec = (payload) => ({
   type: LOGIN_RECIEVE,
+  payload
+})
+
+export const setAuthError = () => ({
+  type: AUTH_ERROR
+})
+
+export const addNewContactReq = (fullName, login, number, isAuth) => ({
+  type: ADD_NEW_CONTACT_REQUEST,
+  fullName,
+  login,
+  number,
+  isAuth
+})
+
+export const addNewContactRec = (payload) => ({
+  type: ADD_NEW_CONTACT_RECIEVE,
+  payload
+})
+
+export const getContactsReq = (isAuth) => ({
+  type: GET_CONTACTS_REQUEST,
+  isAuth
+})
+
+export const getContactsRec = (payload) => ({
+  type: GET_CONTACTS_RECIEVE,
   payload
 })

@@ -29,6 +29,10 @@ const userSchema = new mongoose.Schema({
   contacts: [{
     type: String
   }],
+  friends: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   tokens: [{
     token: {
       type: String,
