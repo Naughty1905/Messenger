@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { fullName, login, number, isAuth } = req.body;
-
+  console.log(fullName, login, number, isAuth)
   try {
     const userId = jwt.decode(isAuth)._id;
     const currentUser = await User.findOne({ _id: userId });
@@ -36,7 +36,16 @@ router.post('/', async (req, res) => {
       friendId: newContact._id,
       chat: chat._id
     })
-    await currentUser.save();
+    await currentUser.save()
+    newContact.friends.push({
+      fullName: currentUser.fullName,
+      friendId: currentUser._id,
+      chat: chat._id
+    })
+    await newContact.save();
+    console.log(currentUser)
+    console.log(newContact);
+    console.log(chat)
     res.status(201).json({ chatId: chat._id });
   } catch (error) {
     res.status(404).send(error);
