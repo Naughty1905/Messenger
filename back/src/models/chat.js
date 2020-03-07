@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 
+
 const chatSchema = new mongoose.Schema({
   members: [
-    { type: String }
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
   ],
   messages: [
     {
@@ -12,9 +16,7 @@ const chatSchema = new mongoose.Schema({
     }
   ]
 });
-
 chatSchema.static.createChat = function (members) {
   this.create({ members });
 };
-
 module.exports = new mongoose.model('Chat', chatSchema)
