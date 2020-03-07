@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const Chat = require('./chat'); 
+const Chat = require('./chat');
 
 const userSchema = new mongoose.Schema({
   login: {
@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema({
     friendId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
+    },
+    chat: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Chat'
     }
   }],
   tokens: [{

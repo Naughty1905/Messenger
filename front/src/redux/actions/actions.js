@@ -14,7 +14,9 @@ import {
   ADD_NEW_CONTACT_REQUEST,
   ADD_NEW_CONTACT_RECIEVE,
   GET_CONTACTS_REQUEST,
-  GET_CONTACTS_RECIEVE
+  GET_CONTACTS_RECIEVE,
+  START_CHAT_REQUEST,
+  START_CHAT_RECIEVE
 } from './action-types';
 
 export const getMessage = (payload) => ({
@@ -101,3 +103,15 @@ export const getContactsRec = (payload) => ({
   type: GET_CONTACTS_RECIEVE,
   payload
 })
+
+
+export const startChatReq = (chat) => ({
+  type: START_CHAT_REQUEST,
+  chat
+})
+
+export const startChatRec = (payload) => ({
+  type: START_CHAT_RECIEVE,
+  payload
+})
+

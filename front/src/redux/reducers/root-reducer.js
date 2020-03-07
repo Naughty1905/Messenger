@@ -9,7 +9,8 @@ import {
   REG_NEW_USER_RECIEVE,
   AUTH_ERROR,
   ADD_NEW_CONTACT_RECIEVE,
-  GET_CONTACTS_RECIEVE
+  GET_CONTACTS_RECIEVE,
+  START_CHAT_RECIEVE
 } from '../actions/action-types';
 
 const initialState = {
@@ -99,6 +100,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         friends: [...action.payload]
       }
+    case START_CHAT_RECIEVE: {
+      return {
+        ...state,
+        messages: action.payload
+      }
+    }
     default:
       return state;
   }

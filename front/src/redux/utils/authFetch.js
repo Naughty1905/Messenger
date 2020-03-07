@@ -49,3 +49,12 @@ export const fetchAddNewContact = async (fullName, login, number, isAuth, url = 
 };
 
 
+export const fetchStartChat = async (chat, url = "http://localhost:5000/chats") => {
+  const { data } = await axios.get(url, {
+    query: {
+      chat
+    }
+  })
+  return data;
+};
+
