@@ -32,8 +32,6 @@ const DashboardPage = (props) => {
     const email = event.target.email.value;
     const fullName = event.target.fullName.value;
 
-    debugger
-
     regNewUserReq(login, fullName, email, password)
   }
 

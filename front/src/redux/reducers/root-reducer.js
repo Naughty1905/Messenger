@@ -73,8 +73,7 @@ function rootReducer(state = initialState, action) {
     case REG_NEW_USER_RECIEVE:
       return {
         ...state,
-        user: action.payload.login,
-        isAuth: action.payload.token
+        user: action.payload.user
       }
     default:
       return state;

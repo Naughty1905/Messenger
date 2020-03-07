@@ -48,5 +48,9 @@ router.get('/contacts/new', async (req, res) => {
   }
 })
 
+router.delete('/', (req, res) => {
+  const { messeges } = req.body;
+})
+
 
 module.exports = router;

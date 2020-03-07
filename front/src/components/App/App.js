@@ -1,11 +1,11 @@
 import React from 'react';
 import Messenger from '../Messenger';
 import DashboardPage from '../Auth/DashboardPage';
-import AddContact from '../Modals/AddContact'
-import { connect } from 'react-redux'
+import AddContact from '../Modals/AddContact';
+import { connect } from 'react-redux';
 
 
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 const App = (props) => {
   const { isModalAddContact, isAuth } = props;
@@ -16,12 +16,18 @@ const App = (props) => {
       {isModalAddContact && <AddContact />}
       <Switch>
         {
-          !isAuth && <> <Route path='/auth' component={DashboardPage} />
-            <Redirect to="/auth" /> </>
+          !isAuth &&
+          <>
+            <Route path='/auth' component={DashboardPage} />
+            <Redirect to="/auth" />
+          </>
         }
         {
-          isAuth && <> <Route exact path="/" component={Messenger} />
-            <Redirect to="/" /> </>
+          isAuth &&
+          <>
+            <Route exact path="/" component={Messenger} />
+            <Redirect to="/" />
+          </>
         }
       </Switch>
     </Router>
