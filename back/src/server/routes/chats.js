@@ -1,12 +1,26 @@
 const express = require('express');
 const router = express.Router();
 
+// Models
 const Chat = require('../../models/chat');
 const User = require('../../models/user');
 
+// isAuth
+const auth = require('../../middleware/auth');
 
+router.get('/', auth, async (req, res) => {
+  const { id } = req.query;
 
-router.post('/', async (req, res) => {
+  try {
+    const chat = await Chat.findOne({ _id: id });
+    const messages = chat.messages;
+    res.send(200).json(messages);
+  } catch (err) {
+    res.status(404).send('Not found!');
+  }
+})
+
+router.post('/', auth, async (req, res) => {
   const { fullName, login, number, isAuth } = req.body;
   try {
     const userId = jwt.decode(isAuth)._id;

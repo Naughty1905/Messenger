@@ -27,7 +27,6 @@ function* fetchLoginAsync(obj) {
     }
     yield put(regNewUserRec(data));
   } catch (e) {
-    console.log(e)
     yield put(setAuthError())
   }
 }
@@ -40,7 +39,6 @@ function* fetchAllConctactsAsync(obj) {
     if (!data) {
       return;
     }
-    debugger
     yield put(getContactsRec(data));
   } catch (e) {
     yield put(setAuthError())
