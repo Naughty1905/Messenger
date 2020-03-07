@@ -24,12 +24,15 @@ const userSchema = new mongoose.Schema({
     required: true,
     minLength: 7
   },
-  contacts: [{
-    type: String
-  }],
   friends: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    fullName: {
+      type: String,
+      required: true,
+    },
+    friendId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
   }],
   tokens: [{
     token: {

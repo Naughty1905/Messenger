@@ -21,7 +21,6 @@ export const fetchLogin = async (login, password, url = "http://localhost:5000/u
     login,
     password
   })
-  debugger
   if (data) {
     localStorage.setItem('token', data.token);
   }
@@ -29,11 +28,9 @@ export const fetchLogin = async (login, password, url = "http://localhost:5000/u
 };
 
 export const fetchAllFriends = async (isAuth, url = "http://localhost:5000/users/contacts/all") => {
-  debugger
   const { data } = await axios.post(url, {
     isAuth
   })
-  debugger
   return data;
 };
 
