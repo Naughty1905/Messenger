@@ -17,6 +17,7 @@ DB()
 // Routs dir
 const rout = require('./routes/rout');
 const usersRouter = require('./routes/users');
+const chatsRouter = require('./routes/chats');
 
 // Server
 const app = express();
@@ -61,6 +62,7 @@ io.on(CONNECTION, (socket) => {
 // Routs
 app.use(rout);
 app.use('/users', usersRouter);
+app.use('/chats', chatsRouter);
 
 server.listen(PORT, () => console.log(`Server has started on ${PORT}`));
 

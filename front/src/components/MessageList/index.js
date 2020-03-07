@@ -45,7 +45,7 @@ const MessageList = props => {
     });
 
     socket.on(SEND_MESSAGE + room, ({ message }, callback) => {
-      props.setMessages(message)
+      props.setMessages(message);
     })
 
     return () => {
