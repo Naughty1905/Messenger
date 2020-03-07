@@ -32,19 +32,19 @@ import renderMessages from './renderMessage';
 let socket;
 
 const MessageList = props => {
-  const { message, messages, user, room } = props;
+  const { message, messages, user, chat } = props;
 
   useEffect(() => {
     socket = io(ENDPOINT);
 
-    socket.emit(JOIN, { user, room }, () => {
+    socket.emit(JOIN, { user, chat }, () => {
 
     });
-    socket.emit(MESSAGE + room, { message }, () => {
+    socket.emit(MESSAGE + chat, { message }, () => {
 
     });
 
-    socket.on(SEND_MESSAGE + room, ({ message }, callback) => {
+    socket.on(SEND_MESSAGE + chat, ({ message }, callback) => {
       props.setMessages(message);
     })
 
@@ -90,7 +90,7 @@ const mapStateToProps = state => {
     message: state.message,
     messages: state.messages,
     user: state.user,
-    room: state.room
+    chat: state.chat
   }
 }
 

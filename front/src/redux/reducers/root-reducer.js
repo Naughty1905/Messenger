@@ -28,7 +28,7 @@ const initialState = {
   isAuth: localStorage.getItem('token') || false,
   isAuthError: false,
   friends: [],
-  room: '123'
+  chat: ''
 };
 
 
@@ -104,7 +104,8 @@ function rootReducer(state = initialState, action) {
       debugger
       return {
         ...state,
-        messages: action.payload
+        messages: action.payload.messages,
+        chat: action.payload.chat
       }
     }
     default:

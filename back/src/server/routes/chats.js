@@ -14,14 +14,15 @@ router.get('/', async (req, res) => {
   try {
     const chat = await Chat.findOne({ _id: id });
     const messages = chat.messages;
-    res.status(200).json(messages);
+    res.status(200).json({ messages, chat: chat._id });
   } catch (err) {
     res.status(404).send('Not found!');
   }
 })
 
-router.post('/', auth, async (req, res) => {
+router.post('/', async (req, res) => {
   const { fullName, login, number, isAuth } = req.body;
+
   try {
     const userId = jwt.decode(isAuth)._id;
     const currentUser = await User.findOne({ _id: userId });

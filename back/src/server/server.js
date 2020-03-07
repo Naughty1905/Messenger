@@ -43,13 +43,13 @@ const {
 // Sockets
 io.on(CONNECTION, (socket) => {
   console.log('Connection on socket is started!!!');
-  socket.on(JOIN, ({ user, room }, callback) => {
+  socket.on(JOIN, ({ user, chat }, callback) => {
     console.log(user);
-    console.log(room);
-    socket.on(MESSAGE + room, ({ message }, callback) => {
+    console.log('>>>>>>>>>', chat);
+    socket.on(MESSAGE + chat, ({ message }, callback) => {
       if (!message.owner || !message.content) return
       console.log(message)
-      io.emit(SEND_MESSAGE + room, { message })
+      io.emit(SEND_MESSAGE + chat, { message })
     });
   });
 
