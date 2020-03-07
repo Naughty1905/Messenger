@@ -10,12 +10,13 @@ export default function ContactListItem(props) {
   })
 
   const { photo, name } = props.data;
+  const { _id, fullName } = props.friend;
 
   return (
     <div className="contact-list-item">
       <img className="contact-photo" src={photo} alt="contact" />
       <div className="contact-info">
-        <h1 className="contact-title">{name}</h1>
+        <h1 className="contact-title">{fullName}</h1>
       </div>
     </div>
   );

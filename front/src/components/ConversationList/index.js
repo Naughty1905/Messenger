@@ -20,6 +20,7 @@ const ConversationList = (props) => {
   }, [])
 
   const getConversations = () => {
+
     setLoaderNav()
     axios.get('https://randomuser.me/api/?results=20').then(response => {
       let newConversations = response.data.results.map(result => {

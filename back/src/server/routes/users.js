@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('../../models/user');
 
 const router = express.Router();
@@ -47,6 +48,52 @@ router.get('/contacts/new', async (req, res) => {
     res.status(404).send(error);
   }
 })
+
+
+router.post('/contacts/', async (req, res) => {
+  const { fullName, login, number, isAuth } = req.body;
+  try {
+    const user = jwt.decode(isAuth)._id;
+    const currentUser = await User.findOne({ _id: user });
+    const newContact = await User.findOne({ login });
+    currentUser.friends.push(newContact._id)
+    await currentUser.save()
+    // let { friends } = currentUser;
+    // const friendPromises = [];
+    // friends = friends.map(async (friend) => {
+    //   friendPromises.push(User.findOne({ _id: friend }))
+    // });
+    // friends = await Promise.all(friendPromises);
+    // friends = friends.map(friend => friend.fullName)
+    res.status(200).json(true);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+})
+
+router.post('/contacts/all', async (req, res) => {
+  const { isAuth } = req.body;
+  try {
+    const user = jwt.decode(isAuth)._id;
+    const currentUser = await User.findOne({ _id: user });
+    let { friends } = currentUser;
+    const friendPromises = [];
+    friends = friends.map(async (friend) => {
+      friendPromises.push(User.findOne({ _id: friend }))
+    });
+    friends = await Promise.all(friendPromises);
+    friends = friends.map(friend => {
+      return {
+        fullName: friend.fullName,
+        _id: friend._id
+      }
+    })
+    res.status(200).json(friends);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+})
+
 
 
 module.exports = router;

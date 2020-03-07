@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
-import { regNewUserReq, loginReq } from '../../redux/actions/actions'
+import { regNewUserReq, loginReq, setAuthError } from '../../redux/actions/actions'
 import './dashboardPage.css'
 
 
 const DashboardPage = (props) => {
   const [isReg, setIsReg] = useState(false);
 
-  const { regNewUserReq, loginReq } = props;
+  const { regNewUserReq, loginReq, setAuthError } = props;
 
 
   const loginHandler = (event) => {
@@ -25,6 +25,7 @@ const DashboardPage = (props) => {
     const conpass = event.target.conpass.value;
 
     if (password !== conpass) {
+      setAuthError()
       return;
     }
 
@@ -43,7 +44,7 @@ const DashboardPage = (props) => {
         !isReg ?
           <form onSubmit={loginHandler} method="POST" className="form">
             <div className="wrap-input-auth" id="login">
-              <input name='login' type="search" className="input-auth" placeholder='Login' />
+              <input autoComplete='none' name='login' type="search" className="input-auth" placeholder='Login' />
             </div>
             <div className="wrap-input-auth" id="password">
               <input name='password' type="password" className="input-auth" placeholder='Password' />
@@ -57,13 +58,13 @@ const DashboardPage = (props) => {
           </form> :
           <form onSubmit={regHandler} method="POST" className="form">
             <div className="wrap-input-auth" id="fullName">
-              <input name='fullName' type="search" className="input-auth" placeholder='Full Name' />
+              <input autoComplete='none' name='fullName' type="search" className="input-auth" placeholder='Full Name' />
             </div>
             <div className="wrap-input-auth" id="email">
-              <input name='email' type="search" className="input-auth" placeholder='Email' />
+              <input autoComplete='none' name='email' type="search" className="input-auth" placeholder='Email' />
             </div>
             <div className="wrap-input-auth" id="login">
-              <input name='login' type="search" className="input-auth" placeholder='Login' />
+              <input autoComplete='none' name='login' type="search" className="input-auth" placeholder='Login' />
             </div>
             <div className="wrap-input-auth" id="password">
               <input name='password' type="password" className="input-auth" placeholder='Password' />
@@ -84,4 +85,4 @@ const DashboardPage = (props) => {
   );
 }
 
-export default connect(null, { regNewUserReq, loginReq })(DashboardPage);
+export default connect(null, { regNewUserReq, loginReq, setAuthError })(DashboardPage);

@@ -6,7 +6,10 @@ import {
   SET_CONTACTS,
   SET_CONVERSATIONS,
   SET_MODAL_ADD_CONTACT,
-  REG_NEW_USER_RECIEVE
+  REG_NEW_USER_RECIEVE,
+  AUTH_ERROR,
+  ADD_NEW_CONTACT_RECIEVE,
+  GET_CONTACTS_RECIEVE
 } from '../actions/action-types';
 
 const initialState = {
@@ -21,7 +24,9 @@ const initialState = {
   isContact: false,
   isConversation: true,
   isModalAddContact: false,
-  isAuth: localStorage.getItem('token') || false
+  isAuth: localStorage.getItem('token') || false,
+  isAuthError: false,
+  friends: []
 };
 
 
@@ -75,6 +80,23 @@ function rootReducer(state = initialState, action) {
         ...state,
         user: action.payload.login,
         isAuth: action.payload.token
+      }
+    case AUTH_ERROR:
+      return {
+        ...state,
+        isAuthError: !state.isAuthError
+      }
+
+    case ADD_NEW_CONTACT_RECIEVE:
+      return {
+        ...state,
+
+      }
+    case GET_CONTACTS_RECIEVE:
+      debugger
+      return {
+        ...state,
+        friends: [...action.payload]
       }
     default:
       return state;
