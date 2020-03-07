@@ -101,6 +101,7 @@ function rootReducer(state = initialState, action) {
         friends: [...action.payload]
       }
     case START_CHAT_RECIEVE: {
+      debugger
       return {
         ...state,
         messages: action.payload
