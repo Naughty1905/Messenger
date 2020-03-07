@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 const App = (props) => {
   const { isModalAddContact, isAuth, isAuthError } = props;
-
   return (
     <Router className="App">
       {isAuthError && <Tooltip />}

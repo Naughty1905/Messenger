@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { regNewUserReq, loginReq, setAuthError } from '../../redux/actions/actions'
 import './dashboardPage.css'
-
 
 const DashboardPage = (props) => {
   const [isReg, setIsReg] = useState(false);
 
   const { regNewUserReq, loginReq, setAuthError } = props;
-
 
   const loginHandler = (event) => {
     event.preventDefault();
@@ -83,4 +81,10 @@ const DashboardPage = (props) => {
   );
 }
 
-export default connect(null, { regNewUserReq, loginReq, setAuthError })(DashboardPage);
+export default connect(
+  null,
+  {
+    regNewUserReq,
+    loginReq,
+    setAuthError
+  })(DashboardPage);

@@ -13,7 +13,7 @@ import {
 } from '../actions/action-types';
 
 const initialState = {
-  user: 'Eva',
+  user: localStorage.getItem('user') || '',
   isNav: false,
   navLoader: false,
   message: {
@@ -26,7 +26,8 @@ const initialState = {
   isModalAddContact: false,
   isAuth: localStorage.getItem('token') || false,
   isAuthError: false,
-  friends: []
+  friends: [],
+  room: '123'
 };
 
 
@@ -78,7 +79,8 @@ function rootReducer(state = initialState, action) {
     case REG_NEW_USER_RECIEVE:
       return {
         ...state,
-        user: action.payload.user
+        user: action.payload.login,
+        isAuth: action.payload.token
       }
     case AUTH_ERROR:
       return {

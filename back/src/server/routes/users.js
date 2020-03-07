@@ -49,12 +49,7 @@ router.get('/contacts/new', async (req, res) => {
   }
 })
 
-router.delete('/', (req, res) => {
-  const { messeges } = req.body;
-})
-
-
-router.post('/contacts/', async (req, res) => {
+router.post('/contacts', async (req, res) => {
   const { fullName, login, number, isAuth } = req.body;
   try {
     const user = jwt.decode(isAuth)._id;
@@ -69,7 +64,7 @@ router.post('/contacts/', async (req, res) => {
     // });
     // friends = await Promise.all(friendPromises);
     // friends = friends.map(friend => friend.fullName)
-    res.status(200).json(true);
+    res.status(201).json(true);
   } catch (error) {
     res.status(404).send(error);
   }
