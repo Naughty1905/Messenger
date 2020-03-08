@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { REG_NEW_USER_REQUEST, LOGIN_REQUEST, ADD_NEW_CONTACT_REQUEST, GET_CONTACTS_REQUEST, START_CHAT_REQUEST } from '../actions/action-types';
-import { regNewUserRec, setAuthError, addNewContactRec, getContactsRec, startChatRec } from "../actions/actions";
-import { fetchReg, fetchLogin, fetchAddNewContact, fetchAllFriends, fetchStartChat } from '../utils/authFetch';
+import { REG_NEW_USER_REQUEST, LOGIN_REQUEST, ADD_NEW_CONTACT_REQUEST, GET_CONTACTS_REQUEST, START_CHAT_REQUEST, GET_CONVERSATIONS_REQUEST } from '../actions/action-types';
+import { regNewUserRec, setAuthError, addNewContactRec, getContactsRec, startChatRec, getConversationsRec } from "../actions/actions";
+import { fetchReg, fetchLogin, fetchAddNewContact, fetchAllFriends, fetchStartChat, fetchConversations } from '../utils/authFetch';
 
 
 
@@ -67,6 +67,16 @@ function* fetchStartChatAsync(obj) {
   }
 }
 
+function* fetchConversationsAsync(obj) {
+  const { isAuth } = obj;
+  try {
+    const data = yield call(fetchConversations, isAuth)
+    yield put(getConversationsRec(data));
+  } catch (e) {
+    yield put(setAuthError())
+  }
+}
+
 
 
 
@@ -76,6 +86,7 @@ export default function* actionWatcher() {
   yield takeLatest(ADD_NEW_CONTACT_REQUEST, fetchAddNewContactAsync);
   yield takeLatest(GET_CONTACTS_REQUEST, fetchAllConctactsAsync);
   yield takeLatest(START_CHAT_REQUEST, fetchStartChatAsync);
+  yield takeLatest(GET_CONVERSATIONS_REQUEST, fetchConversationsAsync);
 }
 
 

@@ -10,7 +10,8 @@ import {
   AUTH_ERROR,
   ADD_NEW_CONTACT_RECIEVE,
   GET_CONTACTS_RECIEVE,
-  START_CHAT_RECIEVE
+  START_CHAT_RECIEVE,
+  GET_CONVERSATIONS_RECIEVE
 } from '../actions/action-types';
 
 const initialState = {
@@ -28,7 +29,8 @@ const initialState = {
   isAuth: localStorage.getItem('token') || false,
   isAuthError: false,
   friends: [],
-  chat: ''
+  chat: '',
+  chats: []
 };
 
 
@@ -95,17 +97,22 @@ function rootReducer(state = initialState, action) {
 
       }
     case GET_CONTACTS_RECIEVE:
-      debugger
       return {
         ...state,
         friends: [...action.payload]
       }
     case START_CHAT_RECIEVE: {
-      debugger
       return {
         ...state,
         messages: action.payload.messages,
         chat: action.payload.chat
+      }
+    }
+    case GET_CONVERSATIONS_RECIEVE: {
+      debugger
+      return {
+        ...state,
+        chats: action.payload
       }
     }
     default:

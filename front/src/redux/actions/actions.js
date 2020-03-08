@@ -1,22 +1,35 @@
 import {
   GET_MESSAGE,
   SET_MESSAGES,
+
   SET_SIDEBAR,
+
   SET_NAVLOADER,
+
   SET_CONTACTS,
   SET_CONVERSATIONS,
+
   SET_MODAL_ADD_CONTACT,
+
   REG_NEW_USER_REQUEST,
   REG_NEW_USER_RECIEVE,
+
   LOGIN_REQUEST,
   LOGIN_RECIEVE,
+
   AUTH_ERROR,
+
   ADD_NEW_CONTACT_REQUEST,
   ADD_NEW_CONTACT_RECIEVE,
+
   GET_CONTACTS_REQUEST,
   GET_CONTACTS_RECIEVE,
+
   START_CHAT_REQUEST,
-  START_CHAT_RECIEVE
+  START_CHAT_RECIEVE,
+
+  GET_CONVERSATIONS_REQUEST,
+  GET_CONVERSATIONS_RECIEVE
 } from './action-types';
 
 export const getMessage = (payload) => ({
@@ -112,6 +125,18 @@ export const startChatReq = (chat) => ({
 
 export const startChatRec = (payload) => ({
   type: START_CHAT_RECIEVE,
+  payload
+})
+
+
+
+export const getConversationsReq = (isAuth) => ({
+  type: GET_CONVERSATIONS_REQUEST,
+  isAuth
+})
+
+export const getConversationsRec = (payload) => ({
+  type: GET_CONVERSATIONS_RECIEVE,
   payload
 })
 

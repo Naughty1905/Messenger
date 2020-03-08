@@ -14,6 +14,7 @@ const Compose = (props) => {
     event.preventDefault();
     if (!message) return
     props.getMessage({ message, user });
+
     setMessage('');
   }
 

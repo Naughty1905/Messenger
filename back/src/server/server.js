@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
+const Chat = require('../models/chat')
 
 const PORT = process.env.PORT || 5000;
 
@@ -46,9 +47,14 @@ io.on(CONNECTION, (socket) => {
   socket.on(JOIN, ({ user, chat }, callback) => {
     console.log(user);
     console.log('>>>>>>>>>', chat);
-    socket.on(MESSAGE + chat, ({ message }, callback) => {
+    socket.on(MESSAGE + chat, async ({ message }, callback) => {
       if (!message.owner || !message.content) return
       console.log(message)
+      const currentChat = await Chat.findOne({ _id: chat })
+      currentChat.messages.push({
+        ...message
+      });
+      await currentChat.save();
       io.emit(SEND_MESSAGE + chat, { message })
     });
   });

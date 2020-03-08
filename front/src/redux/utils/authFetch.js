@@ -60,3 +60,14 @@ export const fetchStartChat = async (chat, url = "http://localhost:5000/chats") 
   return data;
 };
 
+export const fetchConversations = async (isAuth, url = "http://localhost:5000/chats/conversations") => {
+  debugger
+  const { data } = await axios.get(url, {
+    params: {
+      isAuth
+    }
+  })
+  debugger
+  return data;
+};
+

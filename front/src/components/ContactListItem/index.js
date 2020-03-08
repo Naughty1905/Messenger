@@ -17,7 +17,6 @@ const ContactListItem = (props) => {
   const { _id, fullName, chat } = props.friend;
 
   const startChat = () => {
-    debugger
     startChatReq(chat);
   }
 

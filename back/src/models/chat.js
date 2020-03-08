@@ -10,13 +10,24 @@ const chatSchema = new mongoose.Schema({
   ],
   messages: [
     {
-      type: String,
-      owner: String,
-      date: Date,
+      content: {
+        type: String,
+        require: true
+      },
+      owner: {
+        type: String,
+        require: true
+      },
+      date: {
+        type: String,
+        default: Date.now()
+      }
     }
   ]
 });
+
 chatSchema.static.createChat = function (members) {
   this.create({ members });
 };
+
 module.exports = new mongoose.model('Chat', chatSchema)
