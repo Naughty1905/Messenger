@@ -32,10 +32,13 @@
   margin: 0;
 }
 
+.conversation-info {
+  text-align: left;
+}
+
 .conversation-snippet {
   font-size: 14px;
   color: rgb(109,120,131);
   margin-top: 2px;
   margin-bottom: 0;
-  text-align: left;
 }
