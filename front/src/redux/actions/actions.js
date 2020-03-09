@@ -29,7 +29,9 @@ import {
   START_CHAT_RECIEVE,
 
   GET_CONVERSATIONS_REQUEST,
-  GET_CONVERSATIONS_RECIEVE
+  GET_CONVERSATIONS_RECIEVE,
+
+  SET_RECORDING
 } from './action-types';
 
 export const getMessage = (payload) => ({
@@ -138,5 +140,10 @@ export const getConversationsReq = (isAuth) => ({
 export const getConversationsRec = (payload) => ({
   type: GET_CONVERSATIONS_RECIEVE,
   payload
+})
+
+
+export const setRecording = () => ({
+  type: SET_RECORDING
 })
 

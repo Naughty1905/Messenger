@@ -7,7 +7,8 @@ import { setSidebar, setConversations, setContacts, setModalAddContact } from '.
 
 const ToolbarButton = (props) => {
 
-  const { setSidebar, isNav, isConversation, setConversations, setModalAddContact } = props;
+  const { setSidebar, isNav, isConversation, setConversations, setModalAddContact, startRecording, stopRecording } = props;
+
 
   const showBtn = (event) => {
     const btnName = event.target.className;
@@ -25,7 +26,7 @@ const ToolbarButton = (props) => {
 
   const { icon } = props;
   return (
-    <i onClick={showBtn} className={`toolbar-button ${icon}`} />
+    <i onMouseDown={startRecording} onMouseUp={stopRecording} onClick={showBtn} className={`toolbar-button ${icon}`} />
   );
 }
 
