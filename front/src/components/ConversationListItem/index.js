@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import shave from 'shave';
 import { connect } from 'react-redux';
 import { startChatReq } from '../../redux/actions/actions'

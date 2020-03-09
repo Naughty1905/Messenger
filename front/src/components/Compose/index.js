@@ -6,6 +6,8 @@ import './ComposeBlack.css';
 import { connect } from 'react-redux';
 import { getMessage } from '../../redux/actions/actions';
 
+import speechRecognition from './SpeechRecognition';
+
 const Compose = (props) => {
   const [message, setMessage] = useState('');
   const { user } = props;
@@ -34,7 +36,7 @@ const Compose = (props) => {
 
       <div className='toolbar-input'>
         <ToolbarButton key="photo" icon="ion-ios-camera" />
-        <ToolbarButton key="audio" icon="ion-ios-mic" />
+        <ToolbarButton key="audio" icon="ion-ios-mic" startSpeechRecording={() =>  speechRecognition()} />
         <ToolbarButton key="money" icon="ion-ios-card" />
       </div>
     </div>
