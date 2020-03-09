@@ -58,9 +58,7 @@ function* fetchAddNewContactAsync(obj) {
 function* fetchStartChatAsync(obj) {
   const { chat } = obj;
   try {
-    debugger
     const data = yield call(fetchStartChat, chat)
-    debugger
     yield put(startChatRec(data));
   } catch (e) {
     yield put(setAuthError())

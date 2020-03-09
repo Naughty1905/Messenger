@@ -10,6 +10,8 @@ const Compose = (props) => {
   const [message, setMessage] = useState('');
   const { user } = props;
 
+  console.log(AudioListener)
+
   const messegeHandler = (event) => {
     event.preventDefault();
     if (!message) return

@@ -3,6 +3,8 @@ import Messenger from '../Messenger';
 import DashboardPage from '../Auth/DashboardPage';
 import AddContact from '../Modals/AddContact';
 import Tooltip from '../Utils/Tooltip'
+import AudioTest from '../AudioTest'
+import AudioTestNewHook from '../AudioTestNewHook'
 import { connect } from 'react-redux';
 
 
@@ -25,8 +27,12 @@ const App = (props) => {
         {
           isAuth &&
           <>
-            <Route exact path="/" component={Messenger} />
-            <Redirect to="/" />
+            <Switch >
+              <Route exact path="/" component={Messenger} />
+              <Route path="/test" component={AudioTest} />
+              <Route path="/newtest" component={AudioTestNewHook} />
+              <Redirect to="/" />
+            </Switch>
           </>
         }
       </Switch>

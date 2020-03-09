@@ -109,7 +109,6 @@ function rootReducer(state = initialState, action) {
       }
     }
     case GET_CONVERSATIONS_RECIEVE: {
-      debugger
       return {
         ...state,
         chats: action.payload

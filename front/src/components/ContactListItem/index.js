@@ -21,7 +21,6 @@ const ContactListItem = (props) => {
   }
 
 
-  debugger
 
   return (
     <div onClick={startChat} className="contact-list-item">

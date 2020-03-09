@@ -50,24 +50,20 @@ export const fetchAddNewContact = async (fullName, login, number, isAuth, url = 
 
 
 export const fetchStartChat = async (chat, url = "http://localhost:5000/chats") => {
-  debugger
   const { data } = await axios.get(url, {
     params: {
       id: chat
     }
   })
-  debugger
   return data;
 };
 
 export const fetchConversations = async (isAuth, url = "http://localhost:5000/chats/conversations") => {
-  debugger
   const { data } = await axios.get(url, {
     params: {
       isAuth
     }
   })
-  debugger
   return data;
 };
 
