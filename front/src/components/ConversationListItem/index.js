@@ -34,7 +34,11 @@ const ConversationListItem = (props) => {
       <img className="conversation-photo" src={photo} alt="conversation" />
       <div className="conversation-info">
         <h1 className="conversation-title">{members}</h1>
-        <p className="conversation-snippet">{messages[messages.length - 1].content || "There's no messages yeat..."}</p>
+        <p className="conversation-snippet">{
+          messages[messages.length - 1].messageType == 'Audio' ? 'Audio message' :
+            messages[messages.length - 1].messageType == 'String' ?
+              messages[messages.length - 1].content : "There's no messages yeat..."
+        }</p>
       </div>
     </div>
   );

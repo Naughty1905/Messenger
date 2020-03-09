@@ -11,11 +11,11 @@ const Compose = (props) => {
   const [recording, setRecording] = useState(false);
   const [message, setMessage] = useState('');
   const { user } = props;
- 
+
   const messegeHandler = (event) => {
     event.preventDefault();
     if (!message) return
-    props.getMessage({ message, user, type: 'String' });
+    props.getMessage({ message, user, messageType: 'String' });
 
     setMessage('');
   }

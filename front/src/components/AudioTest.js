@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getMessage } from '../redux/actions/actions';
-
+import { storage } from '../Firebase';
 const audioType = 'audio/webm';
 
 
@@ -13,6 +13,7 @@ class AudioTest extends React.Component {
       recording: false,
       audios: [],
       speechText: false,
+      url: ''
     };
   }
 
@@ -67,22 +68,29 @@ class AudioTest extends React.Component {
     const blob = new Blob(this.chunks, { type: audioType });
     // generate video url from blob
     const audioUrl = window.URL.createObjectURL(blob);
+
     // append audioUrl to list of saved audios for rendering
     const audios = this.state.audios.concat([audioUrl]);
-    this.setState({ audios });
-    this.props.getMessage({ message: audioUrl, user: this.props.user, type: 'Audio' });
+    const uploadTask = storage.ref(`audios/${audioUrl}`).put(blob);
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        // progrss function ....
+        // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        // this.setState({ progress });
+        console.log(snapshot)
+      },
+      (error) => {
+        // error function ....
+        console.log(error);
+      },
+      () => {
+        // complete function ....
+        storage.ref('audios').child(audioUrl).getDownloadURL().then(url => {
+          this.props.getMessage({ message: url, user: this.props.user, messageType: 'Audio' });
+        })
+      });
   }
 
-  // deleteVideo(audioUrl) {
-  //   // filter out current audioUrl from the list of saved audios
-  //   const audios = this.state.audios.filter(v => v !== audioUrl);
-  //   this.setState({ audios });
-  // }
-  // playTrack(track) {
-  //   const stream = new MediaStream()
-  //   stream.addTrack(track)
-  //   this.audio.srcObject = stream;
-  // }
   render() {
     return (
       <div className="camera">
