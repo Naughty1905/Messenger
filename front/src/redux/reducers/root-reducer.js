@@ -11,7 +11,8 @@ import {
   ADD_NEW_CONTACT_RECIEVE,
   GET_CONTACTS_RECIEVE,
   START_CHAT_RECIEVE,
-  GET_CONVERSATIONS_RECIEVE
+  GET_CONVERSATIONS_RECIEVE,
+  SET_RECORDING
 } from '../actions/action-types';
 
 const initialState = {
@@ -30,7 +31,8 @@ const initialState = {
   isAuthError: false,
   friends: [],
   chat: '',
-  chats: []
+  chats: [],
+  recording: false
 };
 
 
@@ -112,6 +114,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         chats: action.payload
+      }
+    }
+    case SET_RECORDING: {
+      return {
+        ...state,
+        recording: !state.recording
       }
     }
     default:

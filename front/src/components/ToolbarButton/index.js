@@ -4,7 +4,7 @@ import './ToolbarButtonBlack.css';
 import { setSidebar, setConversations, setContacts, setModalAddContact } from '../../redux/actions/actions';
 
 const ToolbarButton = (props) => {
-  const { setSidebar, isNav, isConversation, setConversations, setModalAddContact, startSpeechRecording } = props;
+  const { setSidebar, isNav, isConversation, setConversations, setModalAddContact, startRecording, stopRecording } = props;
 
 
   const showBtn = (event) => {
@@ -24,7 +24,7 @@ const ToolbarButton = (props) => {
 
   const { icon } = props;
   return (
-    <i onClick={showBtn} onMouseDown={startSpeechRecording} className={`toolbar-button ${icon}`} />
+    <i onMouseDown={startRecording} onMouseUp={stopRecording} onClick={showBtn} className={`toolbar-button ${icon}`} />
   );
 }
 
