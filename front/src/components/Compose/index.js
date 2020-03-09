@@ -7,19 +7,15 @@ import './ComposeBlack.css';
 import { connect } from 'react-redux';
 import { getMessage } from '../../redux/actions/actions';
 
-import speechRecognition from './SpeechRecognition';
-
 const Compose = (props) => {
   const [recording, setRecording] = useState(false);
   const [message, setMessage] = useState('');
   const { user } = props;
-
-  console.log(recording)
-
+ 
   const messegeHandler = (event) => {
     event.preventDefault();
     if (!message) return
-    props.getMessage({ message, user });
+    props.getMessage({ message, user, type: 'String' });
 
     setMessage('');
   }
@@ -51,7 +47,7 @@ const Compose = (props) => {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
   }
 }
 

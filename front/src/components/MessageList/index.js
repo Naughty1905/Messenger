@@ -32,8 +32,10 @@ import renderMessages from './renderMessage';
 let socket;
 
 const MessageList = props => {
-  const { message, messages, user, chat } = props;
+  const { message, messages, user, chat, audios } = props;
 
+
+  console.log(messages)
   useEffect(() => {
     socket = io(ENDPOINT);
 
@@ -56,6 +58,7 @@ const MessageList = props => {
 
 
 
+
   return (
     <div className="message-list">
       <Toolbar
@@ -70,6 +73,10 @@ const MessageList = props => {
       <div className="message-list-container">
         {
           renderMessages(messages, user)
+        }
+        {
+          !!audios.length && audios.map(audio => <audio controls="controls" src={audio} />)
+          
         }
       </div>
 
@@ -90,7 +97,8 @@ const mapStateToProps = state => {
     message: state.message,
     messages: state.messages,
     user: state.user,
-    chat: state.chat
+    chat: state.chat,
+    audios: state.audios
   }
 }
 
