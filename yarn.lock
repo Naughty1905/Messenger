@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+object-assign@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
+  integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
+
 recorderjs@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/recorderjs/-/recorderjs-1.0.1.tgz#f8211a0f90bdcdcfa2f431a597b6cb94a1b93571"
