@@ -70,7 +70,6 @@ class AudioTest extends React.Component {
     const audioUrl = window.URL.createObjectURL(blob);
 
     // append audioUrl to list of saved audios for rendering
-    const audios = this.state.audios.concat([audioUrl]);
     const uploadTask = storage.ref(`audios/${audioUrl}`).put(blob);
     uploadTask.on('state_changed',
       (snapshot) => {

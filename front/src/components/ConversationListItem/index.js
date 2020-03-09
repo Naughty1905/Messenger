@@ -12,7 +12,7 @@ const ConversationListItem = (props) => {
 
   const chatItem = useRef(null);
   const { startChatReq, currentChat } = props;
-  const { photo, name, text } = props.data;
+  const { photo } = props.data;
   const { _id, members, messages } = props.chat;
 
   const chat = _id;
