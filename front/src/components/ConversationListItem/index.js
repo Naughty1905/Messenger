@@ -12,7 +12,7 @@ const ConversationListItem = (props) => {
 
   const chatItem = useRef(null);
   const { startChatReq, currentChat } = props;
-  const { photo, name, text } = props.data;
+  const { photo } = props.data;
   const { _id, members, messages } = props.chat;
 
   const chat = _id;
@@ -35,8 +35,8 @@ const ConversationListItem = (props) => {
       <div className="conversation-info">
         <h1 className="conversation-title">{members}</h1>
         <p className="conversation-snippet">{
-          messages[messages.length - 1].messageType == 'Audio' ? 'Audio message' :
-            messages[messages.length - 1].messageType == 'String' ?
+          messages[messages.length - 1].messageType === 'Audio' ? 'Audio message' :
+            messages[messages.length - 1].messageType === 'String' ?
               messages[messages.length - 1].content : "There's no messages yeat..."
         }</p>
       </div>

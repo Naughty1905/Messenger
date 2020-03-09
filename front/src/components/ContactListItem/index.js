@@ -13,8 +13,8 @@ const ContactListItem = (props) => {
     shave('.conversation-snippet', 20);
   })
 
-  const { photo, name } = props.data;
-  const { _id, fullName, chat } = props.friend;
+  const { photo } = props.data;
+  const { fullName, chat } = props.friend;
 
   const startChat = () => {
     startChatReq(chat);

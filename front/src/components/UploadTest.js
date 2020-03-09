@@ -27,7 +27,6 @@ const UploadTest = () => {
         console.log(error);
       },
       () => {
-        debugger
         // complete function ....
         storage.ref('images').child(image.name).getDownloadURL().then(url => {
           setUrl(url)
