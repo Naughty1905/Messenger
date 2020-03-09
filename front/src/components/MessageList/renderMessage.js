@@ -10,6 +10,7 @@ const renderMessages = (messages, user) => {
     while (i < messageCount) {
       let previous = messages[i - 1];
       let current = messages[i];
+      let currentType = messages[i].type;
       let next = messages[i + 1];
       let isMine = current.owner === user;
       let currentMoment = moment(current.timestamp);
@@ -51,6 +52,7 @@ const renderMessages = (messages, user) => {
           endsSequence={endsSequence}
           showTimestamp={showTimestamp}
           data={current}
+          type={currentType}
         />
       );
 

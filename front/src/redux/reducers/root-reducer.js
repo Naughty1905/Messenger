@@ -12,7 +12,8 @@ import {
   GET_CONTACTS_RECIEVE,
   START_CHAT_RECIEVE,
   GET_CONVERSATIONS_RECIEVE,
-  SET_RECORDING
+  SET_RECORDING,
+  GET_AUDIOS
 } from '../actions/action-types';
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   message: {
     content: '',
     owner: '',
+    type: ''
   },
   messages: [],
   isContact: false,
@@ -32,19 +34,21 @@ const initialState = {
   friends: [],
   chat: '',
   chats: [],
-  recording: false
+  recording: false,
+  audios: []
 };
 
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_MESSAGE:
-      const { message, user } = action.payload
+      const { message, user, type } = action.payload;
       return {
         ...state,
         message: {
           content: message,
-          owner: user
+          owner: user,
+          type
         }
       };
     case SET_MESSAGES:
@@ -122,6 +126,11 @@ function rootReducer(state = initialState, action) {
         recording: !state.recording
       }
     }
+    case GET_AUDIOS:
+      return {
+        ...state,
+        audios: [...state.audios, action.payload]
+      }
     default:
       return state;
   }
