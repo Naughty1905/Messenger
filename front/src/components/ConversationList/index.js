@@ -14,7 +14,6 @@ const ConversationList = (props) => {
   const [conversations, setConversations] = useState([]);
 
   const { setLoaderNav, loader, isAuth, getConversationsReq, chats } = props;
-  console.log(chats)
   useEffect(() => {
     getConversations()
     getConversationsReq(isAuth);

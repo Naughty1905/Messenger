@@ -35,7 +35,6 @@ const MessageList = props => {
   const { message, messages, user, chat, audios } = props;
 
 
-  console.log(messages)
   useEffect(() => {
     socket = io(ENDPOINT);
 
@@ -76,7 +75,7 @@ const MessageList = props => {
         }
         {
           !!audios.length && audios.map(audio => <audio controls="controls" src={audio} />)
-          
+
         }
       </div>
 
