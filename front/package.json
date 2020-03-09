@@ -5,6 +5,7 @@
   "dependencies": {
     "@stardust-ui/docs-components": "^0.40.0",
     "axios": "^0.19.2",
+    "firebase": "^7.10.0",
     "immer": "^6.0.1",
     "moment": "^2.23.0",
     "query-string": "^6.11.1",
