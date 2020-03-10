@@ -7,18 +7,10 @@ export default class AccountFields extends React.Component {
     constructor(props) {
         super(props);
 
-        // Create the ref
-        // this.name = React.createRef();
-        // this.password = React.createRef();
-        // this.email = React.createRef();
-        // this.conpass = React.createRef();
-
-
         this.state = {
             name: '',
             password: '',
             email: '',
-            imgPath: ''
         }
     }
 
@@ -67,20 +59,9 @@ export default class AccountFields extends React.Component {
     }
 
 
-    nextStep(event) {
-
-        this.props.changeInfo(this.state)
-
-        // const data = {
-        //     name: this.name.current.value,
-        //     email: this.email.current.value,
-        //     password: this.password.current.value,
-        //     conpass: this.conpass.current.value,
-        //
-        // };
-
-        // this.props.saveValues(data);
-        this.props.nextStep()
+    nextStep() {
+        this.props.changeInfo(this.state);
+        this.props.nextStep();
     }
 }
 

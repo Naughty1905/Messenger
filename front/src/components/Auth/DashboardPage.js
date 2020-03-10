@@ -13,7 +13,7 @@ const DashboardPage = (props) => {
     const [isReg, setIsReg] = useState(false);
     const [step, setStep] = useState(1);
     const {regNewUserReq, loginReq, setAuthError} = props;
-    const [info, setInfo] = useState(null);
+    const [info, setInfo] = useState({});
     const loginHandler = (event) => {
         event.preventDefault();
         const login = event.target.login.value;
@@ -50,7 +50,7 @@ const DashboardPage = (props) => {
 
     const changeInfo = obj => {
         console.log('ya tut', obj);
-        return setInfo(obj);
+        setInfo((info) => Object.assign(info,obj) );
 
     }
     const nextStep = function () {
@@ -119,7 +119,6 @@ const DashboardPage = (props) => {
         </div>
     );
 };
-
 
 export default connect(
     null,

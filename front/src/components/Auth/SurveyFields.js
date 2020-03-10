@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import './dashboardPage.css';
 import Avatar from 'react-avatar-edit';
+import {storage} from '../../Firebase';
 
 const React = require('react');
 
@@ -13,6 +14,7 @@ export default class SurveyFields extends React.Component {
         this.state = {
             preview: null,
             src,
+            avatar: null,
         };
         this.onCrop = this.onCrop.bind(this);
         this.onClose = this.onClose.bind(this);
@@ -32,9 +34,8 @@ export default class SurveyFields extends React.Component {
             alert("File is too big!");
             elem.target.value = "";
         } else {
-            console.log(elem, this.state)
             const preview = elem.target.files[0];
-            this.setState(() => ({preview}));
+            this.setState(() => ({src: preview}));
         }
     }
 
@@ -57,10 +58,8 @@ export default class SurveyFields extends React.Component {
                             onCrop={this.onCrop}
                             onClose={this.onClose}
                             onBeforeFileLoad={this.onBeforeFileLoad}
-                            // onChange={this.onBeforeFileLoad}
-                            src={this.state.src}
+                            src={this.state.preview}
                     />
-                    {/*<img src={this.state.preview} alt="Preview"/>*/}
                 </div>
                 <div id="buttons">
                     <button className="firstButt" onClick={this.props.previousStep}>Back</button>
@@ -72,7 +71,34 @@ export default class SurveyFields extends React.Component {
         )
     }
 
-    nextStep() {
+    async stepBy() {
+        const response = await fetch(this.state.preview);
+        const blob = await response.blob();
+        const uploadTask = storage.ref(`avatar/${this.state.src.name}`).put(blob);
+        return new Promise(resolve => {
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    // progrss function ....
+                    // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    // this.setState({ progress });
+                    console.log(snapshot)
+                },
+                (error) => {
+                    // error function ....
+                    console.log(error);
+                },
+                () => {
+                    // complete function ....
+                    storage.ref('avatar').child(this.state.src.name).getDownloadURL().then(url => {
+                        this.setState({avatar: url});
+                        resolve()
+                    })
+                });
+        })
+    }
+
+    async nextStep() {
+        await this.stepBy();
         this.props.changeInfo(this.state);
         this.props.nextStep();
     }

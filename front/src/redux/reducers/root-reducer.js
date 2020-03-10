@@ -14,6 +14,7 @@ import {
   GET_CONVERSATIONS_RECIEVE,
   SET_RECORDING,
   GET_AUDIOS,
+  GET_DATA_FROM_USER_INPUTS
 } from '../actions/action-types';
 
 const initialState = {
@@ -136,6 +137,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         audios: [...state.audios, action.payload]
+      }
+    case GET_DATA_FROM_USER_INPUTS:
+      return {
+        ...state,
+        signUpInfo: action.payload
       }
     default:
       return state;

@@ -16,6 +16,10 @@ export default class Confirmation extends React.Component {
                 <div id="login">
                     <div><b>Email:</b> {this.props.fieldValues.email}</div>
                 </div>
+                <div id="password">
+                    <div><img src={this.props.fieldValues.avatar}/></div>
+                    <div><b>Avatar</b></div>
+                </div>
                 <div id='buttons'>
                     <button className="firstButt" onClick={this.props.previousStep}>Back</button>
                     <button className="firstButt" onClick={this.props.submitRegistration} style={{fontSize: "0.8rem"}}>Submit Registration</button>

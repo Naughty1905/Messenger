@@ -33,6 +33,8 @@ import {
 
   SET_RECORDING,
   GET_AUDIOS,
+
+  GET_DATA_FROM_USER_INPUTS
 } from './action-types';
 
 export const getMessage = (payload) => ({
@@ -153,3 +155,7 @@ export const getAudios = payload => ({
   payload
 })
 
+export const getDataFromUserInputs = (payload) => ({
+  type: GET_DATA_FROM_USER_INPUTS,
+  payload
+})
