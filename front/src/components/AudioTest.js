@@ -13,7 +13,8 @@ class AudioTest extends React.Component {
       recording: false,
       audios: [],
       speechText: false,
-      url: ''
+      url: '',
+      speechToTextMessages: '',
     };
   }
 
@@ -41,15 +42,14 @@ class AudioTest extends React.Component {
     this.recognition.continuous = true;
     this.recognition.lang = 'ru-RU, en-US';
     this.recognition.start(10);
-    this.recognition.onresult = (event) => {
+    this.recognition.onresult = async (event) => {
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
-          this.speechToTextMessages.push(event.results[i][0].transcript);
-          console.log(this.speechToTextMessages)
+          this.setState({ speechToTextMessages: event.results[i][0].transcript })
         }
       }
     }
-    this.speechToTextMessages = [];
+
 
     // say that we're recording
     this.setState({ recording: true });
@@ -60,7 +60,9 @@ class AudioTest extends React.Component {
       track.stop();
     });
 
-    this.recognition.stop();
+    setTimeout(() => {
+      this.recognition.stop();
+    }, 500)
     this.mediaRecorder.stop();
     // say that we're not recording
     this.setState({ recording: false });
@@ -68,7 +70,7 @@ class AudioTest extends React.Component {
     const blob = new Blob(this.chunks, { type: audioType });
     // generate video url from blob
     const audioUrl = window.URL.createObjectURL(blob);
-
+    console.log(this.state.speechToTextMessages, '<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>')
     // append audioUrl to list of saved audios for rendering
     const uploadTask = storage.ref(`audios/${audioUrl}`).put(blob);
     uploadTask.on('state_changed',
@@ -76,11 +78,9 @@ class AudioTest extends React.Component {
         // progrss function ....
         // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
         // this.setState({ progress });
-        console.log(snapshot)
       },
       (error) => {
         // error function ....
-        console.log(error);
       },
       () => {
         // complete function ....

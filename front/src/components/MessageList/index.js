@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
@@ -33,7 +33,10 @@ let socket;
 
 const MessageList = props => {
   const { message, messages, user, chat, audios } = props;
-
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+  }
 
   useEffect(() => {
     socket = io(ENDPOINT);
@@ -55,7 +58,7 @@ const MessageList = props => {
     }
   }, [message])
 
-
+  useEffect(scrollToBottom, [messages]);
 
 
   return (
@@ -77,6 +80,7 @@ const MessageList = props => {
           !!audios.length && audios.map(audio => <audio controls="controls" src={audio} />)
 
         }
+        <div className="messages-bottom" ref={messagesEndRef} />
       </div>
 
       <Compose rightItems={[
