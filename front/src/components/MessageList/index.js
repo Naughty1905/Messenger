@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
@@ -31,9 +32,12 @@ import renderMessages from './renderMessage';
 // Sockets 
 let socket;
 
-const MessageList = props => {
-  const { message, messages, user, chat } = props;
+const scrollToRef = (ref) => window.scrollTo(0, ref)
 
+const MessageList = props => {
+  const { message, messages, user, chat, audios } = props;
+
+  const messageContainer = useRef(null);
   useEffect(() => {
     socket = io(ENDPOINT);
 
@@ -54,6 +58,17 @@ const MessageList = props => {
     }
   }, [message])
 
+  useEffect(() => {
+    if (messageContainer.current.children.length) {
+      console.log(messageContainer.current.children[messageContainer.current.children.length - 1])
+      ReactDOM.findDOMNode(messageContainer.current.children[messageContainer.current.children.length - 1]);
+      scrollToRef(messageContainer.current.children[messageContainer.current.children.length - 1]);
+    }
+  }, [chat])
+
+
+
+
 
 
   return (
@@ -67,9 +82,13 @@ const MessageList = props => {
         ]}
       />
 
-      <div className="message-list-container">
+      <div ref={messageContainer} className="message-list-container">
         {
           renderMessages(messages, user)
+        }
+        {
+          !!audios.length && audios.map(audio => <audio controls="controls" src={audio} />)
+
         }
       </div>
 
@@ -90,7 +109,8 @@ const mapStateToProps = state => {
     message: state.message,
     messages: state.messages,
     user: state.user,
-    chat: state.chat
+    chat: state.chat,
+    audios: state.audios
   }
 }
 

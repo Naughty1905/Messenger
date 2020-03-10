@@ -31,6 +31,10 @@ export default class SurveyFields extends React.Component {
         if (elem.target.files[0].size > 71680) {
             alert("File is too big!");
             elem.target.value = "";
+        } else {
+            console.log(elem, this.state)
+            const image = elem.target.files[0];
+            this.setState(() => ({image}));
         }
     }
 
@@ -40,13 +44,20 @@ export default class SurveyFields extends React.Component {
                 <h2 id="fullName">Choose Avatar</h2>
                 <h6 id="email">You can skip this step</h6>
                 <div id="password">
-                    <Avatar style={{border: "2px", dashed:"rgb(151, 151, 151)",borderRadius: "8px",textAlign: "center",width: "100%",height: "100%"}}
-                        width={390}
-                        height={295}
-                        onCrop={this.onCrop}
-                        onClose={this.onClose}
-                        onBeforeFileLoad={this.onBeforeFileLoad}
-                        src={this.state.src}
+                    <Avatar style={{
+                        border: "2px",
+                        dashed: "rgb(151, 151, 151)",
+                        borderRadius: "8px",
+                        textAlign: "center",
+                        width: "100%",
+                        height: "100%"
+                    }}
+                            width={390}
+                            height={295}
+                            onCrop={this.onCrop}
+                            onClose={this.onClose}
+                            onBeforeFileLoad={this.onBeforeFileLoad}
+                            src={this.state.src}
                     />
                     {/*<img src={this.state.preview} alt="Preview"/>*/}
                 </div>

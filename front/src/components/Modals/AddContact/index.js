@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import './AddContact.css'
 import { connect } from 'react-redux'
 import { setModalAddContact, addNewContactReq } from '../../../redux/actions/actions'

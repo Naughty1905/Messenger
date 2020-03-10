@@ -6,12 +6,14 @@ import AccountFields from './AccountFields';
 import Confirmation from './Confirmation';
 import Success from './Success';
 import SurveyFields from './SurveyFields'
+
 const assign = require('object-assign');
 
 const DashboardPage = (props) => {
     const [isReg, setIsReg] = useState(false);
     const [step, setStep] = useState(1);
     const {regNewUserReq, loginReq, setAuthError} = props;
+    const [info, setInfo] = useState(null);
     const loginHandler = (event) => {
         event.preventDefault();
         const login = event.target.login.value;
@@ -37,6 +39,7 @@ const DashboardPage = (props) => {
         name: null,
         email: null,
         password: null,
+        conpass: null
     };
 
     const saveValues = function (field_value) {
@@ -45,6 +48,11 @@ const DashboardPage = (props) => {
         }()
     };
 
+    const changeInfo = obj => {
+        console.log('ya tut', obj);
+        return setInfo(obj);
+
+    }
     const nextStep = function () {
         setStep(step + 1)
     };
@@ -62,15 +70,17 @@ const DashboardPage = (props) => {
             case 1:
                 return <AccountFields fieldValues={fieldValues}
                                       nextStep={nextStep}
+                                      changeInfo={ changeInfo}
                                       previousStep={previousStep}
                                       saveValues={saveValues}/>;
             case 2:
                 return <SurveyFields fieldValues={fieldValues}
                                      nextStep={nextStep}
+                                     changeInfo={ changeInfo}
                                      previousStep={previousStep}
                                      saveValues={saveValues}/>;
             case 3:
-                return <Confirmation fieldValues={fieldValues}
+                return <Confirmation fieldValues={info}
                                      previousStep={previousStep}
                                      submitRegistration={submitRegistration}/>;
             case 4:
@@ -109,6 +119,7 @@ const DashboardPage = (props) => {
         </div>
     );
 };
+
 
 export default connect(
     null,

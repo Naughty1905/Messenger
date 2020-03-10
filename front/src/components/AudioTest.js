@@ -1,27 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getMessage } from '../redux/actions/actions';
+import { storage } from '../Firebase';
+const audioType = 'audio/webm';
 
-const videoType = 'audio/webm';
 
-
-export default class AudioTest extends React.Component {
+class AudioTest extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       recording: false,
-      videos: [],
+      audios: [],
+      speechText: false,
+      url: ''
     };
   }
 
+
   async componentDidMount() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
-    // show it to user
-    this.video.srcObject = stream;
-    this.video.play();
-    // init recording
     this.mediaRecorder = new MediaRecorder(stream, {
       type: 'audio',
-      mimeType: videoType
+      mimeType: audioType
     });
     // init data storage for video chunks
     this.chunks = [];
@@ -31,86 +32,79 @@ export default class AudioTest extends React.Component {
         this.chunks.push(e.data);
       }
     };
-  }
-
-  startRecording(e) {
-    e.preventDefault();
-    // wipe old data chunks
     this.chunks = [];
     // start recorder with 10ms buffer
     this.mediaRecorder.start(10);
+
+    // start recording speech and convert it to text
+    this.recognition = new window.webkitSpeechRecognition();
+    this.recognition.continuous = true;
+    this.recognition.lang = 'ru-RU, en-US';
+    this.recognition.start(10);
+    this.recognition.onresult = (event) => {
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+          this.speechToTextMessages.push(event.results[i][0].transcript);
+          console.log(this.speechToTextMessages)
+        }
+      }
+    }
+    this.speechToTextMessages = [];
+
     // say that we're recording
     this.setState({ recording: true });
   }
 
-  stopRecording(e) {
-    e.preventDefault();
-    // stop the recorder
+  async componentWillUnmount() {
+    this.mediaRecorder.stream.getTracks().forEach(function (track) {
+      track.stop();
+    });
+
+    this.recognition.stop();
     this.mediaRecorder.stop();
     // say that we're not recording
     this.setState({ recording: false });
     // save the video to memory
-    this.saveVideo();
-  }
-
-  saveVideo() {
-    // convert saved chunks to blob
-    const blob = new Blob(this.chunks, { type: videoType });
+    const blob = new Blob(this.chunks, { type: audioType });
     // generate video url from blob
-    const videoURL = window.URL.createObjectURL(blob);
-    // append videoURL to list of saved videos for rendering
-    const videos = this.state.videos.concat([videoURL]);
-    this.setState({ videos });
+    const audioUrl = window.URL.createObjectURL(blob);
+
+    // append audioUrl to list of saved audios for rendering
+    // const audios = this.state.audios.concat([audioUrl]);
+    const uploadTask = storage.ref(`audios/${audioUrl}`).put(blob);
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        // progrss function ....
+        // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        // this.setState({ progress });
+        console.log(snapshot)
+      },
+      (error) => {
+        // error function ....
+        console.log(error);
+      },
+      () => {
+        // complete function ....
+        storage.ref('audios').child(audioUrl).getDownloadURL().then(url => {
+          this.props.getMessage({ message: url, user: this.props.user, messageType: 'Audio' });
+        })
+      });
   }
 
-  deleteVideo(videoURL) {
-    // filter out current videoURL from the list of saved videos
-    const videos = this.state.videos.filter(v => v !== videoURL);
-    this.setState({ videos });
-  }
-  playTrack(track) {
-    const stream = new MediaStream()
-    stream.addTrack(track)
-    this.audio.srcObject = stream;
-  }
   render() {
-    const { recording, videos } = this.state;
-
     return (
       <div className="camera">
-        {/* <video
-          style={{ display: 'none' }}
-          ref={v => {
-            this.video = v;
-          }}>
-          <audio ref={audio => { this.audio = audio }} controls volume="true" autoPlay />
-          Video stream not available.
-        </video> */}
-        <div>
-          {!recording && <button onClick={e => this.startRecording(e)}>Record</button>}
-          {recording && <button onClick={e => this.stopRecording(e)}>Stop</button>}
-        </div>
-        <div>
-          <h3>Recorded videos:</h3>
-          {videos.map((videoURL, i) => (
-            <div key={`video_${i}`}>
-              <audio
-                loop
-                autoPlay
-                controls
-                src={videoURL}>
-                Your browser does not support the
-            <code>audio</code> element.
-    </audio>
-              {/* <audio style={{ width: 200 }} src={videoURL} autoPlay loop /> */}
-              <div>
-                <button onClick={() => this.deleteVideo(videoURL)}>Delete</button>
-                <a href={videoURL}>Download</a>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  recording: state.recording,
+  user: state.user
+})
+
+export default connect(
+  mapStateToProps,
+  { getMessage }
+)(AudioTest);
