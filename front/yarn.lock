@@ -6642,6 +6642,11 @@ kleur@^2.0.1:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-2.0.2.tgz#b704f4944d95e255d038f0cb05fb8a602c55a300"
   integrity sha512-77XF9iTllATmG9lSlIv0qdQ2BQ/h9t0bJllHlbvsQ0zUWfU7Yi0S8L5JXzPZgkefIiajLmBJJ4BsMJmqcf7oxQ==
 
+konva@2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/konva/-/konva-2.5.1.tgz#cca611a9522e831e54cf57c508a1aed3f0ceac25"
+  integrity sha512-YdHEWqmbWPieqIZuLx7JFGm9Ui08hSUaSJ2k2Ml8o5giFgJ0WmxAS0DPXIM+Ty2ADRagOHZfXSJ/skwYqqlwgQ==
+
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/last-call-webpack-plugin/-/last-call-webpack-plugin-3.0.0.tgz#9742df0e10e3cf46e5c0381c2de90d3a7a2d7555"
@@ -9003,6 +9008,13 @@ react-audio-analyser@^0.3.1:
   resolved "https://registry.yarnpkg.com/react-audio-analyser/-/react-audio-analyser-0.3.1.tgz#938af685da7059cc63475f4dde9812978d3cd8b5"
   integrity sha512-GHqz+++rbPLXdyw7PU3UhtYGOuZTjqB1VuQixjn2GEbz4au+SKtI7oz5glg7O4GE94O3vzqJu9fLKc995198yw==
 
+react-avatar-edit@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/react-avatar-edit/-/react-avatar-edit-0.8.3.tgz#0ebf21391328fc255429bdfbc782f795827109bf"
+  integrity sha512-QEedh6DjDCSI7AUsUHHtfhxApCWC5hJAoywxUA5PtUdw03iIjEurgVqPOIt1UBHhU/Zk/9amElRF3oepN9JZSg==
+  dependencies:
+    konva "2.5.1"
+
 react-dev-utils@^7.0.1:
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-7.0.5.tgz#cb95375d01ae71ca27b3c7616006ef7a77d14e8e"
@@ -9072,6 +9084,11 @@ react-mic@^12.4.1:
   dependencies:
     prop-types "^15.5.10"
     react-ga "^2.2.0"
+
+react-multistep@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-multistep/-/react-multistep-4.0.1.tgz#48d5e48f68153a9efe8281d1bb8173cc9d523bf8"
+  integrity sha512-3IGQIWeYeGAIQ/DxPoxCu9gFm+oJ3llUtgjfUtQZoutkbvOK/eOhPrJZ4yNlfCCumBdx5nCCzv/iTZxKutpB7w==
 
 react-popper@^1.3.4:
   version "1.3.7"
