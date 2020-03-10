@@ -19,6 +19,19 @@ class AudioTest extends React.Component {
     };
   }
 
+  async sendAudio(blob) {
+    let fd = new FormData();
+    console.log(blob);
+    fd.append('audioMessage', blob, 'audioMessage.webm');
+    console.log(fd);
+    
+    // await axios.post('http://localhost:5000/chats/audio-message', fd)
+    await fetch('http://localhost:5000/chats/audio-message', {
+      method: 'POST',
+      body: fd
+    })
+  }
+
 
   async componentDidMount() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
@@ -64,13 +77,20 @@ class AudioTest extends React.Component {
     setTimeout(() => {
       this.recognition.stop();
     }, 500)
+
     this.mediaRecorder.stop();
     // say that we're not recording
     this.setState({ recording: false });
-    // save the video to memory
-    const blob = new Blob(this.chunks, { type: audioType });
+    // save the video to memory 
+    const blob = new Blob(this.chunks, { 'type' : 'audio/ogg; codecs=opus' });
+    console.log(blob)
+    this.sendAudio(blob)
     // generate video url from blob
     const audioUrl = window.URL.createObjectURL(blob);
+
+
+
+
     console.log(this.state.speechToTextMessages, '<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>')
     // append audioUrl to list of saved audios for rendering
     const uploadTask = storage.ref(`audios/${audioUrl}`).put(blob);

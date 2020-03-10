@@ -76,8 +76,6 @@ function* fetchConversationsAsync(obj) {
 }
 
 
-
-
 export default function* actionWatcher() {
   yield takeLatest(REG_NEW_USER_REQUEST, fetchRegAsync);
   yield takeLatest(LOGIN_REQUEST, fetchLoginAsync);

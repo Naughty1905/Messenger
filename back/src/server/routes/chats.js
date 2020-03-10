@@ -9,6 +9,9 @@ const User = require('../../models/user');
 // isAuth
 const auth = require('../../middleware/auth');
 
+// Google api
+const googleApiSpeechToText  = require('../../utils/googleApiSpeechToText')
+
 router.get('/', async (req, res) => {
   const { id } = req.query;
   console.log(id);
@@ -49,26 +52,8 @@ router.post('/', async (req, res) => {
   }
 })
 
-// router.get('/conversations', async (req, res) => {
-//   const { isAuth } = req.body;
-//   try {
-//     const user = jwt.decode(isAuth)._id;
-//     const currentUser = await User.findOne({ _id: user }).populate('friends.chat').lean();
-//     const data = currentUser.friends.map(friend => {
-//       return {
-//         name: friend.fullName,
-//         chat: friend.chat
-//       }
-//     })
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(404).send(error);
-//   }
-// })
-
 router.get('/conversations', async (req, res) => {
   const { isAuth } = req.query;
-  console.log(isAuth);
   try {
     const userId = jwt.decode(isAuth)._id;
     const { fullName } = await User.findOne({ _id: userId });
@@ -86,6 +71,15 @@ router.get('/conversations', async (req, res) => {
     res.status(404).send(error);
   }
 })
+
+router.post('/audio-message', (req, res) => {
+  const { audioMessage: {
+    data: buffer
+  } } = req.files
+
+  googleApiSpeechToText(buffer)
+  .catch(console.error)
+});
 
 
 module.exports = router;
