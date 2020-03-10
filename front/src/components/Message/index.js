@@ -3,6 +3,8 @@ import moment from 'moment';
 import './MessageBlack.css';
 
 export default function Message(props) {
+
+
   const {
     data,
     isMine,

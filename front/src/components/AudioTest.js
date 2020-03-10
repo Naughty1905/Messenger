@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getMessage } from '../redux/actions/actions';
 import { storage } from '../Firebase';
-const audioType = 'audio/webm';
+
+const audioType = 'audio/webm; codecs=opus';
 
 
 class AudioTest extends React.Component {
@@ -92,7 +93,7 @@ class AudioTest extends React.Component {
 
   render() {
     return (
-      <div className="camera">
+      <div className="camera" >
       </div>
     );
   }
