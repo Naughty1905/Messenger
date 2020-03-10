@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getMessage } from '../redux/actions/actions';
 import { storage } from '../Firebase';
-import Recorder from 'recorder-js';
 
 const audioType = 'audio/webm; codecs=opus';
 
