@@ -78,6 +78,7 @@ router.post('/seen', async (req, res) => {
     let currentChat = await Chat.findOne({ _id: chat });
 
     let { messages } = currentChat;
+    
     messages = messages.map(message => message.toObject()).map(message => {
       if (message.owner !== login) {
         return { ...message, isSeen: true }
