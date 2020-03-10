@@ -82,4 +82,28 @@ router.post('/audio-message', (req, res) => {
 });
 
 
+router.post('/seen', async (req, res) => {
+  const { chat, isAuth } = req.body;
+  try {
+    const userId = jwt.decode(isAuth)._id;
+    const { login } = await User.findOne({ _id: userId });
+    let currentChat = await Chat.findOne({ _id: chat });
+
+    let { messages } = currentChat;
+    messages = messages.map(message => message.toObject()).map(message => {
+      if (message.owner !== login) {
+        return { ...message, isSeen: true }
+      } else {
+        return message
+      }
+    })
+    currentChat.messages = messages;
+    await currentChat.save();
+    res.status(200).json(true);
+  } catch (err) {
+    res.status(404).send(err);
+  }
+})
+
+
 module.exports = router;

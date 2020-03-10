@@ -24,6 +24,10 @@ const chatSchema = new mongoose.Schema({
       },
       messageType: {
         type: String
+      },
+      isSeen: {
+        type: Boolean,
+        default: false
       }
     }
   ]

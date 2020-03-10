@@ -121,9 +121,10 @@ export const getContactsRec = (payload) => ({
 })
 
 
-export const startChatReq = (chat) => ({
+export const startChatReq = (chat, isAuth) => ({
   type: START_CHAT_REQUEST,
-  chat
+  chat,
+  isAuth
 })
 
 export const startChatRec = (payload) => ({

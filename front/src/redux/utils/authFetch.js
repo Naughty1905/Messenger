@@ -67,3 +67,13 @@ export const fetchConversations = async (isAuth, url = "http://localhost:5000/ch
   return data;
 };
 
+export const addReadMessages = async (chat, isAuth, url = "http://localhost:5000/chats/seen") => {
+  debugger
+  const { data } = await axios.post(url, {
+    isAuth,
+    chat
+  })
+  debugger
+  return data;
+}
+

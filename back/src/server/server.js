@@ -4,10 +4,12 @@ const http = require('http');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const Chat = require('../models/chat');
 const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
+const Chat = require('../models/chat')
+const User = require('../models/user')
+const jwt = require('jsonwebtoken')
 
 const PORT = process.env.PORT || 5000;
 
@@ -41,13 +43,16 @@ const {
   CONNECTION,
   JOIN,
   MESSAGE,
-  SEND_MESSAGE
+  SEND_MESSAGE,
+  CHECK_READ_MESSAGE
 } = require('../actions/io-actions');
 
 // Sockets
 io.on(CONNECTION, (socket) => {
   console.log('Connection on socket is started!!!');
   socket.on(JOIN, ({ user, chat }, callback) => {
+    // console.log(user);
+    console.log('>>>>>>>>>', chat);
     socket.on(MESSAGE + chat, async ({ message }, callback) => {
       if (!message.owner || !message.content) return
       const currentChat = await Chat.findOne({ _id: chat })
@@ -57,7 +62,27 @@ io.on(CONNECTION, (socket) => {
       await currentChat.save();
       io.emit(SEND_MESSAGE + chat, { message })
     });
+    socket.on(CHECK_READ_MESSAGE + chat, async ({ chat, isAuth }, callback) => {
+      // console.log(chat);
+      // console.log(isAuth)
+      // const userId = jwt.decode(isAuth)._id;
+      // const { login } = await User.findOne({ _id: userId });
+      // let currentChat = await Chat.findOne({ _id: chat });
+      // let { messages } = currentChat;
+      messages = messages.map(message => message.toObject()).map(message => {
+        if (message.owner !== login) {
+          return { ...message, isSeen: true }
+        } else {
+          return message
+        }
+      })
+      currentChat.messages = messages;
+      await currentChat.save();
+      console.log('vse norm')
+    })
   });
+
+
 
   socket.on(DISCONNECT, () => {
     console.log('User has disconnected!!!');
