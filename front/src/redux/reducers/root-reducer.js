@@ -95,6 +95,7 @@ function rootReducer(state = initialState, action) {
         isModalAddContact: !state.isModalAddContact
       }
     case REG_NEW_USER_RECIEVE:
+      debugger
       return {
         ...state,
         user: action.payload.login,

@@ -8,10 +8,12 @@ import { fetchReg, fetchLogin, fetchAddNewContact, fetchAllFriends, fetchStartCh
 function* fetchRegAsync(obj) {
   const { login, fullName, email, password } = obj;
   try {
+    debugger
     const data = yield call(fetchReg, login, fullName, email, password)
     if (!data) {
       return;
     }
+    debugger
     yield put(regNewUserRec(data));
   } catch (e) {
     const error = 'Auth Error';
@@ -55,7 +57,7 @@ function* fetchAddNewContactAsync(obj) {
     yield put(addNewContactRec(data));
   } catch (e) {
     const error = 'User does not exist!';
-    yield put(setAuthError(error))
+    yield put(setAuthError(e))
   }
 }
 

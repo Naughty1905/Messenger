@@ -39,16 +39,17 @@ router.post('/login', async (req, res) => {
 
 })
 
-router.get('/contacts/new', async (req, res) => {
-  const { login } = req.body;
-  try {
-    const newContact = await User.findOne({ login });
-    console.log(newContact)
-    res.status(200).json(newContact);
-  } catch (error) {
-    res.status(404).send(error);
-  }
-})
+// Не используется
+// router.get('/contacts/new', async (req, res) => {
+//   const { login } = req.body;
+//   try {
+//     const newContact = await User.findOne({ login });
+//     console.log(newContact)
+//     res.status(200).json(newContact);
+//   } catch (error) {
+//     res.status(404).send(error);
+//   }
+// })
 
 router.post('/contacts/all', async (req, res) => {
   const { isAuth } = req.body;

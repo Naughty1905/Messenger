@@ -23,13 +23,14 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { fullName, login, number, isAuth } = req.body;
+  const userId = jwt.decode(isAuth)._id;
+  const currentUser = await User.findOne({ _id: userId });
+  const newContact = await User.findOne({ login });
+  console.log('newContact', newContact);
+  const checkChat = await Chat.findOne({ members: [currentUser._id, newContact._id] })
+  const checkChatReverse = await Chat.findOne({ members: [newContact._id, currentUser._id] })
   try {
-    const userId = jwt.decode(isAuth)._id;
-    const currentUser = await User.findOne({ _id: userId });
-    const newContact = await User.findOne({ login });
-    const checkChat = await Chat.findOne({ members: [currentUser._id, newContact._id] })
-    const checkChatReverse = await Chat.findOne({ members: [newContact._id, currentUser._id] })
-    if (checkChat === null && checkChatReverse === null) {
+    if ((checkChat === null) && (checkChatReverse === null)) {
       const chat = new Chat({
         members: [userId, newContact._id]
       })
@@ -45,11 +46,28 @@ router.post('/', async (req, res) => {
         friendId: currentUser._id,
         chat: chat._id
       })
-      await newContact.save();
+      try {
+        newContact.save()
+      } catch (err) {
+        console.log(err);
+      }
+      console.log('full completed')
+      res.status(201).json({ chatId: chat._id });
+    } else {
+      const error = 'This user is already your friend!'
+      res.json(error);
+      return res.end();
     }
-    res.status(201).json({ chatId: chat._id });
-  } catch (error) {
-    res.status(404).send(error);
+
+  } catch (e) {
+    console.log('error');
+    if (checkChat === null && checkChatReverse === null) {
+      const error = 'User does not exist!'
+      res.status(404).send(error);
+    } else {
+      const error = 'This user is already your friend!'
+      res.status(404).send(error);
+    }
   }
 })
 
@@ -77,6 +95,7 @@ router.get('/conversations', async (req, res) => {
     const userId = jwt.decode(isAuth)._id;
     const { fullName } = await User.findOne({ _id: userId });
     let chats = await Chat.find({ members: userId }).populate("members");
+
     chats = chats.map(chat => chat.toObject());
     chats = chats.map(chat => {
       return {
@@ -117,3 +136,4 @@ router.post('/seen', async (req, res) => {
 
 
 module.exports = router;
+``
