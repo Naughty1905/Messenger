@@ -2,7 +2,7 @@ import React from 'react';
 import Messenger from '../Messenger';
 import DashboardPage from '../Auth/DashboardPage';
 import AddContact from '../Modals/AddContact';
-import UploadTest from '../UploadTest'
+import NewInfiniteScroll from '../testComponents/infiniteChat'
 import Tooltip from '../Utils/Tooltip'
 import { connect } from 'react-redux';
 
@@ -28,7 +28,7 @@ const App = (props) => {
           <>
             <Switch >
               <Route exact path="/" component={Messenger} />
-              <Route path='/test' component={UploadTest} />
+              <Route path='/test' component={NewInfiniteScroll} />
               <Redirect to="/" />
             </Switch>
           </>

@@ -74,6 +74,6 @@ export default class SurveyFields extends React.Component {
 
     nextStep() {
         this.props.changeInfo(this.state);
-        this.props.nextStep()
+        this.props.nextStep();
     }
 }
