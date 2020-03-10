@@ -71,12 +71,13 @@ export const setModalAddContact = () => ({
 })
 
 
-export const regNewUserReq = (login, fullName, email, password) => ({
+export const regNewUserReq = (login, name, email, password, avatar) => ({
   type: REG_NEW_USER_REQUEST,
   login,
-  fullName,
+  name,
   email,
-  password
+  password,
+  avatar
 })
 
 export const regNewUserRec = (payload) => ({

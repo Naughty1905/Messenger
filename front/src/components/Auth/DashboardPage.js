@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { regNewUserReq, loginReq, setAuthError } from '../../redux/actions/actions'
+import { regNewUserReq, loginReq, setAuthError, getDataFromUserInputs } from '../../redux/actions/actions'
 import './dashboardPage.css';
 import AccountFields from './AccountFields';
 import Confirmation from './Confirmation';
@@ -12,8 +12,9 @@ const assign = require('object-assign');
 const DashboardPage = (props) => {
   const [isReg, setIsReg] = useState(false);
   const [step, setStep] = useState(1);
-  const { regNewUserReq, loginReq, setAuthError } = props;
+  const { regNewUserReq, loginReq, setAuthError, signUpInfo, getDataFromUserInputs } = props;
   const [info, setInfo] = useState({});
+
   const loginHandler = (event) => {
     event.preventDefault();
     const login = event.target.login.value;
@@ -39,8 +40,14 @@ const DashboardPage = (props) => {
     name: null,
     email: null,
     password: null,
-    conpass: null
+    conpass: null,
+    avatar: null
   };
+
+  const addInputAndNextStep = (state) => {
+    getDataFromUserInputs(state);
+    nextStep()
+  }
 
   const saveValues = function (field_value) {
     return function () {
@@ -62,23 +69,25 @@ const DashboardPage = (props) => {
   };
 
   const submitRegistration = function () {
-    nextStep()
+    console.log(signUpInfo);
+    const { login, fullName, email, password, avatar } = signUpInfo;
+    regNewUserReq(login, fullName, email, password, avatar)
   };
 
   const showStep = function () {
     switch (step) {
       case 1:
         return <AccountFields fieldValues={fieldValues}
-          nextStep={nextStep}
+          nextStep={addInputAndNextStep}
           changeInfo={changeInfo}
           previousStep={previousStep}
-          saveValues={saveValues} />;
+          saveValues={getDataFromUserInputs} />;
       case 2:
         return <SurveyFields fieldValues={fieldValues}
-          nextStep={nextStep}
+          nextStep={addInputAndNextStep}
           changeInfo={changeInfo}
           previousStep={previousStep}
-          saveValues={saveValues} />;
+          saveValues={getDataFromUserInputs} />;
       case 3:
         return <Confirmation fieldValues={info}
           previousStep={previousStep}
@@ -120,12 +129,18 @@ const DashboardPage = (props) => {
   );
 };
 
+
+const mapStateToProps = (state) => ({
+  signUpInfo: state.signUpInfo
+})
+
 export default connect(
-  null,
+  mapStateToProps,
   {
     regNewUserReq,
     loginReq,
-    setAuthError
+    setAuthError,
+    getDataFromUserInputs
   })(DashboardPage);
 
 

@@ -14,37 +14,46 @@ import {
   GET_CONVERSATIONS_RECIEVE,
   SET_RECORDING,
   GET_AUDIOS,
-  GET_DATA_FROM_USER_INPUTS
+  GET_DATA_FROM_USER_INPUTS,
 } from '../actions/action-types';
+import objectAssign from 'object-assign';
 
 const initialState = {
   signUpInfo: {
     name: '',
     email: '',
     password: '',
-    imgPath: ''
+    avatar: ''
   },
+
   user: localStorage.getItem('user') || '',
+
   isNav: false,
   navLoader: false,
+
   message: {
     content: '',
     owner: '',
     messageType: ''
   },
+
   messages: [],
+  recording: false,
+  audios: [],
+
   isContact: false,
   isConversation: true,
   isModalAddContact: false,
+
   isAuth: localStorage.getItem('token') || false,
   isAuthError: false,
   authErrorText: '',
+
   friends: [],
+
   chat: '',
   chats: [],
-  recording: false,
-  audios: [],
-  authErrorText: '',
+
 };
 
 
@@ -144,9 +153,12 @@ function rootReducer(state = initialState, action) {
         audios: [...state.audios, action.payload]
       }
     case GET_DATA_FROM_USER_INPUTS:
+      debugger
       return {
         ...state,
-        signUpInfo: action.payload
+        signUpInfo: Object.assign({}, state.signUpInfo, {
+          ...action.payload
+        })
       }
     default:
       return state;

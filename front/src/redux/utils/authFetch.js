@@ -1,13 +1,14 @@
 import axios from "axios";
 
 
-export const fetchReg = async (login, fullName, email, password, url = "http://localhost:5000/users") => {
+export const fetchReg = async (login, name, email, password, avatar, url = "http://localhost:5000/users") => {
   debugger
   const { data } = await axios.post(url, {
     login,
-    fullName,
+    name,
     email,
-    password
+    password,
+    avatar
   })
   debugger
   if (data) {

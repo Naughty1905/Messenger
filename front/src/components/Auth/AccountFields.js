@@ -8,10 +8,14 @@ export default class AccountFields extends React.Component {
     super(props);
 
     this.state = {
-      name: '',
+      login: '',
       password: '',
       email: '',
     }
+  }
+
+  cobmineState() {
+
   }
 
   render() {
@@ -21,12 +25,11 @@ export default class AccountFields extends React.Component {
         <h2 id="fullName">Account Details</h2>
 
         <div id="email">
-          <input autoComplete='off' type="text" className="input-auth" id="login" ref={this.name} onChange={e => {
-            this.setState({ name: e.target.value });
-
+          <input autoComplete='off' type="text" className="input-auth" id="login" ref={this.login} onChange={e => {
+            this.setState({ login: e.target.value });
           }}
             placeholder="Enter username"
-            defaultValue={this.props.fieldValues.name} />
+            defaultValue={this.props.fieldValues.login} />
         </div>
         <div id="login">
           <input autoComplete='off' type="email" className="input-auth" id="login" ref={this.email} placeholder="Enter email"
@@ -51,8 +54,8 @@ export default class AccountFields extends React.Component {
         </div>
         <div id='buttons'>
           <button className="firstButt"
-            onClick={(event) =>
-              this.nextStep(event)}>Save &amp; Continue
+            onClick={() =>
+              this.props.nextStep(this.state)}>Save &amp; Continue
                     </button>
         </div>
       </div>

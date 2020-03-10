@@ -42,10 +42,9 @@ export default class SurveyFields extends React.Component {
   }
 
   async lastStep() {
-    debugger
     await this.stepBy();
-    this.props.changeInfo(this.state);
-    this.props.nextStep();
+    // this.props.changeInfo(this.state);
+    this.props.nextStep(this.state);
   }
 
 
