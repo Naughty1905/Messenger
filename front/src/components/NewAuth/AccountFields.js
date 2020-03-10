@@ -16,6 +16,7 @@ export default class AccountFields extends React.Component {
 
     render() {
         return (
+
             <div className="form">
                 <h2 id="fullName">Account Details</h2>
 

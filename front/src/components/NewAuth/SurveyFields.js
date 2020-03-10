@@ -41,7 +41,7 @@ export default class SurveyFields extends React.Component {
 
     render() {
         return (
-            <div className="form">
+            <form className="form">
                 <h2 id="fullName">Choose Avatar</h2>
                 <h6 id="email">You can skip this step</h6>
                 <div id="password">
@@ -67,7 +67,7 @@ export default class SurveyFields extends React.Component {
                         Continue
                     </button>
                 </div>
-            </div>
+            </form>
         )
     }
 

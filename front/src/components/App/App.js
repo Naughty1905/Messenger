@@ -1,6 +1,6 @@
 import React from 'react';
 import Messenger from '../Messenger';
-import DashboardPage from '../Auth/DashboardPage';
+import DashboardPage from '../NewAuth/DashboardPage';
 import AddContact from '../Modals/AddContact';
 import NewInfiniteScroll from '../testComponents/infiniteChat'
 import Tooltip from '../Utils/Tooltip'

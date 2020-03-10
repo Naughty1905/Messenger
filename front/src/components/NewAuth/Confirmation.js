@@ -6,9 +6,10 @@ export default class Confirmation extends React.Component {
         super(props)
     }
 
+
     render() {
         return (
-            <div className="form">
+            <form className="form">
                 <h2 id="fullName">Confirm Registration</h2>
                 <div id="email">
                     <div ><b>Name:</b> {this.props.fieldValues.name}</div>
@@ -24,7 +25,7 @@ export default class Confirmation extends React.Component {
                     <button className="firstButt" onClick={this.props.previousStep}>Back</button>
                     <button className="firstButt" onClick={this.props.submitRegistration} style={{fontSize: "0.8rem"}}>Submit Registration</button>
                 </div>
-            </div>
+            </form>
         )
     }
 }
