@@ -11,7 +11,7 @@ async function googleApiSpeechToText(buffer) {
     content: audioBytes,
   };
   const config = {
-    encoding: 'LINEAR16',
+    encoding: 'OGG_OPUS',
     sampleRateHertz: 16000,
     languageCode: 'ru-RU',
   };
@@ -21,7 +21,14 @@ async function googleApiSpeechToText(buffer) {
   };
 
   // Detects speech in the audio file
+  client.recognize(request).then(R=>{
+    console.log('R',R)
+  }).catch(err=>{
+    console.error(err)
+  });
+  
   const [response] = await client.recognize(request);
+  
   const transcription = response.results
     .map(result => result.alternatives[0].transcript)
     .join('\n');

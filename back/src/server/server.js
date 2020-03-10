@@ -71,5 +71,3 @@ app.use('/users', usersRouter);
 app.use('/chats', chatsRouter);
 
 server.listen(PORT, () => console.log(`Server has started on ${PORT}`));
-
-
