@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ToolbarButton from '../ToolbarButton';
+import AudioTest from '../AudioTest'
 import './ComposeBlack.css';
 
 // Redux
@@ -7,13 +8,15 @@ import { connect } from 'react-redux';
 import { getMessage } from '../../redux/actions/actions';
 
 const Compose = (props) => {
+  const [recording, setRecording] = useState(false);
   const [message, setMessage] = useState('');
   const { user } = props;
 
   const messegeHandler = (event) => {
     event.preventDefault();
     if (!message) return
-    props.getMessage({ message, user });
+    props.getMessage({ message, user, messageType: 'String' });
+
     setMessage('');
   }
 
@@ -31,8 +34,11 @@ const Compose = (props) => {
 
       <div className='toolbar-input'>
         <ToolbarButton key="photo" icon="ion-ios-camera" />
-        <ToolbarButton key="audio" icon="ion-ios-mic" />
+        <ToolbarButton startRecording={() => setRecording(true)} stopRecording={() => setRecording(false)} key="audio" icon="ion-ios-mic" />
         <ToolbarButton key="money" icon="ion-ios-card" />
+        {
+          recording && <AudioTest style={{ display: 'none' }} />
+        }
       </div>
     </div>
   );
@@ -41,7 +47,7 @@ const Compose = (props) => {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
   }
 }
 

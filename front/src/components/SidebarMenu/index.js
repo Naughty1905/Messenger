@@ -14,7 +14,7 @@ const SidebarMenu = (props) => {
     event.stopPropagation();
     const { currentTarget } = event;
     const { title } = currentTarget;
-    if (title == 'contacts') {
+    if (title === 'contacts') {
       setContacts()
     }
   }

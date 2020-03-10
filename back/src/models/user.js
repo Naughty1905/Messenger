@@ -2,11 +2,18 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const Chat = require('./chat');
+
 const userSchema = new mongoose.Schema({
   login: {
     type: String,
     required: true,
     unique: true,
+    minlength: 5,
+  },
+  fullName: {
+    type: String,
+    required: true
   },
   email: {
     type: String,
@@ -19,21 +26,26 @@ const userSchema = new mongoose.Schema({
     required: true,
     minLength: 7
   },
+  friends: [{
+    fullName: {
+      type: String,
+      required: true,
+    },
+    friendId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    chat: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Chat'
+    }
+  }],
   tokens: [{
     token: {
       type: String,
       required: true
     }
   }]
-})
-
-
-userSchema.pre('save', async function (next) {
-  const user = this
-  if (user.isModified('password')) {
-    user.password = await bcrypt.hash(user.password, 8)
-  }
-  next()
 })
 
 userSchema.methods.generateAuthToken = async function () {
@@ -44,8 +56,8 @@ userSchema.methods.generateAuthToken = async function () {
   return token
 }
 
-userSchema.statics.findByCredentials = async (email, password) => {
-  const user = await User.findOne({ email })
+userSchema.statics.findByCredentials = async function (login, password) {
+  const user = await this.findOne({ login })
   if (!user) {
     throw new Error({ error: 'Invalid login credentials' })
   }
@@ -55,6 +67,5 @@ userSchema.statics.findByCredentials = async (email, password) => {
   }
   return user
 }
-
 
 module.exports = new mongoose.model('User', userSchema);

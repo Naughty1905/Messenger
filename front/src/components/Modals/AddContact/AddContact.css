@@ -20,14 +20,14 @@
   display: grid;
   grid-template-columns: 20% auto;
   grid-template-rows: 20% 20% 20% 20% 20%;
-  animation-name: ui-fade;
+  animation-name: ui-apperance;
   animation-duration: 0.6s;
   animation-iteration-count: 1;
   transition-timing-function: linear;
   animation-fill-mode: forwards;
-
 }
-@keyframes ui-fade{
+
+@keyframes ui-apperance{
   from {
     opacity: 0;
   }

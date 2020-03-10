@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
@@ -31,21 +32,27 @@ import renderMessages from './renderMessage';
 // Sockets 
 let socket;
 
+const scrollToRef = (ref) => window.scrollTo(0, ref)
+
 const MessageList = props => {
-  const { message, messages, user } = props;
+  const { message, messages, user, chat, audios } = props;
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+  }
 
   useEffect(() => {
     socket = io(ENDPOINT);
 
-    socket.emit(JOIN, { name: 'EVA' }, () => {
+    socket.emit(JOIN, { user, chat }, () => {
+
+    });
+    socket.emit(MESSAGE + chat, { message }, () => {
 
     });
 
-    socket.emit(MESSAGE, { message }, () => {
-    });
-
-    socket.on(SEND_MESSAGE, ({ message }, callback) => {
-      props.setMessages(message)
+    socket.on(SEND_MESSAGE + chat, ({ message }, callback) => {
+      props.setMessages(message);
     })
 
     return () => {
@@ -54,6 +61,7 @@ const MessageList = props => {
     }
   }, [message])
 
+  useEffect(scrollToBottom, [messages]);
 
 
   return (
@@ -66,22 +74,24 @@ const MessageList = props => {
           <ToolbarButton key="phone" icon="ion-ios-call" />
         ]}
       />
+      {
+        renderMessages(messages, user)
+      }
+      {
+        !!audios.length && audios.map(audio => <audio controls="controls" src={audio} />)
 
-      <div className="message-list-container">
-        {
-          renderMessages(messages, user)
-        }
-      </div>
+      }
+      <div className="messages-bottom" ref={messagesEndRef} style={{ marginBottom: '40px' }}/>
 
-      <Compose rightItems={[
-        <ToolbarButton key="photo" icon="ion-ios-camera" />,
-        <ToolbarButton key="image" icon="ion-ios-image" />,
-        <ToolbarButton key="audio" icon="ion-ios-mic" />,
-        <ToolbarButton key="money" icon="ion-ios-card" />,
-        <ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
-        <ToolbarButton key="emoji" icon="ion-ios-happy" />
-      ]} />
-    </div>
+    <Compose rightItems={[
+      <ToolbarButton key="photo" icon="ion-ios-camera" />,
+      <ToolbarButton key="image" icon="ion-ios-image" />,
+      <ToolbarButton key="audio" icon="ion-ios-mic" />,
+      <ToolbarButton key="money" icon="ion-ios-card" />,
+      <ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
+      <ToolbarButton key="emoji" icon="ion-ios-happy" />
+    ]} />
+    </div >
   );
 }
 
@@ -90,6 +100,8 @@ const mapStateToProps = state => {
     message: state.message,
     messages: state.messages,
     user: state.user,
+    chat: state.chat,
+    audios: state.audios
   }
 }
 

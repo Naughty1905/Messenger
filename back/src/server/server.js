@@ -3,8 +3,9 @@ const socketio = require('socket.io');
 const http = require('http');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 require('dotenv').config();
-
+const Chat = require('../models/chat')
 
 const PORT = process.env.PORT || 5000;
 
@@ -17,6 +18,7 @@ DB()
 // Routs dir
 const rout = require('./routes/rout');
 const usersRouter = require('./routes/users');
+const chatsRouter = require('./routes/chats');
 
 // Server
 const app = express();
@@ -28,6 +30,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 
 // Actions
 const {
@@ -41,17 +44,20 @@ const {
 // Sockets
 io.on(CONNECTION, (socket) => {
   console.log('Connection on socket is started!!!');
-
-  socket.on(JOIN, ({ name }, callback) => {
-    console.log(name)
-    socket.on(MESSAGE, ({ message }, callback) => {
+  socket.on(JOIN, ({ user, chat }, callback) => {
+    console.log(user);
+    console.log('>>>>>>>>>', chat);
+    socket.on(MESSAGE + chat, async ({ message }, callback) => {
       if (!message.owner || !message.content) return
       console.log(message)
-      io.emit(SEND_MESSAGE, { message })
+      const currentChat = await Chat.findOne({ _id: chat })
+      currentChat.messages.push({
+        ...message
+      });
+      await currentChat.save();
+      io.emit(SEND_MESSAGE + chat, { message })
     });
   });
-
-
 
   socket.on(DISCONNECT, () => {
     console.log('User has disconnected!!!');
@@ -62,6 +68,7 @@ io.on(CONNECTION, (socket) => {
 // Routs
 app.use(rout);
 app.use('/users', usersRouter);
+app.use('/chats', chatsRouter);
 
 server.listen(PORT, () => console.log(`Server has started on ${PORT}`));
 

@@ -3,12 +3,15 @@ import moment from 'moment';
 import './MessageBlack.css';
 
 export default function Message(props) {
+
+
   const {
     data,
     isMine,
     startsSequence,
     endsSequence,
-    showTimestamp
+    showTimestamp,
+    type
   } = props;
 
   const friendlyTimestamp = moment(data.timestamp).format('LLLL');
@@ -28,7 +31,11 @@ export default function Message(props) {
 
       <div className="bubble-container">
         <div className="bubble" title={friendlyTimestamp}>
-          {data.content}
+          {
+            type === 'Audio' ?
+              <audio controls="controls" src={data.content} /> :
+              <p style={{ margin: '0' }}>{data.content}</p>
+          }
         </div>
       </div>
     </div>

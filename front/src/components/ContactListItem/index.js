@@ -1,22 +1,40 @@
 import React, { useEffect } from 'react';
 import shave from 'shave';
+import { connect } from 'react-redux';
+import { startChatReq } from '../../redux/actions/actions'
 
 import './ContactListItem.css';
 
-export default function ContactListItem(props) {
+const ContactListItem = (props) => {
+
+  const { startChatReq } = props;
 
   useEffect(() => {
     shave('.conversation-snippet', 20);
   })
 
-  const { photo, name } = props.data;
+  const { photo } = props.data;
+  const { fullName, chat } = props.friend;
+
+  const startChat = () => {
+    startChatReq(chat);
+  }
+
+
 
   return (
-    <div className="contact-list-item">
+    <div onClick={startChat} className="contact-list-item">
       <img className="contact-photo" src={photo} alt="contact" />
       <div className="contact-info">
-        <h1 className="contact-title">{name}</h1>
+        <h1 className="contact-title">{fullName}</h1>
       </div>
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  isAuth: state.isAuth
+})
+
+
+export default connect(mapStateToProps, { startChatReq })(ContactListItem)

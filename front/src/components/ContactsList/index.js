@@ -6,17 +6,18 @@ import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import axios from 'axios';
 import { connect } from 'react-redux'
-import { setLoaderNav } from '../../redux/actions/actions';
+import { setLoaderNav, getContactsReq } from '../../redux/actions/actions';
 
 import './Contacs.css';
 
 const ContactList = (props) => {
   const [conversations, setConversations] = useState([]);
 
-  const { setLoaderNav, loader } = props;
+  const { setLoaderNav, loader, getContactsReq, isAuth, friends } = props;
 
   useEffect(() => {
     getConversations()
+    getContactsReq(isAuth)
   }, [])
 
   const getConversations = () => {
@@ -48,10 +49,11 @@ const ContactList = (props) => {
       <ConversationSearch />
       {
         loader ? <Loader /> :
-          conversations.map(conversation =>
+          friends.map((friend, index) =>
             <ContactListItem
-              key={conversation.name}
-              data={conversation}
+              key={conversations[index].name}
+              data={conversations[index]}
+              friend={friend}
             />
           )
       }
@@ -60,8 +62,10 @@ const ContactList = (props) => {
 }
 
 const mapStateToProps = state => ({
-  loader: state.navLoader
+  loader: state.navLoader,
+  isAuth: state.isAuth,
+  friends: state.friends
 })
 
 
-export default connect(mapStateToProps, { setLoaderNav })(ContactList)
+export default connect(mapStateToProps, { setLoaderNav, getContactsReq })(ContactList)
