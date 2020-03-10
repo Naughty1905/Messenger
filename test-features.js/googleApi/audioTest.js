@@ -51,7 +51,7 @@ class AudioTest extends React.Component {
     this.mediaRecorder.start(10);
 
     // start recording speech and convert it to text
-    
+
     this.recognition = new window.webkitSpeechRecognition();
     this.recognition.continuous = true;
     this.recognition.lang = 'ru-RU, en-US';
@@ -63,6 +63,7 @@ class AudioTest extends React.Component {
         }
       }
     }
+
 
     // say that we're recording
     this.setState({ recording: true });
@@ -86,6 +87,9 @@ class AudioTest extends React.Component {
     this.sendAudio(blob)
     // generate video url from blob
     const audioUrl = window.URL.createObjectURL(blob);
+
+
+
 
     console.log(this.state.speechToTextMessages, '<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>')
     // append audioUrl to list of saved audios for rendering
@@ -125,3 +129,20 @@ export default connect(
   mapStateToProps,
   { getMessage }
 )(AudioTest);
+
+
+
+
+// Router
+
+// router.post('/audio-message', (req, res) => {
+//   const { audioMessage: {
+//     data: buffer
+//   } } = req.files
+
+//   googleApiSpeechToText(buffer)
+//   .catch(console.error)
+// });
+
+
+

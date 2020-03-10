@@ -56,11 +56,10 @@ function* fetchAddNewContactAsync(obj) {
 }
 
 function* fetchStartChatAsync(obj) {
-  debugger
   const { chat, isAuth } = obj;
   try {
     yield call(addReadMessages, chat, isAuth);
-    debugger
+
     const data = yield call(fetchStartChat, chat)
     yield put(startChatRec(data));
   } catch (e) {

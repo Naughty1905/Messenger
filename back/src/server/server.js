@@ -50,9 +50,8 @@ const {
 // Sockets
 io.on(CONNECTION, (socket) => {
   console.log('Connection on socket is started!!!');
-  socket.on(JOIN, ({ user, chat }, callback) => {
+  socket.on(JOIN, ({ chat }, callback) => {
     // console.log(user);
-    console.log('>>>>>>>>>', chat);
     socket.on(MESSAGE + chat, async ({ message }, callback) => {
       if (!message.owner || !message.content) return
       const currentChat = await Chat.findOne({ _id: chat })
@@ -67,18 +66,17 @@ io.on(CONNECTION, (socket) => {
       // console.log(isAuth)
       // const userId = jwt.decode(isAuth)._id;
       // const { login } = await User.findOne({ _id: userId });
-      // let currentChat = await Chat.findOne({ _id: chat });
-      // let { messages } = currentChat;
+      let currentChat = await Chat.findOne({ _id: chat });
+      let { messages } = currentChat;
       messages = messages.map(message => message.toObject()).map(message => {
-        if (message.owner !== login) {
-          return { ...message, isSeen: true }
-        } else {
-          return message
-        }
+        // if (message.owner !== login) {
+        //   return { ...message, isSeen: true }
+        // } else {
+        //   return message
+        // }
       })
       currentChat.messages = messages;
       await currentChat.save();
-      console.log('vse norm')
     })
   });
 

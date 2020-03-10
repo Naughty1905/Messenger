@@ -9,9 +9,6 @@ const User = require('../../models/user');
 // isAuth
 const auth = require('../../middleware/auth');
 
-// Google api
-const googleApiSpeechToText  = require('../../utils/googleApiSpeechToText')
-
 router.get('/', async (req, res) => {
   const { id } = req.query;
   console.log(id);
@@ -71,15 +68,6 @@ router.get('/conversations', async (req, res) => {
     res.status(404).send(error);
   }
 })
-
-router.post('/audio-message', (req, res) => {
-  const { audioMessage: {
-    data: buffer
-  } } = req.files
-
-  googleApiSpeechToText(buffer)
-  .catch(console.error)
-});
 
 
 router.post('/seen', async (req, res) => {
