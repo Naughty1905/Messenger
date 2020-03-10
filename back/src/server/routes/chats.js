@@ -71,12 +71,11 @@ router.get('/conversations', async (req, res) => {
 
 
 router.post('/seen', async (req, res) => {
-  const { chat, isAuth } = req.body;
-  console.log(req.body);
-  
+  const { chat, isAuth } = req.body;  
   try {
-    const userId = jwt.decode(isAuth)._id;
+    const userId = jwt.decode(isAuth)._id;    
     const { login } = await User.findOne({ _id: userId });
+    
     let currentChat = await Chat.findOne({ _id: chat });
 
     let { messages } = currentChat;
