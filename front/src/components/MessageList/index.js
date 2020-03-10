@@ -25,7 +25,8 @@ import {
   JOIN,
   DISCONNECT,
   MESSAGE,
-  SEND_MESSAGE
+  SEND_MESSAGE,
+  CHECK_READ_MESSAGE
 } from '../../Socket-client/socket-actions';
 
 //Functions
@@ -37,7 +38,7 @@ let socket;
 const scrollToRef = (ref) => window.scrollTo(0, ref)
 
 const MessageList = props => {
-  const { message, messages, user, chat, audios } = props;
+  const { message, messages, user, chat, audios, isAuth } = props;
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
@@ -52,6 +53,8 @@ const MessageList = props => {
     socket.emit(MESSAGE + chat, { message }, () => {
 
     });
+
+    socket.emit(CHECK_READ_MESSAGE + chat, { chat, isAuth }, () => { })
 
     socket.on(SEND_MESSAGE + chat, ({ message }, callback) => {
       props.setMessages(message);
@@ -103,7 +106,8 @@ const mapStateToProps = state => {
     messages: state.messages,
     user: state.user,
     chat: state.chat,
-    audios: state.audios
+    audios: state.audios,
+    isAuth: state.isAuth
   }
 }
 

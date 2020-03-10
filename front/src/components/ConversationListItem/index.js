@@ -11,14 +11,14 @@ const ConversationListItem = (props) => {
   })
 
   const chatItem = useRef(null);
-  const { startChatReq, currentChat } = props;
+  const { startChatReq, currentChat, isAuth } = props;
   const { photo } = props.data;
   const { _id, members, messages } = props.chat;
 
   const chat = _id;
 
   const startChat = () => {
-    startChatReq(chat);
+    startChatReq(chat, isAuth);
   }
 
   useEffect(() => {
