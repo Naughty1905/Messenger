@@ -38,11 +38,13 @@ const initialState = {
   isModalAddContact: false,
   isAuth: localStorage.getItem('token') || false,
   isAuthError: false,
+  authErrorText: '',
   friends: [],
   chat: '',
   chats: [],
   recording: false,
-  audios: []
+  audios: [],
+  authErrorText: '',
 };
 
 
@@ -99,9 +101,11 @@ function rootReducer(state = initialState, action) {
         isAuth: action.payload.token
       }
     case AUTH_ERROR:
+      debugger
       return {
         ...state,
-        isAuthError: !state.isAuthError
+        isAuthError: !state.isAuthError,
+        authErrorText: !!state.authErrorText ? '' : action.error
       }
 
     case ADD_NEW_CONTACT_RECIEVE:

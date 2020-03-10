@@ -27,22 +27,26 @@ router.post('/', async (req, res) => {
     const userId = jwt.decode(isAuth)._id;
     const currentUser = await User.findOne({ _id: userId });
     const newContact = await User.findOne({ login });
-    const chat = new Chat({
-      members: [userId, newContact._id]
-    })
-    await chat.save()
-    currentUser.friends.push({
-      fullName,
-      friendId: newContact._id,
-      chat: chat._id
-    })
-    await currentUser.save()
-    newContact.friends.push({
-      fullName: currentUser.fullName,
-      friendId: currentUser._id,
-      chat: chat._id
-    })
-    await newContact.save();
+    const checkChat = await Chat.findOne({ members: [currentUser._id, newContact._id] })
+    const checkChatReverse = await Chat.findOne({ members: [newContact._id, currentUser._id] })
+    if (checkChat === null && checkChatReverse === null) {
+      const chat = new Chat({
+        members: [userId, newContact._id]
+      })
+      await chat.save()
+      currentUser.friends.push({
+        fullName,
+        friendId: newContact._id,
+        chat: chat._id
+      })
+      await currentUser.save()
+      newContact.friends.push({
+        fullName: currentUser.fullName,
+        friendId: currentUser._id,
+        chat: chat._id
+      })
+      await newContact.save();
+    }
     res.status(201).json({ chatId: chat._id });
   } catch (error) {
     res.status(404).send(error);

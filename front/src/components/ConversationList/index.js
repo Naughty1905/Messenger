@@ -51,8 +51,8 @@ const ConversationList = (props) => {
         loader ? <Loader /> :
           chats.map((chat, index) =>
             <ConversationListItem
-              key={conversations[index].name}
-              data={conversations[index]}
+              key={Date.now()}
+              // data={conversations[index]}
               chat={chat}
             />
           )

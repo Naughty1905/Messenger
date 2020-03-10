@@ -14,7 +14,8 @@ function* fetchRegAsync(obj) {
     }
     yield put(regNewUserRec(data));
   } catch (e) {
-    yield put(setAuthError())
+    const error = 'Auth Error';
+    yield put(setAuthError(error))
   }
 }
 
@@ -27,7 +28,8 @@ function* fetchLoginAsync(obj) {
     }
     yield put(regNewUserRec(data));
   } catch (e) {
-    yield put(setAuthError())
+    const error = 'Login Error'
+    yield put(setAuthError(error))
   }
 }
 
@@ -41,6 +43,7 @@ function* fetchAllConctactsAsync(obj) {
     }
     yield put(getContactsRec(data));
   } catch (e) {
+    const error = `Contact Error`
     yield put(setAuthError())
   }
 }
@@ -51,20 +54,21 @@ function* fetchAddNewContactAsync(obj) {
     const data = yield call(fetchAddNewContact, fullName, login, number, isAuth)
     yield put(addNewContactRec(data));
   } catch (e) {
-    yield put(setAuthError())
+    const error = 'User does not exist!';
+    yield put(setAuthError(error))
   }
 }
 
 function* fetchStartChatAsync(obj) {
-  debugger
+
   const { chat, isAuth } = obj;
   try {
     yield call(addReadMessages, chat, isAuth);
-    debugger
     const data = yield call(fetchStartChat, chat)
     yield put(startChatRec(data));
   } catch (e) {
-    yield put(setAuthError())
+    const error = 'ChatMessage Error!'
+    yield put(setAuthError(error))
   }
 }
 
@@ -74,6 +78,7 @@ function* fetchConversationsAsync(obj) {
     const data = yield call(fetchConversations, isAuth)
     yield put(getConversationsRec(data));
   } catch (e) {
+    const error = 'Conversations Error'
     yield put(setAuthError())
   }
 }

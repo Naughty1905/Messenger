@@ -60,24 +60,24 @@ io.on(CONNECTION, (socket) => {
       await currentChat.save();
       io.emit(SEND_MESSAGE + chat, { message })
     });
-    socket.on(CHECK_READ_MESSAGE + chat, async ({ chat, isAuth }, callback) => {
-      console.log(chat);
-      console.log(isAuth)
-      const userId = jwt.decode(isAuth)._id;
-      const { login } = await User.findOne({ _id: userId });
-      let currentChat = await Chat.findOne({ _id: chat });
-      let { messages } = currentChat;
-      messages = messages.map(message => message.toObject()).map(message => {
-        if (message.owner !== login) {
-          return { ...message, isSeen: true }
-        } else {
-          return message
-        }
-      })
-      currentChat.messages = messages;
-      await currentChat.save();
-      console.log('vse norm')
-    })
+    // socket.on(CHECK_READ_MESSAGE + chat, async ({ chat, isAuth }, callback) => {
+    //   console.log(chat);
+    //   console.log(isAuth)
+    //   const userId = jwt.decode(isAuth)._id;
+    //   const { login } = await User.findOne({ _id: userId });
+    //   let currentChat = await Chat.findOne({ _id: chat });
+    //   let { messages } = currentChat;
+    //   messages = messages.map(message => message.toObject()).map(message => {
+    //     if (message.owner !== login) {
+    //       return { ...message, isSeen: true }
+    //     } else {
+    //       return message
+    //     }
+    //   })
+    //   currentChat.messages = messages;
+    //   await currentChat.save();
+    //   console.log('vse norm')
+    // })
   });
 
 

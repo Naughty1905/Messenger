@@ -95,8 +95,9 @@ export const loginRec = (payload) => ({
   payload
 })
 
-export const setAuthError = () => ({
-  type: AUTH_ERROR
+export const setAuthError = (error) => ({
+  type: AUTH_ERROR,
+  error
 })
 
 export const addNewContactReq = (fullName, login, number, isAuth) => ({

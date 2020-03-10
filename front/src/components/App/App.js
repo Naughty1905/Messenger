@@ -1,6 +1,6 @@
 import React from 'react';
 import Messenger from '../Messenger';
-import DashboardPage from '../NewAuth/DashboardPage';
+import DashboardPage from '../Auth/DashboardPage';
 import AddContact from '../Modals/AddContact';
 import Tooltip from '../Utils/Tooltip'
 import { connect } from 'react-redux';

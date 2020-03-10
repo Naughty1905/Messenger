@@ -39,6 +39,7 @@ export const fetchAllFriends = async (isAuth, url = "http://localhost:5000/users
 
 
 export const fetchAddNewContact = async (fullName, login, number, isAuth, url = "http://localhost:5000/chats") => {
+
   const { data } = await axios.post(url, {
     fullName,
     login,

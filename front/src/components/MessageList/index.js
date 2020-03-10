@@ -26,7 +26,7 @@ import {
   DISCONNECT,
   MESSAGE,
   SEND_MESSAGE,
-  CHECK_READ_MESSAGE
+  // CHECK_READ_MESSAGE
 } from '../../Socket-client/socket-actions';
 
 //Functions
@@ -54,7 +54,7 @@ const MessageList = props => {
 
     });
 
-    socket.emit(CHECK_READ_MESSAGE + chat, { chat, isAuth }, () => { })
+    // socket.emit(CHECK_READ_MESSAGE + chat, { chat, isAuth }, () => { })
 
     socket.on(SEND_MESSAGE + chat, ({ message }, callback) => {
       props.setMessages(message);
