@@ -81,7 +81,7 @@ const MessageList = props => {
         !!audios.length && audios.map(audio => <audio controls="controls" src={audio} />)
 
       }
-      <div className="messages-bottom" ref={messagesEndRef} />
+      <div className="messages-bottom" ref={messagesEndRef} style={{ marginBottom: '40px' }}/>
 
     <Compose rightItems={[
       <ToolbarButton key="photo" icon="ion-ios-camera" />,
