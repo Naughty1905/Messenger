@@ -35,6 +35,8 @@ const SidebarMenu = (props) => {
         <li title='calls' className='menu'><i className='ion-ios-call' /> <span>Calls</span> </li>
         <li title='newgroup' className='menu'><i className='ion-md-people' /><span className='fixAnimation'>New Group </span></li>
         <li title='settings' className='menu'><i className='ion-md-settings' /> <span>Settings</span> </li>
+        <li title='settings' className='menu'><i className='ion-md-exit' /> <span>Logout</span> </li>
+
       </ul>
     </div>
   );

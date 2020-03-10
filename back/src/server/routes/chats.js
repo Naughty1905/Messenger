@@ -88,4 +88,28 @@ router.get('/conversations', async (req, res) => {
 })
 
 
+router.post('/seen', async (req, res) => {
+  const { id, isAuth } = req.body;
+  try {
+    const userId = jwt.decode(isAuth)._id;
+    const { login } = await User.findOne({ _id: userId });
+    let chat = await Chat.findOne({ _id: id });
+
+    let { messages } = chat;
+    messages = messages.map(message => message.toObject()).map(message => {
+      if (message.owner !== login) {
+        return { ...message, isSeen: true }
+      } else {
+        return message
+      }
+    })
+    chat.messages = messages;
+    await chat.save();
+    res.status(200).json({ chat, login });
+  } catch (err) {
+    res.status(404).send(err);
+  }
+})
+
+
 module.exports = router;

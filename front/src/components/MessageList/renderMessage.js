@@ -13,6 +13,7 @@ const renderMessages = (messages, user) => {
     let currentType = messages[i].messageType;
     let next = messages[i + 1];
     let isMine = current.owner === user;
+    let isSeen = current.isSeen;
     let currentMoment = moment(current.timestamp);
     let prevBySameAuthor = false;
     let nextBySameAuthor = false;
@@ -46,7 +47,7 @@ const renderMessages = (messages, user) => {
 
     tempMessages.push(
       <Message
-        key={i}
+        key={performance.now()}
         isMine={isMine}
         startsSequence={startsSequence}
         endsSequence={endsSequence}
