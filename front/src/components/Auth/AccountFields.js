@@ -17,7 +17,7 @@ export default class AccountFields extends React.Component {
         this.state = {
             name: '',
             password: '',
-            username: '',
+            email: '',
             imgPath: ''
         }
     }

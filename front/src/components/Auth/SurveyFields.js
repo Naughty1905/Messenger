@@ -33,8 +33,8 @@ export default class SurveyFields extends React.Component {
             elem.target.value = "";
         } else {
             console.log(elem, this.state)
-            const image = elem.target.files[0];
-            this.setState(() => ({image}));
+            const preview = elem.target.files[0];
+            this.setState(() => ({preview}));
         }
     }
 
@@ -57,6 +57,7 @@ export default class SurveyFields extends React.Component {
                             onCrop={this.onCrop}
                             onClose={this.onClose}
                             onBeforeFileLoad={this.onBeforeFileLoad}
+                            // onChange={this.onBeforeFileLoad}
                             src={this.state.src}
                     />
                     {/*<img src={this.state.preview} alt="Preview"/>*/}
@@ -72,6 +73,7 @@ export default class SurveyFields extends React.Component {
     }
 
     nextStep() {
+        this.props.changeInfo(this.state);
         this.props.nextStep()
     }
 }
