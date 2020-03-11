@@ -23,8 +23,6 @@ const initialState = {
 const chatReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_MESSAGE:
-      debugger
-      // const { message, user, messageType, speechToText, isAvailableSpeechToText } = action.payload;
       return {
         ...state,
         message: Object.assign({}, state.message, {
@@ -32,7 +30,6 @@ const chatReducer = (state = initialState, action) => {
         })
       };
     case SET_MESSAGES:
-      debugger
       return {
         ...state,
         messages: [...action.payload]

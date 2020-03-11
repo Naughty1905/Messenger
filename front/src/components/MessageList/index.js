@@ -10,74 +10,31 @@ import { connect } from 'react-redux';
 //Redux actions
 import { setMessages } from '../../redux/actions/actions';
 
-// Server connection
-import io from 'socket.io-client';
-// import queryString from 'query-string';
-
 // Styles
 import './MessageList.css';
-
-// Ations
-import {
-  ENDPOINT,
-  JOIN,
-  DISCONNECT,
-  MESSAGE,
-  SEND_MESSAGE,
-  // CHECK_READ_MESSAGE
-} from '../../Socket-client/socket-actions';
 
 //Functions
 import renderMessages from './renderMessage';
 
-// Sockets 
-let socket;
-
 const MessageList = props => {
-  const { message, messages, user, chat, isAuth } = props;
+  const { message, messages, user, chat } = props;
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }
 
   useEffect(() => {
-
     if (!!message.content) {
-      debugger
       const chatRef = database.ref(`chats/${chat}`);
       chatRef.push(message)
     }
-
-    socket = io(ENDPOINT);
-
-    socket.emit(JOIN, { user, chat }, () => {
-
-    });
-    socket.emit(MESSAGE + chat, { message }, () => {
-
-    });
-
-    // socket.emit(CHECK_READ_MESSAGE + chat, { chat, isAuth }, () => { })
-
-    socket.on(SEND_MESSAGE + chat, ({ message }, callback) => {
-      props.setMessages(message);
-    })
-
-    return () => {
-      socket.emit(DISCONNECT);
-      socket.off();
-    }
   }, [message])
-
 
   useEffect(() => {
     if (chat) {
       const chatRef = database.ref(`chats/${chat}`);
-      debugger
       chatRef.on('value', snapshot => {
-        debugger
         const getChats = snapshot.val();
-        debugger
         const messages = Object.values(getChats)
         props.setMessages(messages)
       })

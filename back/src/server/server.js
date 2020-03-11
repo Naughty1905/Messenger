@@ -1,5 +1,4 @@
 const express = require('express');
-const http = require('http');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
@@ -15,17 +14,11 @@ DB()
   .catch(() => console.error('Errors'));
 
 // Routs dir
-const rout = require('./routes/rout');
 const usersRouter = require('./routes/users');
 const chatsRouter = require('./routes/chats');
 
 // Server
 const app = express();
-const server = http.createServer(app);
-
-// Io server
-const startIoServer = require('./ioServer');
-startIoServer(server)
 
 // Middlewares
 app.use(logger('dev'));
@@ -35,8 +28,7 @@ app.use(cookieParser());
 app.use(cors());
 
 // Routs
-app.use(rout);
 app.use('/users', usersRouter);
 app.use('/chats', chatsRouter);
 
-server.listen(PORT, () => console.log(`Server has started on ${PORT}`));
+app.listen(PORT, () => console.log(`Server has started on ${PORT}`));
