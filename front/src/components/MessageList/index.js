@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Compose from '../Compose';
 import Toolbar from '../Toolbar';
+import { database } from '../../Firebase';
 import ToolbarButton from '../ToolbarButton';
 
 // Redux
@@ -40,6 +41,13 @@ const MessageList = props => {
   }
 
   useEffect(() => {
+
+    if (!!message.content) {
+      debugger
+      const chatRef = database.ref(`chats/${chat}`);
+      chatRef.push(message)
+    }
+
     socket = io(ENDPOINT);
 
     socket.emit(JOIN, { user, chat }, () => {
@@ -60,6 +68,21 @@ const MessageList = props => {
       socket.off();
     }
   }, [message])
+
+
+  useEffect(() => {
+    if (chat) {
+      const chatRef = database.ref(`chats/${chat}`);
+      debugger
+      chatRef.on('value', snapshot => {
+        debugger
+        const getChats = snapshot.val();
+        debugger
+        const messages = Object.values(getChats)
+        props.setMessages(messages)
+      })
+    }
+  }, [chat])
 
   useEffect(scrollToBottom, [messages]);
 

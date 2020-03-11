@@ -9,10 +9,11 @@ import {
 const initialState = {
   message: {
     content: null,
-    owner: null,
+    user: null,
     messageType: 'String',
-    speechToText: null,
-    isAvailableSpeechToText: false
+    speechToText: false,
+    isAvailableSpeechToText: false,
+    isSeen: false,
   },
   messages: [],
   chat: '',
@@ -22,21 +23,19 @@ const initialState = {
 const chatReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_MESSAGE:
-      const { message, user, messageType, speechToText, isAvailableSpeechToText } = action.payload;
+      debugger
+      // const { message, user, messageType, speechToText, isAvailableSpeechToText } = action.payload;
       return {
         ...state,
-        message: {
-          content: message,
-          owner: user,
-          messageType,
-          speechToText,
-          isAvailableSpeechToText
-        }
+        message: Object.assign({}, state.message, {
+          ...action.payload
+        })
       };
     case SET_MESSAGES:
+      debugger
       return {
         ...state,
-        messages: [...state.messages, action.payload]
+        messages: [...action.payload]
       };
     case START_CHAT_RECIEVE: {
       return {

@@ -13,7 +13,7 @@ const renderMessages = (messages, user) => {
     let currentType = current.messageType;
     let speechToText = current.speechToText;
     let next = messages[i + 1];
-    let isMine = current.owner === user;
+    let isMine = current.user === user;
     let isAvailableSpeechToText = current.isAvailableSpeechToText;
     let currentMoment = moment(current.timestamp);
     let prevBySameAuthor = false;

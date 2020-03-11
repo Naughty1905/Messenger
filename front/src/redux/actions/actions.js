@@ -126,10 +126,11 @@ export const getContactsRec = (payload) => ({
 
 export const startChatReq = (chat, isAuth) => {
   return {
-  type: START_CHAT_REQUEST,
-  chat,
-  isAuth
-}}
+    type: START_CHAT_REQUEST,
+    chat,
+    isAuth
+  }
+}
 
 export const startChatRec = (payload) => ({
   type: START_CHAT_RECIEVE,
@@ -159,3 +160,9 @@ export const getDataFromUserInputs = (payload) => ({
   type: GET_DATA_FROM_USER_INPUTS,
   payload
 })
+
+
+// export const setMessages = payload => ({
+//   type: SET_MESSAGES,
+//   payload
+// })

@@ -9,13 +9,13 @@ import { getMessage } from '../../redux/actions/actions';
 
 const Compose = (props) => {
   const [recording, setRecording] = useState(false);
-  const [message, setMessage] = useState('');
+  const [content, setMessage] = useState('');
   const { user } = props;
 
   const messegeHandler = (event) => {
     event.preventDefault();
-    if (!message) return
-    props.getMessage({ message, user, messageType: 'String' });
+    if (!content) return
+    props.getMessage({ content, user, messageType: 'String' });
 
     setMessage('');
   }
@@ -27,7 +27,7 @@ const Compose = (props) => {
         type="text"
         className="compose-input"
         placeholder="Type a message, @name"
-        value={message}
+        value={content}
         onChange={(event) => setMessage(event.target.value)}
         onKeyPress={(event) => { event.key === 'Enter' && messegeHandler(event) }}
       />

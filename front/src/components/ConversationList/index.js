@@ -1,39 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ConversationSearch from '../ConversationSearch';
 import ConversationListItem from '../ConversationListItem';
 import Loader from '../Loader'
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
-import axios from 'axios';
 import { connect } from 'react-redux'
 import { setLoaderNav, getConversationsReq } from '../../redux/actions/actions';
 
 import './ConversationList.css';
 
 const ConversationList = (props) => {
-  const [conversations, setConversations] = useState([]);
 
   const { setLoaderNav, loader, isAuth, getConversationsReq, chats } = props;
+
   useEffect(() => {
-    getConversations()
-    getConversationsReq(isAuth);
+    if (chats.length == 0) {
+      getConversationsReq(isAuth)
+    }
   }, [])
 
-  const getConversations = () => {
+  useCallback(() => getConversationsReq(isAuth), [chats.length]);
 
-    setLoaderNav()
-    axios.get('https://randomuser.me/api/?results=20').then(response => {
-      let newConversations = response.data.results.map(result => {
-        return {
-          photo: result.picture.large,
-          name: `${result.name.first} ${result.name.last}`,
-          text: 'Hello world! This is a long message that needs to be truncated.'
-        };
-      });
-      setConversations([...conversations, ...newConversations])
-      setLoaderNav()
-    });
-  }
 
   return (
     <div className="conversation-list">
@@ -51,8 +38,7 @@ const ConversationList = (props) => {
         loader ? <Loader /> :
           chats.map((chat, index) =>
             <ConversationListItem
-              key={Date.now()}
-              // data={conversations[index]}
+              key={performance.now()}
               chat={chat}
             />
           )
