@@ -19,15 +19,22 @@ const startIoServer = (server) => {
   const io = socketio(server);
   io.on(CONNECTION, (socket) => {
     console.log('Connection on socket is started!!!');
+
     socket.on(JOIN, ({ chat }, callback) => {
+      
       socket.on(MESSAGE + chat, async ({ message }, callback) => {
+
+        console.log(message)
         if (!message.owner || !message.content) return
         const currentChat = await Chat.findOne({ _id: chat })
         currentChat.messages.push({
           ...message
         });
         await currentChat.save();
-        io.emit(SEND_MESSAGE + chat, { message })
+
+        const { messages } = currentChat;
+
+        io.emit(SEND_MESSAGE + chat, { messages })
       });
       //   socket.on(CHECK_READ_MESSAGE + chat, async ({ chat, isAuth }, callback) => {
       //     const userId = jwt.decode(isAuth)._id;

@@ -51,7 +51,7 @@ const ContactList = (props) => {
         loader ? <Loader /> :
           friends.map((friend, index) =>
             <ContactListItem
-              key={Date.now()}
+              key={performance.now()}
               // data={conversations[index]}
               friend={friend}
             />

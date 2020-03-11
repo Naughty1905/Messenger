@@ -39,6 +39,28 @@ const MessageList = props => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }
 
+  // useEffect(() => {
+  //   socket = io(ENDPOINT);
+
+  //   socket.emit(JOIN, { user, chat });
+
+  //   return () => {
+  //     socket.emit(DISCONNECT);
+  //     socket.off();
+  //   }
+  // }, [])
+
+  // useEffect(() => {
+  //   socket.emit(MESSAGE + chat, { message });
+  // }, [message])
+
+
+  // useEffect(() => {
+  //   socket.on(SEND_MESSAGE + chat, ({ messages }, callback) => {
+  //     props.setMessages(messages);
+  //   })
+  // }, [messages])
+
   useEffect(() => {
     socket = io(ENDPOINT);
 
@@ -52,6 +74,7 @@ const MessageList = props => {
     // socket.emit(CHECK_READ_MESSAGE + chat, { chat, isAuth }, () => { })
 
     socket.on(SEND_MESSAGE + chat, ({ message }, callback) => {
+      console.log(message)
       props.setMessages(message);
     })
 
