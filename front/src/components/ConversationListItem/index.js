@@ -14,6 +14,7 @@ const ConversationListItem = (props) => {
   const { startChatReq, currentChat, isAuth } = props;
   const { _id, members, messages } = props.chat;
 
+
   const chat = _id;
 
   const startChat = () => {

@@ -6,6 +6,9 @@ import {
   SET_RECORDING,
 } from '../actions/action-types';
 
+import moment from 'moment';
+const friendlyTimestamp = moment().format('LT');
+
 const initialState = {
   message: {
     content: null,
@@ -14,6 +17,7 @@ const initialState = {
     speechToText: false,
     isAvailableSpeechToText: false,
     isSeen: false,
+    date: friendlyTimestamp
   },
   messages: [],
   chat: '',
