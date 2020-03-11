@@ -9,12 +9,14 @@ export default function Message(props) {
     startsSequence,
     endsSequence,
     showTimestamp,
-    type
+    type,
+    speechToText,
+    isAvailableSpeechToText
   } = props;
 
 
+
   const friendlyTimestamp = moment(data.timestamp).format('LLLL');
-  debugger
   return (
     <div className={[
       'message',
@@ -33,7 +35,15 @@ export default function Message(props) {
         <div className="bubble my-message" title={friendlyTimestamp}>
           {
             type === 'Audio' ?
-              <audio controls="controls" src={data.content} /> :
+              <div style={{ display: 'flex', flexDirection: 'column', }} className="AudioTagContainer">
+                <audio controls="controls" src={data.content} />
+                {
+                  isAvailableSpeechToText ?
+                    <small>{speechToText}</small> :
+                    <small>This function only available in Chrome browser</small>
+                }
+              </div>
+              :
               <p style={{ margin: '0' }}>{data.content}</p>
           }
           {isMine && <i style={{ fontSize: '1.3rem', marginLeft: '0.8rem', color: data.isSeen && 'cyan' }} className="ion-ios-done-all" />}

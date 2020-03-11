@@ -35,12 +35,14 @@ const ConversationListItem = (props) => {
       <img className="conversation-photo" src='https://firebasestorage.googleapis.com/v0/b/vue-elbrus-crm.appspot.com/o/avatar%2Fpetr.jpg?alt=media&token=2b1660a7-5133-411f-9da1-7012eeb2cecf' alt="conversation" />
       <div className="conversation-info">
         <h1 className="conversation-title">{members}</h1>
-        <p className="conversation-snippet">{
-          messages.length ?
+        {
+          messages.length &&
+          <p className="conversation-snippet">{
             messages[messages.length - 1].messageType === 'Audio' ? 'Audio message' :
               messages[messages.length - 1].messageType === 'String' ?
-                messages[messages.length - 1].content : "There's no messages yeat..." : ''
-        }</p>
+                messages[messages.length - 1].content : "There's no messages yeat..."
+          }</p>
+        }
       </div>
     </div>
   );

@@ -28,6 +28,13 @@ const chatSchema = new mongoose.Schema({
       isSeen: {
         type: Boolean,
         default: false
+      },
+      speechToText: {
+        type: String,
+      },
+      isAvailableSpeechToText: {
+        type: Boolean,
+        default: false
       }
     }
   ]

@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 const App = (props) => {
+
   const { isModalAddContact, isAuth, isAuthError } = props;
   return (
     <Router className="App">

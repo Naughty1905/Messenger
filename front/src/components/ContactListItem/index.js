@@ -7,7 +7,7 @@ import './ContactListItem.css';
 
 const ContactListItem = (props) => {
 
-  const { startChatReq } = props;
+  const { startChatReq, isAuth } = props;
 
   useEffect(() => {
     shave('.conversation-snippet', 20);
@@ -16,7 +16,7 @@ const ContactListItem = (props) => {
   const { fullName, chat } = props.friend;
 
   const startChat = () => {
-    startChatReq(chat);
+    startChatReq(chat, isAuth);
   }
 
 

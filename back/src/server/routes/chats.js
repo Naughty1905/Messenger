@@ -71,26 +71,8 @@ router.post('/', async (req, res) => {
   }
 })
 
-// router.get('/conversations', async (req, res) => {
-//   const { isAuth } = req.body;
-//   try {
-//     const user = jwt.decode(isAuth)._id;
-//     const currentUser = await User.findOne({ _id: user }).populate('friends.chat').lean();
-//     const data = currentUser.friends.map(friend => {
-//       return {
-//         name: friend.fullName,
-//         chat: friend.chat
-//       }
-//     })
-//     res.status(200).json(data);
-//   } catch (error) {
-//     res.status(404).send(error);
-//   }
-// })
-
 router.get('/conversations', async (req, res) => {
   const { isAuth } = req.query;
-  console.log(isAuth);
   try {
     const userId = jwt.decode(isAuth)._id;
     const { fullName } = await User.findOne({ _id: userId });
@@ -119,6 +101,7 @@ router.post('/seen', async (req, res) => {
     let currentChat = await Chat.findOne({ _id: chat });
 
     let { messages } = currentChat;
+    
     messages = messages.map(message => message.toObject()).map(message => {
       if (message.owner !== login) {
         return { ...message, isSeen: true }

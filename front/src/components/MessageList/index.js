@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
 import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
@@ -34,8 +33,6 @@ import renderMessages from './renderMessage';
 
 // Sockets 
 let socket;
-
-const scrollToRef = (ref) => window.scrollTo(0, ref)
 
 const MessageList = props => {
   const { message, messages, user, chat, audios, isAuth } = props;
@@ -82,10 +79,10 @@ const MessageList = props => {
       {
         renderMessages(messages, user)
       }
-      {
+      {/* {
         !!audios.length && audios.map(audio => <audio controls="controls" src={audio} />)
 
-      }
+      } */}
       <div className="messages-bottom" ref={messagesEndRef} style={{ marginBottom: '40px' }} />
 
       <Compose rightItems={[

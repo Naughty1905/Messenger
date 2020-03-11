@@ -45,7 +45,6 @@ export const fetchAddNewContact = async (fullName, login, number, isAuth, url = 
       number,
       isAuth
     })
-    debugger
     return data;
   } catch (err) {
     return err;
@@ -72,12 +71,10 @@ export const fetchConversations = async (isAuth, url = "http://localhost:5000/ch
 };
 
 export const addReadMessages = async (chat, isAuth, url = "http://localhost:5000/chats/seen") => {
-  debugger
   const { data } = await axios.post(url, {
     isAuth,
     chat
   })
-  debugger
   return data;
 }
 

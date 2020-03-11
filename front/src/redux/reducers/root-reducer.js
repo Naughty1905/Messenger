@@ -32,9 +32,11 @@ const initialState = {
   navLoader: false,
 
   message: {
-    content: '',
-    owner: '',
-    messageType: ''
+    content: null,
+    owner: null,
+    messageType: 'String',
+    speechToText: null,
+    isAvailableSpeechToText: false
   },
 
   messages: [],
@@ -60,13 +62,15 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_MESSAGE:
-      const { message, user, messageType } = action.payload;
+      const { message, user, messageType, speechToText, isAvailableSpeechToText } = action.payload;
       return {
         ...state,
         message: {
           content: message,
           owner: user,
-          messageType
+          messageType,
+          speechToText,
+          isAvailableSpeechToText
         }
       };
     case SET_MESSAGES:
@@ -104,14 +108,12 @@ function rootReducer(state = initialState, action) {
         isModalAddContact: !state.isModalAddContact
       }
     case REG_NEW_USER_RECIEVE:
-      debugger
       return {
         ...state,
         user: action.payload.login,
         isAuth: action.payload.token
       }
     case AUTH_ERROR:
-      debugger
       return {
         ...state,
         isAuthError: !state.isAuthError,
@@ -121,7 +123,6 @@ function rootReducer(state = initialState, action) {
     case ADD_NEW_CONTACT_RECIEVE:
       return {
         ...state,
-
       }
     case GET_CONTACTS_RECIEVE:
       return {
@@ -153,7 +154,6 @@ function rootReducer(state = initialState, action) {
         audios: [...state.audios, action.payload]
       }
     case GET_DATA_FROM_USER_INPUTS:
-      debugger
       return {
         ...state,
         signUpInfo: Object.assign({}, state.signUpInfo, {
