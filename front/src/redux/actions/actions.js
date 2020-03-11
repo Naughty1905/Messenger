@@ -32,7 +32,6 @@ import {
   GET_CONVERSATIONS_RECIEVE,
 
   SET_RECORDING,
-  GET_AUDIOS,
 } from './action-types';
 
 export const getMessage = (payload) => ({
@@ -149,8 +148,5 @@ export const setRecording = () => ({
   type: SET_RECORDING
 });
 
-export const getAudios = payload => ({
-  type: GET_AUDIOS,
-  payload
-})
+
 

@@ -23,7 +23,8 @@ const initialState = {
   message: {
     content: '',
     owner: '',
-    messageType: ''
+    messageType: '',
+    speechToText: ''
   },
   messages: [],
   isContact: false,
@@ -42,13 +43,14 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_MESSAGE:
-      const { message, user, messageType } = action.payload;
+      const { message, user, messageType, speechToText } = action.payload;
       return {
         ...state,
         message: {
           content: message,
           owner: user,
-          messageType
+          messageType,
+          speechToText
         }
       };
     case SET_MESSAGES:

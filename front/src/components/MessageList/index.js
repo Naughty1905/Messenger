@@ -79,6 +79,10 @@ const MessageList = props => {
       {
         renderMessages(messages, user)
       }
+      {/* {
+        !!audios.length && audios.map(audio => <audio controls="controls" src={audio} />)
+
+      } */}
       <div className="messages-bottom" ref={messagesEndRef} style={{ marginBottom: '40px' }} />
 
       <Compose rightItems={[

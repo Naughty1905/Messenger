@@ -9,7 +9,8 @@ export default function Message(props) {
     startsSequence,
     endsSequence,
     showTimestamp,
-    type
+    type,
+    speechToText
   } = props;
 
 
@@ -32,7 +33,11 @@ export default function Message(props) {
         <div className="bubble my-message" title={friendlyTimestamp}>
           {
             type === 'Audio' ?
-              <audio controls="controls" src={data.content} /> :
+              <div style={{ display: 'flex', flexDirection: 'column',}}>
+                <audio controls="controls" src={data.content} />
+                <small>{speechToText}</small>
+              </div>
+              :
               <p style={{ margin: '0' }}>{data.content}</p>
           }
           {isMine && <i style={{ fontSize: '1.3rem', marginLeft: '0.8rem', color: data.isSeen && 'cyan' }} className="ion-ios-done-all" />}

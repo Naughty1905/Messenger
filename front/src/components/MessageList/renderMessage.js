@@ -10,7 +10,8 @@ const renderMessages = (messages, user) => {
   while (i < messageCount) {
     let previous = messages[i - 1];
     let current = messages[i];
-    let currentType = messages[i].messageType;
+    let currentType = current.messageType;
+    let speechToText = current.speechToText;
     let next = messages[i + 1];
     let isMine = current.owner === user;
     let isSeen = current.isSeen;
@@ -54,6 +55,7 @@ const renderMessages = (messages, user) => {
         showTimestamp={showTimestamp}
         data={current}
         type={currentType}
+        speechToText={speechToText}
       />
     );
 
