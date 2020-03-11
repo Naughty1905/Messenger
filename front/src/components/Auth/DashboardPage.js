@@ -55,7 +55,6 @@ const DashboardPage = (props) => {
   };
 
   const submitRegistration = function () {
-    console.log(signUpInfo);
     const { login, name, email, password, avatar } = signUpInfo;
     regNewUserReq(login, name, email, password, avatar)
   };
