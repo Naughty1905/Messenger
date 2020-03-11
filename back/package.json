@@ -4,7 +4,7 @@
   "description": "Web socket real time chat",
   "main": "index.js",
   "scripts": {
-    "start": "GOOGLE_APPLICATION_CREDENTIALS=/home/obberin/js/messenger-final-project/Messenger/back/messanger-final-project-cca8be1f2c76.json npx nodemon src/server/server.js",
+    "start": "node src/server/server.js",
     "dev": "npx nodemon src/server/server.js"
   },
   "keywords": [

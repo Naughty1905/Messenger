@@ -7,7 +7,7 @@ import Recorder from 'recorder-js';
 const audioType = 'audio/webm; codecs=opus';
 
 
-class AudioTest extends React.Component {
+class SpeechRecognition extends React.Component {
 
   constructor(props) {
     super(props);
@@ -128,7 +128,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getMessage }
-)(AudioTest);
+)(SpeechRecognition);
 
 
 

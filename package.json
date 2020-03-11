@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "object-assign": "^4.1.1",
+    "recorderjs": "^1.0.1"
+  }
+}

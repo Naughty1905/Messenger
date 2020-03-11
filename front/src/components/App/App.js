@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 const App = (props) => {
+
   const { isModalAddContact, isAuth, isAuthError } = props;
   return (
     <Router className="App">
@@ -38,9 +39,9 @@ const App = (props) => {
 
 
 const mapStateToProps = state => ({
-  isModalAddContact: state.isModalAddContact,
-  isAuth: state.isAuth,
-  isAuthError: state.isAuthError
+  isModalAddContact: state.chatEnvReducer.isModalAddContact,
+  isAuth: state.userReducer.isAuth,
+  isAuthError: state.userReducer.isAuthError
 })
 
 export default connect(mapStateToProps)(App);

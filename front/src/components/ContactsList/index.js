@@ -51,8 +51,8 @@ const ContactList = (props) => {
         loader ? <Loader /> :
           friends.map((friend, index) =>
             <ContactListItem
-              key={conversations[index].name}
-              data={conversations[index]}
+              key={performance.now()}
+              // data={conversations[index]}
               friend={friend}
             />
           )
@@ -62,9 +62,9 @@ const ContactList = (props) => {
 }
 
 const mapStateToProps = state => ({
-  loader: state.navLoader,
-  isAuth: state.isAuth,
-  friends: state.friends
+  loader: state.chatEnvReducer.navLoader,
+  isAuth: state.userReducer.isAuth,
+  friends: state.userReducer.friends
 })
 
 

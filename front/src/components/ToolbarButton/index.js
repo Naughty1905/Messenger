@@ -30,8 +30,8 @@ const ToolbarButton = (props) => {
 
 
 const mapStateToProps = state => ({
-  isNav: state.isNav,
-  isConversation: state.isConversation
+  isNav: state.chatEnvReducer.isNav,
+  isConversation: state.chatEnvReducer.isConversation
 })
 
 

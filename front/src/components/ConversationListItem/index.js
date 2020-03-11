@@ -12,7 +12,6 @@ const ConversationListItem = (props) => {
 
   const chatItem = useRef(null);
   const { startChatReq, currentChat, isAuth } = props;
-  const { photo } = props.data;
   const { _id, members, messages } = props.chat;
 
   const chat = _id;
@@ -31,9 +30,9 @@ const ConversationListItem = (props) => {
 
   return (
     <div ref={chatItem} onClick={startChat}>
-      <img className="conversation-photo" src={photo} alt="conversation" />
+      <img className="conversation-photo" src={members[0].avatar} alt="conversation" />
       <div className="conversation-info">
-        <h1 className="conversation-title">{members}</h1>
+        <h1 className="conversation-title">{members[0]['name']}</h1>
         {
           messages.length &&
           <p className="conversation-snippet">{
@@ -48,8 +47,8 @@ const ConversationListItem = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  isAuth: state.isAuth,
-  currentChat: state.chat
+  isAuth: state.userReducer.isAuth,
+  currentChat: state.chatReducer.chat
 })
 
 

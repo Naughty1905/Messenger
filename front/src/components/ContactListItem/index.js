@@ -7,24 +7,23 @@ import './ContactListItem.css';
 
 const ContactListItem = (props) => {
 
-  const { startChatReq } = props;
+  const { startChatReq, isAuth } = props;
 
   useEffect(() => {
     shave('.conversation-snippet', 20);
   })
 
-  const { photo } = props.data;
-  const { fullName, chat } = props.friend;
+  const { fullName, chat, friendId } = props.friend;
 
   const startChat = () => {
-    startChatReq(chat);
+    startChatReq(chat, isAuth);
   }
 
 
 
   return (
     <div onClick={startChat} className="contact-list-item">
-      <img className="contact-photo" src={photo} alt="contact" />
+      <img className="contact-photo" src={friendId.avatar} alt="contact" />
       <div className="contact-info">
         <h1 className="contact-title">{fullName}</h1>
       </div>
@@ -33,7 +32,7 @@ const ContactListItem = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  isAuth: state.isAuth
+  isAuth: state.userReducer.isAuth
 })
 
 

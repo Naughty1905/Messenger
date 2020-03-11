@@ -9,14 +9,16 @@ const auth = require('../../middleware/auth');
 
 // Create new user
 router.post('/', async (req, res) => {
-  const { login, email, password, fullName } = req.body;
+  const { login, email, password, name, avatar } = req.body;
+  console.log(login, email, password, name, avatar)
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ login, email, password: hashedPassword, fullName });
+    const user = new User({ login, email, password: hashedPassword, fullName: name, avatar });
     await user.save();
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
   } catch (error) {
+    console.log(error);
     res.status(400).send(error);
   }
 })
@@ -29,7 +31,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).send({ error: 'Login failed! Wrong password or login' });
     }
     const token = await user.generateAuthToken();
-    res.send({
+    res.json({
       login,
       token
     });
@@ -39,22 +41,23 @@ router.post('/login', async (req, res) => {
 
 })
 
-router.get('/contacts/new', async (req, res) => {
-  const { login } = req.body;
-  try {
-    const newContact = await User.findOne({ login });
-    console.log(newContact)
-    res.status(200).json(newContact);
-  } catch (error) {
-    res.status(404).send(error);
-  }
-})
+// Не используется
+// router.get('/contacts/new', async (req, res) => {
+//   const { login } = req.body;
+//   try {
+//     const newContact = await User.findOne({ login });
+//     console.log(newContact)
+//     res.status(200).json(newContact);
+//   } catch (error) {
+//     res.status(404).send(error);
+//   }
+// })
 
 router.post('/contacts/all', async (req, res) => {
   const { isAuth } = req.body;
   try {
     const user = jwt.decode(isAuth)._id;
-    const currentUser = await User.findOne({ _id: user });
+    const currentUser = await User.findOne({ _id: user }).populate('friends.friendId');
     let { friends } = currentUser;
     res.status(200).json(friends);
   } catch (error) {

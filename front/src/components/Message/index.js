@@ -1,4 +1,5 @@
 import React from 'react';
+import AudiosMessage from './AudiosMessage'
 import moment from 'moment';
 import './MessageBlack.css';
 
@@ -9,8 +10,11 @@ export default function Message(props) {
     startsSequence,
     endsSequence,
     showTimestamp,
-    type
+    type,
+    speechToText,
+    isAvailableSpeechToText
   } = props;
+
 
 
   const friendlyTimestamp = moment(data.timestamp).format('LLLL');
@@ -32,7 +36,8 @@ export default function Message(props) {
         <div className="bubble my-message" title={friendlyTimestamp}>
           {
             type === 'Audio' ?
-              <audio controls="controls" src={data.content} /> :
+              <AudiosMessage isAvailableSpeechToText={isAvailableSpeechToText} speechToText={speechToText} content={data.content} />
+              :
               <p style={{ margin: '0' }}>{data.content}</p>
           }
           {isMine && <i style={{ fontSize: '1.3rem', marginLeft: '0.8rem', color: data.isSeen && 'cyan' }} className="ion-ios-done-all" />}

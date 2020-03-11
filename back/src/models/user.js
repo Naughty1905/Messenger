@@ -40,13 +40,19 @@ const userSchema = new mongoose.Schema({
       ref: 'Chat'
     }
   }],
+  avatar: {
+    type: String,
+    default: "https://firebasestorage.googleapis.com/v0/b/vue-elbrus-crm.appspot.com/o/avatar%2Fpetr.jpg?alt=media&token=2b1660a7-5133-411f-9da1-7012eeb2cecf"
+  },
   tokens: [{
     token: {
       type: String,
       required: true
     }
   }]
-})
+});
+
+// userSchema.index({ 'friends.friendId': 1 }, { unique: true, partialFilterExpression: { 'friends.friendId': { $ne: null } } });
 
 userSchema.methods.generateAuthToken = async function () {
   const user = this

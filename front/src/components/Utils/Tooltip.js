@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 const Tooltip = (props) => {
 
-  const { setAuthError } = props;
+  const { setAuthError, authErrorText } = props;
 
   useEffect(() => {
     setTimeout(() => {
@@ -15,13 +15,14 @@ const Tooltip = (props) => {
 
   return (
     <div className='authError'>
-      <p>Auth Error</p>
+      <p>{authErrorText}</p>
     </div>
   )
 }
 
 const mapStateToProps = state => ({
-  isAuthError: state.isAuthError
+  isAuthError: state.userReducer.isAuthError,
+  authErrorText: state.userReducer.authErrorText
 })
 
 
