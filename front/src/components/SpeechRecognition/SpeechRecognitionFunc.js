@@ -29,6 +29,7 @@ export const speechRecorderOnResult = ({ recognizer, storage, audioUrl, blob, ge
       },
       (error) => {
         // error function ....
+        console.log(error)
       },
       () => {
         // complete function ....
