@@ -19,7 +19,7 @@ const initialState = {
     isSeen: false,
     date: friendlyTimestamp
   },
-  messages: [],
+  messages: {},
   chat: '',
   chats: [],
 };
@@ -46,9 +46,10 @@ const chatReducer = (state = initialState, action) => {
       }
     }
     case GET_CONVERSATIONS_RECIEVE: {
+      debugger
       return {
         ...state,
-        chats: action.payload
+        chats: Object.assign({}, state.chats, { ...action.payload })
       }
     }
     case SET_RECORDING: {

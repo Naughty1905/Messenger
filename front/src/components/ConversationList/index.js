@@ -1,23 +1,38 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useMemo } from 'react';
 import ConversationSearch from '../ConversationSearch';
 import ConversationListItem from '../ConversationListItem';
 import Loader from '../Loader'
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import { connect } from 'react-redux'
-import { setLoaderNav, getConversationsReq } from '../../redux/actions/actions';
+import { database } from '../../Firebase';
+import { keys } from 'lodash'
+import { setLoaderNav, getConversationsReq, getConversationsRec } from '../../redux/actions/actions';
 
 import './ConversationList.css';
 
 const ConversationList = (props) => {
-
-  const { loader, isAuth, getConversationsReq, chats } = props;
+  const { loader, isAuth, getConversationsReq, chats, getConversationsRec } = props;
 
   useEffect(() => {
     if (chats.length === 0) {
       getConversationsReq(isAuth)
     }
   }, [])
+
+  useMemo(() => {
+    const chatsRef = database.ref(`chats/`);
+    chatsRef.on('value', snapshot => {
+      debugger
+      const allChats = snapshot.val();
+      const chatStructure = { ...chats }
+      keys(chatStructure).map((chat) => {
+        chatStructure[chat]["messages"] = allChats[chat]
+      })
+      getConversationsRec(chatStructure)
+    })
+  }, [chats.length])
+
 
   useCallback(() => getConversationsReq(isAuth), [chats.length]);
 
@@ -36,10 +51,10 @@ const ConversationList = (props) => {
       <ConversationSearch />
       {
         loader ? <Loader /> :
-          chats.map((chat, index) =>
-            <ConversationListItem
+          Object.keys(chats).map((chat, index) =>
+            keys(chats[chat]['messages']).length && <ConversationListItem
               key={performance.now()}
-              chat={chat}
+              chat={chats[chat]}
             />
           )
       }
@@ -54,4 +69,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { setLoaderNav, getConversationsReq })(ConversationList)
+export default connect(mapStateToProps, { setLoaderNav, getConversationsReq, getConversationsRec })(ConversationList)

@@ -77,10 +77,10 @@ router.get('/conversations', async (req, res) => {
     const userId = jwt.decode(isAuth)._id;
     const { fullName } = await User.findOne({ _id: userId });
     let chats = await Chat.find({ members: userId }).populate("members");
-
+    const chatsStructure = {};
     chats = chats.map(chat => chat.toObject());
     chats = chats.map(chat => {
-      return {
+      chatsStructure[chat._id] = {
         _id: chat._id,
         members: chat.members.map(member => {
           return {
@@ -88,10 +88,11 @@ router.get('/conversations', async (req, res) => {
             avatar: member.avatar
           }
         }).filter(member => member.name !== fullName),
-        messages: chat.messages
+        // messages: chat.messages
       }
     })
-    res.status(200).json(chats);
+    console.log(chatsStructure);
+    res.status(200).json(chatsStructure);
   } catch (error) {
     res.status(404).send(error);
   }
@@ -99,11 +100,11 @@ router.get('/conversations', async (req, res) => {
 
 
 router.post('/seen', async (req, res) => {
-  const { chat, isAuth } = req.body;  
+  const { chat, isAuth } = req.body;
   try {
-    const userId = jwt.decode(isAuth)._id;    
+    const userId = jwt.decode(isAuth)._id;
     const { login } = await User.findOne({ _id: userId });
-    
+
     let currentChat = await Chat.findOne({ _id: chat });
 
     let { messages } = currentChat;
