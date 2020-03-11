@@ -21,6 +21,7 @@ import objectAssign from 'object-assign';
 const initialState = {
   signUpInfo: {
     name: '',
+    login: '',
     email: '',
     password: '',
     avatar: ''
