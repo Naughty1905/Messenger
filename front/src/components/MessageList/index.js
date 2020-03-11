@@ -25,7 +25,6 @@ const MessageList = props => {
 
   useEffect(() => {
     if (!!message.content) {
-      debugger
       const chatRef = database.ref(`chats/${chat}`);
       chatRef.push(message)
     }
@@ -34,11 +33,8 @@ const MessageList = props => {
   useEffect(() => {
     if (chat) {
       const chatRef = database.ref(`chats/${chat}`);
-      debugger
       chatRef.on('value', snapshot => {
-        debugger
         const getChats = snapshot.val();
-        debugger
         const messages = Object.values(getChats)
         props.setMessages(messages)
       })

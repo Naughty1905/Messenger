@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import ConversationSearch from '../ConversationSearch';
 import ConversationListItem from '../ConversationListItem';
 import Loader from '../Loader'
@@ -11,10 +11,10 @@ import './ConversationList.css';
 
 const ConversationList = (props) => {
 
-  const { setLoaderNav, loader, isAuth, getConversationsReq, chats } = props;
+  const { loader, isAuth, getConversationsReq, chats } = props;
 
   useEffect(() => {
-    if (chats.length == 0) {
+    if (chats.length === 0) {
       getConversationsReq(isAuth)
     }
   }, [])

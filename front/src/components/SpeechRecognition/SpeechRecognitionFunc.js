@@ -13,11 +13,8 @@ export const speechRecorderStop = (recognizer) => {
 
 
 export const speechRecorderOnResult = ({ recognizer, storage, audioUrl, blob, getMessage, user, isAvailableSpeechToText }) => {
-  debugger
   recognizer.onresult = async (event) => {
-    debugger
     for (let i = event.resultIndex; i < event.results.length; ++i) {
-      debugger
       if (event.results[i].isFinal) {
         let speechToText = await event.results[i][0].transcript;
 
