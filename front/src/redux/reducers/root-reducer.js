@@ -16,7 +16,6 @@ import {
   GET_AUDIOS,
   GET_DATA_FROM_USER_INPUTS,
 } from '../actions/action-types';
-import objectAssign from 'object-assign';
 
 const initialState = {
   signUpInfo: {
@@ -25,12 +24,9 @@ const initialState = {
     password: '',
     avatar: ''
   },
-
   user: localStorage.getItem('user') || '',
-
   isNav: false,
   navLoader: false,
-
   message: {
     content: null,
     owner: null,

@@ -29,7 +29,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).send({ error: 'Login failed! Wrong password or login' });
     }
     const token = await user.generateAuthToken();
-    res.send({
+    res.json({
       login,
       token
     });
