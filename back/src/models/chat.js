@@ -31,6 +31,10 @@ const chatSchema = new mongoose.Schema({
       },
       speechToText: {
         type: String,
+      },
+      isAvailableSpeechToText: {
+        type: Boolean,
+        default: false
       }
     }
   ]

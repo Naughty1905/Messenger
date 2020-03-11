@@ -21,10 +21,11 @@ const initialState = {
   isNav: false,
   navLoader: false,
   message: {
-    content: '',
-    owner: '',
-    messageType: '',
-    speechToText: ''
+    content: null,
+    owner: null,
+    messageType: 'String',
+    speechToText: null,
+    isAvailableSpeechToText: false
   },
   messages: [],
   isContact: false,
@@ -43,14 +44,15 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_MESSAGE:
-      const { message, user, messageType, speechToText } = action.payload;
+      const { message, user, messageType, speechToText, isAvailableSpeechToText } = action.payload;
       return {
         ...state,
         message: {
           content: message,
           owner: user,
           messageType,
-          speechToText
+          speechToText,
+          isAvailableSpeechToText
         }
       };
     case SET_MESSAGES:

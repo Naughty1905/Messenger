@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ToolbarButton from '../ToolbarButton';
-import AudioTest from '../AudioTest'
+import SpeechRecognition from '../SpeechRecognition/index';
 import './ComposeBlack.css';
 
 // Redux
@@ -37,7 +37,7 @@ const Compose = (props) => {
         <ToolbarButton startRecording={() => setRecording(true)} stopRecording={() => setRecording(false)} key="audio" icon="ion-ios-mic" />
         <ToolbarButton key="money" icon="ion-ios-card" />
         {
-          recording && <AudioTest style={{ display: 'none' }} />
+          recording && <SpeechRecognition style={{ display: 'none' }} />
         }
       </div>
     </div>

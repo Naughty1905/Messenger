@@ -14,6 +14,7 @@ const renderMessages = (messages, user) => {
     let speechToText = current.speechToText;
     let next = messages[i + 1];
     let isMine = current.owner === user;
+    let isAvailableSpeechToText = current.isAvailableSpeechToText;
     let isSeen = current.isSeen;
     let currentMoment = moment(current.timestamp);
     let prevBySameAuthor = false;
@@ -56,6 +57,7 @@ const renderMessages = (messages, user) => {
         data={current}
         type={currentType}
         speechToText={speechToText}
+        isAvailableSpeechToText={isAvailableSpeechToText}
       />
     );
 
