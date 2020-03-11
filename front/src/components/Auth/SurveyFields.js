@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import './dashboardPage.css';
 import Avatar from 'react-avatar-edit';
 import { storage } from '../../Firebase';

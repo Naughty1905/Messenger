@@ -62,9 +62,9 @@ const ContactList = (props) => {
 }
 
 const mapStateToProps = state => ({
-  loader: state.navLoader,
-  isAuth: state.isAuth,
-  friends: state.friends
+  loader: state.chatEnvReducer.navLoader,
+  isAuth: state.userReducer.isAuth,
+  friends: state.userReducer.friends
 })
 
 

@@ -49,8 +49,8 @@ const ConversationListItem = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  isAuth: state.isAuth,
-  currentChat: state.chat
+  isAuth: state.userReducer.isAuth,
+  currentChat: state.chatReducer.chat
 })
 
 

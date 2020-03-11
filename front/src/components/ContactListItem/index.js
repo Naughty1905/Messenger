@@ -32,7 +32,7 @@ const ContactListItem = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  isAuth: state.isAuth
+  isAuth: state.userReducer.isAuth
 })
 
 

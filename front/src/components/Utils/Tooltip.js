@@ -21,8 +21,8 @@ const Tooltip = (props) => {
 }
 
 const mapStateToProps = state => ({
-  isAuthError: state.isAuthError,
-  authErrorText: state.authErrorText
+  isAuthError: state.userReducer.isAuthError,
+  authErrorText: state.userReducer.authErrorText
 })
 
 

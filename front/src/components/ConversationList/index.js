@@ -62,9 +62,9 @@ const ConversationList = (props) => {
 }
 
 const mapStateToProps = state => ({
-  loader: state.navLoader,
-  isAuth: state.isAuth,
-  chats: state.chats
+  loader: state.chatEnvReducer.navLoader,
+  isAuth: state.userReducer.isAuth,
+  chats: state.chatReducer.chats
 })
 
 

@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
-import Message from '../Message';
-
 
 // Redux
 import { connect } from 'react-redux';
@@ -35,7 +33,7 @@ import renderMessages from './renderMessage';
 let socket;
 
 const MessageList = props => {
-  const { message, messages, user, chat, audios, isAuth } = props;
+  const { message, messages, user, chat, isAuth } = props;
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
@@ -99,12 +97,11 @@ const MessageList = props => {
 
 const mapStateToProps = state => {
   return {
-    message: state.message,
-    messages: state.messages,
-    user: state.user,
-    chat: state.chat,
-    audios: state.audios,
-    isAuth: state.isAuth
+    message: state.chatReducer.message,
+    messages: state.chatReducer.messages,
+    user: state.userReducer.user,
+    chat: state.chatReducer.chat,
+    isAuth: state.userReducer.isAuth
   }
 }
 

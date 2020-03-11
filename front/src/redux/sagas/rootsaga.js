@@ -43,7 +43,7 @@ function* fetchAllConctactsAsync(obj) {
     }
     yield put(getContactsRec(data));
   } catch (e) {
-    const error = `Contact Error`
+    // const error = `Contact Error`
     yield put(setAuthError())
   }
 }
@@ -54,7 +54,7 @@ function* fetchAddNewContactAsync(obj) {
     const data = yield call(fetchAddNewContact, fullName, login, number, isAuth)
     yield put(addNewContactRec(data));
   } catch (e) {
-    const error = 'User does not exist!';
+    // const error = 'User does not exist!';
     yield put(setAuthError(e))
   }
 }
@@ -78,7 +78,7 @@ function* fetchConversationsAsync(obj) {
     const data = yield call(fetchConversations, isAuth)
     yield put(getConversationsRec(data));
   } catch (e) {
-    const error = 'Conversations Error'
+    // const error = 'Conversations Error'
     yield put(setAuthError())
   }
 }

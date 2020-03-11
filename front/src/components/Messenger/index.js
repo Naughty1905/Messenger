@@ -32,9 +32,9 @@ const Messenger = (props) => {
 
 
 const mapStateToProps = state => ({
-  isNav: state.isNav,
-  isContact: state.isContact,
-  isConversation: state.isConversation
+  isNav: state.chatEnvReducer.isNav,
+  isContact: state.chatEnvReducer.isContact,
+  isConversation: state.chatEnvReducer.isConversation
 })
 
 export default connect(mapStateToProps)(Messenger)

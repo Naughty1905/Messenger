@@ -33,8 +33,7 @@ const userSchema = new mongoose.Schema({
     },
     friendId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      // index: true
+      ref: 'User'
     },
     chat: {
       type: mongoose.Schema.Types.ObjectId,

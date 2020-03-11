@@ -3,10 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 class Confirmation extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
 
   render() {
     return (
@@ -19,7 +15,7 @@ class Confirmation extends React.Component {
           <div><b>Email:</b> {this.props.signUpInfo.email}</div>
         </div>
         <div id="password">
-          <div><img src={this.props.signUpInfo.avatar} /></div>
+          <div><img src={this.props.signUpInfo.avatar} alt="Avatar" /></div>
           <div><b>Avatar</b></div>
         </div>
         <div id='buttons'>
@@ -32,7 +28,7 @@ class Confirmation extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  signUpInfo: state.signUpInfo
+  signUpInfo: state.userReducer.signUpInfo,
 })
 
 export default connect(mapStateToProps)(Confirmation)

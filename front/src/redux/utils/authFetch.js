@@ -13,7 +13,6 @@ export const fetchReg = async (login, name, email, password, avatar, url = "http
   if (data) {
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', data.user.login);
-    debugger
   }
   return data;
 };
