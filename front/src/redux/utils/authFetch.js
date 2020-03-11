@@ -2,7 +2,6 @@ import axios from "axios";
 
 
 export const fetchReg = async (login, name, email, password, avatar, url = "http://localhost:5000/users") => {
-  debugger
   const { data } = await axios.post(url, {
     login,
     name,
@@ -10,7 +9,6 @@ export const fetchReg = async (login, name, email, password, avatar, url = "http
     password,
     avatar
   })
-  debugger
   if (data) {
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', data.login);
@@ -48,7 +46,6 @@ export const fetchAddNewContact = async (fullName, login, number, isAuth, url = 
       number,
       isAuth
     })
-    debugger
     return data;
   } catch (err) {
     return err;

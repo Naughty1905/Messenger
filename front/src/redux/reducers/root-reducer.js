@@ -108,14 +108,12 @@ function rootReducer(state = initialState, action) {
         isModalAddContact: !state.isModalAddContact
       }
     case REG_NEW_USER_RECIEVE:
-      debugger
       return {
         ...state,
         user: action.payload.login,
         isAuth: action.payload.token
       }
     case AUTH_ERROR:
-      debugger
       return {
         ...state,
         isAuthError: !state.isAuthError,
@@ -156,7 +154,6 @@ function rootReducer(state = initialState, action) {
         audios: [...state.audios, action.payload]
       }
     case GET_DATA_FROM_USER_INPUTS:
-      debugger
       return {
         ...state,
         signUpInfo: Object.assign({}, state.signUpInfo, {
