@@ -9,6 +9,7 @@ export default class AccountFields extends React.Component {
 
     this.state = {
       login: '',
+      name: '',
       password: '',
       email: '',
     }
@@ -22,13 +23,21 @@ export default class AccountFields extends React.Component {
     return (
 
       <div className="form">
-        <h2 id="fullName">Account Details</h2>
+        {/* <h2 id="fullName">Account Details</h2> */}
+
+        <div id="fullName">
+          <input autoComplete='off' type="text" className="input-auth" id="fullName" ref={this.name} onChange={e => {
+            this.setState({ name: e.target.value });
+          }}
+            placeholder="Enter your name"
+            defaultValue={this.props.fieldValues.name} />
+        </div>
 
         <div id="email">
           <input autoComplete='off' type="text" className="input-auth" id="login" ref={this.login} onChange={e => {
             this.setState({ login: e.target.value });
           }}
-            placeholder="Enter username"
+            placeholder="Enter login"
             defaultValue={this.props.fieldValues.login} />
         </div>
         <div id="login">
@@ -39,6 +48,7 @@ export default class AccountFields extends React.Component {
             }}
           />
         </div>
+
         <div id="password">
           <input type="password" className="input-auth" id="password" ref={this.password}
             placeholder="Enter password"
