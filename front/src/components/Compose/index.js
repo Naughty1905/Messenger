@@ -15,7 +15,6 @@ const Compose = (props) => {
   const messegeHandler = (event) => {
     event.preventDefault();
     if (!message) return
-    debugger
     props.getMessage({ message, user, messageType: 'String' });
 
     setMessage('');
@@ -48,7 +47,7 @@ const Compose = (props) => {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
+    user: state.userReducer.user,
   }
 }
 

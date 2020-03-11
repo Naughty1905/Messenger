@@ -7,12 +7,10 @@ import Confirmation from './Confirmation';
 import Success from './Success';
 import SurveyFields from './SurveyFields'
 
-const assign = require('object-assign');
-
 const DashboardPage = (props) => {
   const [isReg, setIsReg] = useState(false);
   const [step, setStep] = useState(1);
-  const { regNewUserReq, loginReq, setAuthError, signUpInfo, getDataFromUserInputs } = props;
+  const { regNewUserReq, loginReq, signUpInfo, getDataFromUserInputs } = props;
   const [info, setInfo] = useState({});
 
   const loginHandler = (event) => {
@@ -42,7 +40,6 @@ const DashboardPage = (props) => {
   // };
 
   const changeInfo = obj => {
-    console.log('ya tut', obj);
     setInfo((info) => Object.assign(info, obj));
 
   }
@@ -55,7 +52,6 @@ const DashboardPage = (props) => {
   };
 
   const submitRegistration = function () {
-    console.log(signUpInfo);
     const { login, name, email, password, avatar } = signUpInfo;
     regNewUserReq(login, name, email, password, avatar)
   };
@@ -80,6 +76,8 @@ const DashboardPage = (props) => {
           submitRegistration={submitRegistration} />
       case 4:
         return <Success fieldValues={fieldValues} />
+        default: 
+        return null
     }
   };
 
@@ -117,7 +115,7 @@ const DashboardPage = (props) => {
 
 
 const mapStateToProps = (state) => ({
-  signUpInfo: state.signUpInfo
+  signUpInfo: state.userReducer.signUpInfo
 })
 
 export default connect(

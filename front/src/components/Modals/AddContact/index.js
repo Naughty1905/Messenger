@@ -37,7 +37,7 @@ const AddContact = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  isAuth: state.isAuth
+  isAuth: state.userReducer.isAuth
 })
 
 export default connect(mapStateToProps, { setModalAddContact, addNewContactReq })(AddContact)

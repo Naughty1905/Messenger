@@ -104,9 +104,9 @@ class SpeechRecognition extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  recording: state.recording,
-  user: state.user,
-  speechToText: state.speechToText
+  recording: state.chatEnvReducer.recording,
+  user: state.userReducer.user,
+  speechToText: state.chatEnvReducer.speechToText
 })
 
 export default connect(
