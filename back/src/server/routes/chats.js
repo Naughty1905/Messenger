@@ -82,7 +82,12 @@ router.get('/conversations', async (req, res) => {
     chats = chats.map(chat => {
       return {
         _id: chat._id,
-        members: [chat.members.map(member => member.fullName).filter(currentName => currentName !== fullName)],
+        members: chat.members.map(member => {
+          return {
+            name: member.fullName,
+            avatar: member.avatar
+          }
+        }).filter(member => member.name !== fullName),
         messages: chat.messages
       }
     })
@@ -101,7 +106,7 @@ router.post('/seen', async (req, res) => {
     let currentChat = await Chat.findOne({ _id: chat });
 
     let { messages } = currentChat;
-    
+
     messages = messages.map(message => message.toObject()).map(message => {
       if (message.owner !== login) {
         return { ...message, isSeen: true }

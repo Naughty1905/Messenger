@@ -13,7 +13,7 @@ const ContactListItem = (props) => {
     shave('.conversation-snippet', 20);
   })
 
-  const { fullName, chat } = props.friend;
+  const { fullName, chat, friendId } = props.friend;
 
   const startChat = () => {
     startChatReq(chat, isAuth);
@@ -23,7 +23,7 @@ const ContactListItem = (props) => {
 
   return (
     <div onClick={startChat} className="contact-list-item">
-      <img className="contact-photo" src='https://firebasestorage.googleapis.com/v0/b/vue-elbrus-crm.appspot.com/o/avatar%2Fpetr.jpg?alt=media&token=2b1660a7-5133-411f-9da1-7012eeb2cecf' alt="contact" />
+      <img className="contact-photo" src={friendId.avatar} alt="contact" />
       <div className="contact-info">
         <h1 className="contact-title">{fullName}</h1>
       </div>

@@ -57,7 +57,7 @@ router.post('/contacts/all', async (req, res) => {
   const { isAuth } = req.body;
   try {
     const user = jwt.decode(isAuth)._id;
-    const currentUser = await User.findOne({ _id: user });
+    const currentUser = await User.findOne({ _id: user }).populate('friends.friendId');
     let { friends } = currentUser;
     res.status(200).json(friends);
   } catch (error) {
