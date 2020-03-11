@@ -12,12 +12,13 @@ export default function Message(props) {
     showTimestamp,
     type,
     speechToText,
-    isAvailableSpeechToText
+    isAvailableSpeechToText,
+    date
   } = props;
 
 
 
-  const friendlyTimestamp = moment(data.timestamp).format('LLLL');
+  const friendlyTimestamp = moment().format('LLLL');
   return (
     <div className={[
       'message',
@@ -36,11 +37,14 @@ export default function Message(props) {
         <div className="bubble my-message" title={friendlyTimestamp}>
           {
             type === 'Audio' ?
-              <AudiosMessage isAvailableSpeechToText={isAvailableSpeechToText} speechToText={speechToText} content={data.content} />
-              :
-              <p style={{ margin: '0' }}>{data.content}</p>
+            <AudiosMessage isAvailableSpeechToText={isAvailableSpeechToText} speechToText={speechToText} content={data.content} date={date} />
+            :
+            <>
+            <time dateTime={date} className="message-date" >{ date }</time>
+                <p className="message-content" >{data.content}</p>
+              </>
           }
-          {isMine && <i style={{ fontSize: '1.3rem', marginLeft: '0.8rem', color: data.isSeen && 'cyan' }} className="ion-ios-done-all" />}
+          {isMine && <i style={{ fontSize: '1.3rem', color: data.isSeen && 'cyan' }} className="ion-ios-done-all icon-read-message" />}
         </div>
       </div>
     </div>

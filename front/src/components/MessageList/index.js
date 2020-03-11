@@ -35,8 +35,11 @@ const MessageList = props => {
       const chatRef = database.ref(`chats/${chat}`);
       chatRef.on('value', snapshot => {
         const getChats = snapshot.val();
-        const messages = Object.values(getChats)
-        props.setMessages(messages)
+
+        if (getChats) {
+          const messages = Object.values(getChats);
+          props.setMessages(messages)
+        }
       })
     }
   }, [chat])

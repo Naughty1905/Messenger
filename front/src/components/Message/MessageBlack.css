@@ -16,6 +16,7 @@
 .message .bubble-container {
   font-size: 14px;
   display: flex;
+  overflow: hidden;
 }
 
 .message.mine .bubble-container {
@@ -62,6 +63,12 @@
   border-bottom-left-radius: 10px;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 18vw;
+  padding: 0 1vw;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 
@@ -69,4 +76,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+}
+
+.AudioTagContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-content {
+  padding: 0;
+  margin: 0;
+}
+
+.message-date {
+  font-size: 10px;
+  color: rgba(0,0,0, .5);
+  padding: 5px 0;
+}
+
+.speechFromText-message {
+  padding: 0;
+  padding-top: 5px;
+  font-size: 13px;
+  max-width: 80%;
+  margin: 0 auto;
 }

@@ -12,6 +12,7 @@ const renderMessages = (messages, user) => {
     let current = messages[i];
     let currentType = current.messageType;
     let speechToText = current.speechToText;
+    let date = current.date
     let next = messages[i + 1];
     let isMine = current.user === user;
     let isAvailableSpeechToText = current.isAvailableSpeechToText;
@@ -57,6 +58,7 @@ const renderMessages = (messages, user) => {
         type={currentType}
         speechToText={speechToText}
         isAvailableSpeechToText={isAvailableSpeechToText}
+        date={date}
       />
     );
 
