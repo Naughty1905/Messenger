@@ -2,6 +2,7 @@ import axios from "axios";
 
 
 export const fetchReg = async (login, name, email, password, avatar, url = "http://localhost:5000/users") => {
+  debugger
   const { data } = await axios.post(url, {
     login,
     name,
@@ -11,7 +12,8 @@ export const fetchReg = async (login, name, email, password, avatar, url = "http
   })
   if (data) {
     localStorage.setItem('token', data.token);
-    localStorage.setItem('user', data.login);
+    localStorage.setItem('user', data.user.login);
+    debugger
   }
   return data;
 };
@@ -22,10 +24,12 @@ export const fetchLogin = async (login, password, url = "http://localhost:5000/u
     login,
     password
   })
+  debugger
   if (data) {
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', data.login);
   }
+  debugger
   return data;
 };
 

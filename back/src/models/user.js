@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     friendId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      unique: true
+      // index: true
     },
     chat: {
       type: mongoose.Schema.Types.ObjectId,
@@ -51,7 +51,9 @@ const userSchema = new mongoose.Schema({
       required: true
     }
   }]
-})
+});
+
+// userSchema.index({ 'friends.friendId': 1 }, { unique: true, partialFilterExpression: { 'friends.friendId': { $ne: null } } });
 
 userSchema.methods.generateAuthToken = async function () {
   const user = this
