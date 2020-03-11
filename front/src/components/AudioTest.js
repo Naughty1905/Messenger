@@ -15,10 +15,8 @@ class AudioTest extends React.Component {
       audios: [],
       speechText: false,
       url: '',
-      speechToTextMessages: '',
     };
   }
-
 
   async componentDidMount() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
@@ -47,25 +45,19 @@ class AudioTest extends React.Component {
     this.recognition.lang = 'ru-RU, en-US';
     this.recognition.start(10);
 
-    console.log(this.state.speechToTextMessages)
-
     // say that we're recording
     this.setState({ recording: true });
   }
-
 
   async componentWillUnmount() {
     this.mediaRecorder.stream.getTracks().forEach(function (track) {
       track.stop();
     });
 
-
     this.recognition.onresult = async (event) => {
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
           let speechToText = await event.results[i][0].transcript;
-
-
 
           // save the video to memory
           const blob = new Blob(this.chunks, { type: audioType });
@@ -90,7 +82,6 @@ class AudioTest extends React.Component {
                 this.props.getMessage({ message: url, user: this.props.user, messageType: 'Audio', speechToText });
               })
             });
-
         }
       }
     }

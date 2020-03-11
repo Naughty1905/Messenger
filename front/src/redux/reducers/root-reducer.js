@@ -102,7 +102,6 @@ function rootReducer(state = initialState, action) {
     case ADD_NEW_CONTACT_RECIEVE:
       return {
         ...state,
-
       }
     case GET_CONTACTS_RECIEVE:
       return {
@@ -128,11 +127,6 @@ function rootReducer(state = initialState, action) {
         recording: !state.recording
       }
     }
-    case GET_AUDIOS:
-      return {
-        ...state,
-        audios: [...state.audios, action.payload]
-      }
     default:
       return state;
   }
