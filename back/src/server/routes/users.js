@@ -9,10 +9,10 @@ const auth = require('../../middleware/auth');
 
 // Create new user
 router.post('/', async (req, res) => {
-  const { login, email, password, fullName } = req.body;
+  const { login, email, password, name, avatar } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ login, email, password: hashedPassword, fullName });
+    const user = new User({ login, email, password: hashedPassword, fullName: name, avatar });
     await user.save();
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
@@ -39,16 +39,17 @@ router.post('/login', async (req, res) => {
 
 })
 
-router.get('/contacts/new', async (req, res) => {
-  const { login } = req.body;
-  try {
-    const newContact = await User.findOne({ login });
-    console.log(newContact)
-    res.status(200).json(newContact);
-  } catch (error) {
-    res.status(404).send(error);
-  }
-})
+// Не используется
+// router.get('/contacts/new', async (req, res) => {
+//   const { login } = req.body;
+//   try {
+//     const newContact = await User.findOne({ login });
+//     console.log(newContact)
+//     res.status(200).json(newContact);
+//   } catch (error) {
+//     res.status(404).send(error);
+//   }
+// })
 
 router.post('/contacts/all', async (req, res) => {
   const { isAuth } = req.body;

@@ -1,14 +1,16 @@
 import axios from "axios";
 
 
-export const fetchReg = async (login, fullName, email, password, url = "http://localhost:5000/users") => {
+export const fetchReg = async (login, name, email, password, avatar, url = "http://localhost:5000/users") => {
+  debugger
   const { data } = await axios.post(url, {
     login,
-    fullName,
+    name,
     email,
-    password
+    password,
+    avatar
   })
-
+  debugger
   if (data) {
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', data.login);
@@ -39,13 +41,18 @@ export const fetchAllFriends = async (isAuth, url = "http://localhost:5000/users
 
 
 export const fetchAddNewContact = async (fullName, login, number, isAuth, url = "http://localhost:5000/chats") => {
-  const { data } = await axios.post(url, {
-    fullName,
-    login,
-    number,
-    isAuth
-  })
-  return data;
+  try {
+    const { data } = await axios.post(url, {
+      fullName,
+      login,
+      number,
+      isAuth
+    })
+    debugger
+    return data;
+  } catch (err) {
+    return err;
+  }
 };
 
 

@@ -33,13 +33,18 @@ const userSchema = new mongoose.Schema({
     },
     friendId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      unique: true
     },
     chat: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Chat'
     }
   }],
+  avatar: {
+    type: String,
+    default: "https://firebasestorage.googleapis.com/v0/b/vue-elbrus-crm.appspot.com/o/avatar%2Fpetr.jpg?alt=media&token=2b1660a7-5133-411f-9da1-7012eeb2cecf"
+  },
   tokens: [{
     token: {
       type: String,

@@ -29,21 +29,21 @@ const startIoServer = (server) => {
         await currentChat.save();
         io.emit(SEND_MESSAGE + chat, { message })
       });
-      socket.on(CHECK_READ_MESSAGE + chat, async ({ chat, isAuth }, callback) => {
-        const userId = jwt.decode(isAuth)._id;
-        const { login } = await User.findOne({ _id: userId });
-        let currentChat = await Chat.findOne({ _id: chat });
-        let { messages } = currentChat;
-        messages = messages.map(message => message.toObject()).map(message => {
-          if (message.owner !== login) {
-            return { ...message, isSeen: true }
-          } else {
-            return message
-          }
-        })
-        currentChat.messages = messages;
-        await currentChat.save();
-      })
+      //   socket.on(CHECK_READ_MESSAGE + chat, async ({ chat, isAuth }, callback) => {
+      //     const userId = jwt.decode(isAuth)._id;
+      //     const { login } = await User.findOne({ _id: userId });
+      //     let currentChat = await Chat.findOne({ _id: chat });
+      //     let { messages } = currentChat;
+      //     messages = messages.map(message => message.toObject()).map(message => {
+      //       if (message.owner !== login) {
+      //         return { ...message, isSeen: true }
+      //       } else {
+      //         return message
+      //       }
+      //     })
+      //     currentChat.messages = messages;
+      //     await currentChat.save();
+      //   })
     });
     socket.on(DISCONNECT, () => {
       console.log('User has disconnected!!!');

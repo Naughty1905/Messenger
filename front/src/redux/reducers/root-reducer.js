@@ -13,13 +13,24 @@ import {
   START_CHAT_RECIEVE,
   GET_CONVERSATIONS_RECIEVE,
   SET_RECORDING,
-  GET_AUDIOS
+  GET_AUDIOS,
+  GET_DATA_FROM_USER_INPUTS,
 } from '../actions/action-types';
+import objectAssign from 'object-assign';
 
 const initialState = {
+  signUpInfo: {
+    name: '',
+    email: '',
+    password: '',
+    avatar: ''
+  },
+
   user: localStorage.getItem('user') || '',
+
   isNav: false,
   navLoader: false,
+
   message: {
     content: null,
     owner: null,
@@ -27,17 +38,24 @@ const initialState = {
     speechToText: null,
     isAvailableSpeechToText: false
   },
+
   messages: [],
+  recording: false,
+  audios: [],
+
   isContact: false,
   isConversation: true,
   isModalAddContact: false,
+
   isAuth: localStorage.getItem('token') || false,
   isAuthError: false,
+  authErrorText: '',
+
   friends: [],
+
   chat: '',
   chats: [],
-  recording: false,
-  audios: []
+
 };
 
 
@@ -90,15 +108,18 @@ function rootReducer(state = initialState, action) {
         isModalAddContact: !state.isModalAddContact
       }
     case REG_NEW_USER_RECIEVE:
+      debugger
       return {
         ...state,
         user: action.payload.login,
         isAuth: action.payload.token
       }
     case AUTH_ERROR:
+      debugger
       return {
         ...state,
-        isAuthError: !state.isAuthError
+        isAuthError: !state.isAuthError,
+        authErrorText: !!state.authErrorText ? '' : action.error
       }
 
     case ADD_NEW_CONTACT_RECIEVE:
@@ -129,6 +150,19 @@ function rootReducer(state = initialState, action) {
         recording: !state.recording
       }
     }
+    case GET_AUDIOS:
+      return {
+        ...state,
+        audios: [...state.audios, action.payload]
+      }
+    case GET_DATA_FROM_USER_INPUTS:
+      debugger
+      return {
+        ...state,
+        signUpInfo: Object.assign({}, state.signUpInfo, {
+          ...action.payload
+        })
+      }
     default:
       return state;
   }

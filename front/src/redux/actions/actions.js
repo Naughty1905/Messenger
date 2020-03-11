@@ -32,6 +32,8 @@ import {
   GET_CONVERSATIONS_RECIEVE,
 
   SET_RECORDING,
+
+  GET_DATA_FROM_USER_INPUTS
 } from './action-types';
 
 export const getMessage = (payload) => ({
@@ -68,12 +70,13 @@ export const setModalAddContact = () => ({
 })
 
 
-export const regNewUserReq = (login, fullName, email, password) => ({
+export const regNewUserReq = (login, name, email, password, avatar) => ({
   type: REG_NEW_USER_REQUEST,
   login,
-  fullName,
+  name,
   email,
-  password
+  password,
+  avatar
 })
 
 export const regNewUserRec = (payload) => ({
@@ -92,8 +95,9 @@ export const loginRec = (payload) => ({
   payload
 })
 
-export const setAuthError = () => ({
-  type: AUTH_ERROR
+export const setAuthError = (error) => ({
+  type: AUTH_ERROR,
+  error
 })
 
 export const addNewContactReq = (fullName, login, number, isAuth) => ({
@@ -151,3 +155,7 @@ export const setRecording = () => ({
 
 
 
+export const getDataFromUserInputs = (payload) => ({
+  type: GET_DATA_FROM_USER_INPUTS,
+  payload
+})
