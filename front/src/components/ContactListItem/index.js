@@ -15,14 +15,14 @@ const ContactListItem = (props) => {
 
   const { fullName, chat, friendId } = props.friend;
 
-  const startChat = () => {
-    startChatReq(chat, isAuth);
-  }
+  // const startChat = () => {
+  //   startChatReq(chat);
+  // }
 
 
 
   return (
-    <div onClick={startChat} className="contact-list-item">
+    <div className="contact-list-item">
       <img className="contact-photo" src={friendId.avatar} alt="contact" />
       <div className="contact-info">
         <h1 className="contact-title">{fullName}</h1>

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import shave from 'shave';
 import { connect } from 'react-redux';
 import { keys, last, isEmpty } from 'lodash'
-import { startChatReq } from '../../redux/actions/actions'
+import { startChatRec } from '../../redux/actions/actions'
 
 import './ConversationListItemBlack.css';
 
@@ -12,7 +12,8 @@ const ConversationListItem = (props) => {
   })
 
   const chatItem = useRef(null);
-  const { startChatReq, currentChat, isAuth, chats, user } = props;
+  const { startChatRec, currentChat, isAuth, chats, user } = props;
+
   const { _id } = props.chat;
 
   const chat = _id;
@@ -20,8 +21,9 @@ const ConversationListItem = (props) => {
   const keysOfMessages = Object.keys(messages);
   const unreadMessages = keysOfMessages.filter(key => !messages[key].isSeen && messages[key].user !== user).length
   const { messageType, content } = messages[last(keysOfMessages)]
+
   const startChat = () => {
-    startChatReq(chat, isAuth);
+    startChatRec(chat);
   }
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const ConversationListItem = (props) => {
     } else {
       chatItem.current.className = 'conversation-list-item';
     }
-  },)
+  })
 
 
   return (
@@ -64,4 +66,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default connect(mapStateToProps, { startChatReq })(ConversationListItem)
+export default connect(mapStateToProps, { startChatRec })(ConversationListItem)

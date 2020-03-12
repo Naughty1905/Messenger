@@ -4,7 +4,6 @@ import Toolbar from '../Toolbar';
 import { keys } from 'lodash'
 import { database } from '../../Firebase';
 import ToolbarButton from '../ToolbarButton';
-import { startChat } from '../../redux/actions/actions';
 
 // Redux
 import { connect } from 'react-redux';
@@ -19,66 +18,34 @@ import './MessageList.css';
 import renderMessages from './renderMessage';
 
 const MessageList = props => {
-  const { message, messages, user, chat, chats } = props;
-  // if (chat) {
-  //   const currentMes = chats[chat]['messages'];
-  //   console.log(currentMes)
-  // }
-  // const [currentMessages, setCurrentMessages] = useState(null);
+  const { message, messages, user, chat, chats, setMessages } = props;
+
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "auto" })
   }
 
   useEffect(() => {
+    debugger
     if (!!message.content) {
       const chatRef = database.ref(`chats/${chat}`)
       chatRef.push(message)
     }
   }, [message])
 
-  // useEffect(() => {
-  //   if (chat) {
-  //     setCurrentMessages(Object.assign({}, currentMessages, {
-  //       ...chats[chat]['messages']
-  //     }))
-  //   }
-  // }, [chat])
-
-  // if (chat) {
-  //   debugger
-  //   if (chat) {
-  //     if (currentMessages) {
-  //       useMemo(() => {
-  //         setCurrentMessages(Object.assign({}, currentMessages, {
-  //           ...chats[chat]['messages']
-  //         }))
-  //       }, [chats[chat]['messages']])
-  //     }
-  //   }
-
-  // }
-
-
   useEffect(() => {
     if (chat) {
-      debugger
-      const chatRef = database.ref(`chats/${chat}`).limitToLast(100);
-      chatRef.on('value', snapshot => {
-        if (snapshot.val()) {
-          const messages = { ...snapshot.val() };
-          const keysOfMessages = keys(messages);
-          const unreadMessages = keysOfMessages.reverse().filter(key => !messages[key].isSeen && messages[key].user !== user);
-          unreadMessages.map(unreadMessage => {
-            messages[unreadMessage].isSeen = true;
-            database.ref(`chats/${chat}/${unreadMessage}`).update(messages[unreadMessage]);
-          })
-          console.log(keysOfMessages.reverse().filter(key => !messages[key].isSeen && messages[key].user !== user));
-          props.setMessages(messages)
-        }
+      const messages = chats[chat]['messages'];
+      console.log(messages)
+      const keysOfMessages = keys(messages);
+      const unreadMessages = keysOfMessages.reverse().filter(key => !messages[key].isSeen && messages[key].user !== user);
+      unreadMessages.map(unreadMessage => {
+        messages[unreadMessage].isSeen = true;
+        database.ref(`chats/${chat}/${unreadMessage}`).update(messages[unreadMessage]);
       })
+      setMessages(messages)
     }
-  }, [chat])
+  }, [chat, message])
 
 
 
@@ -134,7 +101,6 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    setMessages,
-    startChat
+    setMessages
   }
 )(MessageList)  
