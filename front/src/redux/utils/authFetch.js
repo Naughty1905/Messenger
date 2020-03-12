@@ -30,20 +30,27 @@ export const fetchLogin = async (login, password, url = "http://localhost:5000/u
 };
 
 export const fetchAllFriends = async (isAuth, url = "http://localhost:5000/users/contacts/all") => {
-  const { data } = await axios.post(url, {
-    isAuth
-  })
+  const token = isAuth
+  const response = await fetch(url, {
+    method: 'post',
+    headers: {
+      "Authorization": `${token}`,
+    },
+  });
+
+  const data = await response.json();
   return data;
 };
 
 
-export const fetchAddNewContact = async (fullName, login, number, isAuth, url = "http://localhost:5000/chats") => {
+export const fetchAddNewContact = async (isAuth, url = "http://localhost:5000/chats") => {
+  const token = isAuth;
   try {
-    const { data } = await axios.post(url, {
-      fullName,
-      login,
-      number,
-      isAuth
+    const { data } = await fetch(url, {
+      method: 'post',
+      headers: {
+        "Authorization": `${token}`,
+      }
     })
     return data;
   } catch (err) {
@@ -52,29 +59,50 @@ export const fetchAddNewContact = async (fullName, login, number, isAuth, url = 
 };
 
 
-export const fetchStartChat = async (chat, url = "http://localhost:5000/chats") => {
-  const { data } = await axios.get(url, {
-    params: {
-      id: chat
+export const fetchStartChat = async (chat) => {
+  const token = localStorage.getItem('token');
+  const response = await fetch(`http://localhost:5000/chats/?id=${chat}`, {
+    method: 'get',
+    headers: {
+      "Authorization": `${token}`,
+      "content-type": "apllication/json",
     }
   })
+
+  const data = await response.json()
   return data;
 };
 
 export const fetchConversations = async (isAuth, url = "http://localhost:5000/chats/conversations") => {
-  const { data } = await axios.get(url, {
+  const token = isAuth;
+  const response = await fetch(url, {
+    method: 'get',
+    headers: {
+      "Authorization": `${token}`,
+    },
     params: {
       isAuth
     }
-  })
+  });
+  const data = await response.json();
   return data;
 };
 
 export const addReadMessages = async (chat, isAuth, url = "http://localhost:5000/chats/seen") => {
-  const { data } = await axios.post(url, {
-    isAuth,
-    chat
-  })
-  return data;
-}
+  const token = isAuth;
+  try {
+    const response = await fetch(url, {
+      method: 'post',
+      headers: {
+        "Authorization": `${token}`,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ chat: chat })
+    })
+    const data = await response.json();
 
+    return data;
+  } catch (err) {
+    return err;
+  }
+}

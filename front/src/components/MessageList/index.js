@@ -20,19 +20,19 @@ const MessageList = props => {
   const { message, messages, user, chat } = props;
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+    messagesEndRef.current.scrollIntoView({ behavior: "auto" })
   }
 
   useEffect(() => {
     if (!!message.content) {
-      const chatRef = database.ref(`chats/${chat}`);
+      const chatRef = database.ref(`chats/${chat}`)
       chatRef.push(message)
     }
   }, [message])
 
   useEffect(() => {
     if (chat) {
-      const chatRef = database.ref(`chats/${chat}`);
+      const chatRef = database.ref(`chats/${chat}`).limitToLast(100);
       chatRef.on('value', snapshot => {
         const getChats = snapshot.val();
 

@@ -19,7 +19,6 @@ const ConversationListItem = (props) => {
   const { messages, members } = chats[chat];
   const keysOfMessages = Object.keys(messages);
   const { messageType, content } = messages[last(keysOfMessages)]
-  debugger
   const startChat = () => {
     startChatReq(chat, isAuth);
   }

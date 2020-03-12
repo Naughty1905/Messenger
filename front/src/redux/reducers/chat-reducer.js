@@ -46,7 +46,6 @@ const chatReducer = (state = initialState, action) => {
       }
     }
     case GET_CONVERSATIONS_RECIEVE: {
-      debugger
       return {
         ...state,
         chats: Object.assign({}, state.chats, { ...action.payload })

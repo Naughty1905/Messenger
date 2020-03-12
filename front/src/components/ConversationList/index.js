@@ -23,7 +23,6 @@ const ConversationList = (props) => {
   useMemo(() => {
     const chatsRef = database.ref(`chats/`);
     chatsRef.on('value', snapshot => {
-      debugger
       const allChats = snapshot.val();
       const chatStructure = { ...chats }
       keys(chatStructure).map((chat) => {

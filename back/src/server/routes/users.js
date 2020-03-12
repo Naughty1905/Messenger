@@ -53,11 +53,10 @@ router.post('/login', async (req, res) => {
 //   }
 // })
 
-router.post('/contacts/all', async (req, res) => {
-  const { isAuth } = req.body;
+router.post('/contacts/all', auth, async (req, res) => {
+  const userId = req.user._id;
   try {
-    const user = jwt.decode(isAuth)._id;
-    const currentUser = await User.findOne({ _id: user }).populate('friends.friendId');
+    const currentUser = await User.findOne({ _id: userId }).populate('friends.friendId');
     let { friends } = currentUser;
     res.status(200).json(friends);
   } catch (error) {
