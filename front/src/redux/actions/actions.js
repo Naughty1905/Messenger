@@ -159,7 +159,9 @@ export const getDataFromUserInputs = (payload) => ({
   payload
 })
 
-export const startChat = payload => ({
-  type: START_CHAT,
-  payload
-})
+export const startChat = payload => {
+  return {
+    type: START_CHAT,
+      payload
+  }
+}

@@ -13,7 +13,7 @@ import './MessageList.css';
 //Functions
 import renderMessages from './renderMessage';
 const MessageList = props => {
-  const { message, messages, user, chat, chats, isAvailableToWrite, startChat } = props;
+  const { message, messages, user, chat, isAvailableToWrite, startChat } = props;
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
