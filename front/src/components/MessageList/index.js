@@ -104,7 +104,7 @@ const MessageList = props => {
 
       <>
         {
-          isAvailableToWrite && <Compose rightItems={[
+          <Compose rightItems={[
             <ToolbarButton key="photo" icon="ion-ios-camera" />,
             <ToolbarButton key="image" icon="ion-ios-image" />,
             <ToolbarButton key="audio" icon="ion-ios-mic" />,
