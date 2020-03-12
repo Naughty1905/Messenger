@@ -17,7 +17,7 @@ const initialState = {
     speechToText: false,
     isAvailableSpeechToText: false,
     isSeen: false,
-    date: friendlyTimestamp
+    date: Date.now()
   },
   messages: {},
   chat: '',

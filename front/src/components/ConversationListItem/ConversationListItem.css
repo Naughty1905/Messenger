@@ -29,3 +29,7 @@
   color: #888;
   margin: 0;
 }
+
+.unreadMessages {
+    justify-self: flex-end;
+}

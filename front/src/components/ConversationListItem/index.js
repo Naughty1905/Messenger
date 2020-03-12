@@ -18,6 +18,7 @@ const ConversationListItem = (props) => {
   const chat = _id;
   const { messages, members } = chats[chat];
   const keysOfMessages = Object.keys(messages);
+  const unreadMessages = keysOfMessages.filter(key => !messages[key].isSeen).length
   const { messageType, content } = messages[last(keysOfMessages)]
   const startChat = () => {
     startChatReq(chat, isAuth);
@@ -46,6 +47,9 @@ const ConversationListItem = (props) => {
           }</p>
         }
       </div>
+      {
+        !!unreadMessages && <div className="unreadMessages">{unreadMessages}</div>
+      }
     </div>
   );
 }
