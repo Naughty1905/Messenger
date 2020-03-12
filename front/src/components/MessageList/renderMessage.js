@@ -55,7 +55,7 @@ const renderMessages = (messages, user) => {
 
     tempMessages.push(
       <Message
-        key={performance.now()}
+        key={currentKey}
         isMine={isMine}
         startsSequence={startsSequence}
         endsSequence={endsSequence}
