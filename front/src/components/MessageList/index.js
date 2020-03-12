@@ -62,6 +62,7 @@ const MessageList = props => {
 
   useEffect(() => {
     if (chat) {
+      debugger
       const chatRef = database.ref(`chats/${chat}`).limitToLast(100);
       chatRef.on('value', snapshot => {
         if (snapshot.val()) {

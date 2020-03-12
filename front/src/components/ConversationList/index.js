@@ -22,17 +22,19 @@ const ConversationList = (props) => {
 
 
   useEffect(() => {
-    debugger
-    const chatsRef = database.ref(`chats/`);
-    chatsRef.on('value', snapshot => {
-      const allChats = snapshot.val();
-      const chatStructure = { ...chats }
-      keys(chatStructure).map((chat) => {
-        chatStructure[chat]["messages"] = allChats[chat]
+    if (keys(chats).length) {
+      const chatsRef = database.ref(`chats/`);
+      chatsRef.on('value', snapshot => {
+        debugger
+        const allChats = snapshot.val();
+        const chatStructure = { ...chats }
+        keys(chatStructure).map((chat) => {
+          chatStructure[chat]["messages"] = allChats[chat]
+        })
+        getConversationsRec(chatStructure)
       })
-      getConversationsRec(chatStructure)
-    })
-  }, [chats.length])
+    }
+  }, [keys(chats).length])
 
   useCallback(() => getConversationsReq(isAuth), [chats.length]);
 
