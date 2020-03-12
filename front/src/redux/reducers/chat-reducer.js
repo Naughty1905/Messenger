@@ -36,7 +36,9 @@ const chatReducer = (state = initialState, action) => {
     case SET_MESSAGES:
       return {
         ...state,
-        messages: [...action.payload]
+        messages: Object.assign({}, state.messages, {
+          ...action.payload
+        })
       };
     case START_CHAT_RECIEVE: {
       return {

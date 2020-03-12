@@ -12,13 +12,13 @@ const ConversationListItem = (props) => {
   })
 
   const chatItem = useRef(null);
-  const { startChatReq, currentChat, isAuth, chats } = props;
+  const { startChatReq, currentChat, isAuth, chats, user } = props;
   const { _id } = props.chat;
 
   const chat = _id;
   const { messages, members } = chats[chat];
   const keysOfMessages = Object.keys(messages);
-  const unreadMessages = keysOfMessages.filter(key => !messages[key].isSeen).length
+  const unreadMessages = keysOfMessages.filter(key => !messages[key].isSeen && messages[key].user !== user).length
   const { messageType, content } = messages[last(keysOfMessages)]
   const startChat = () => {
     startChatReq(chat, isAuth);
@@ -58,6 +58,7 @@ const mapStateToProps = (state) => ({
   isAuth: state.userReducer.isAuth,
   currentChat: state.chatReducer.chat,
   chats: state.chatReducer.chats,
+  user: state.userReducer.user
 })
 
 

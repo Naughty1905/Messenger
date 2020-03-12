@@ -17,7 +17,7 @@ import './MessageList.css';
 import renderMessages from './renderMessage';
 
 const MessageList = props => {
-  const { message, messages, user, chat } = props;
+  const { message, messages, user, chat, chats } = props;
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "auto" })
@@ -32,16 +32,20 @@ const MessageList = props => {
 
   useEffect(() => {
     if (chat) {
-      const chatRef = database.ref(`chats/${chat}`).limitToLast(100);
-      chatRef.on('value', snapshot => {
-        const getChats = snapshot.val();
-
-        if (getChats) {
-          const messages = Object.values(getChats);
-          props.setMessages(messages)
-        }
-      })
+      props.setMessages(chats[chat]['messages'])
     }
+    // if (chat) {
+    //   const chatRef = database.ref(`chats/${chat}`).limitToLast(100);
+    //   chatRef.on('value', snapshot => {
+    //     const getChats = snapshot.val();
+
+    //     if (getChats) {
+    //       const messages = Object.values(getChats);
+    //       props.setMessages(messages)
+    //     }
+    //   })
+
+    // }
   }, [chat])
 
   useEffect(scrollToBottom, [messages]);
@@ -84,7 +88,8 @@ const mapStateToProps = state => {
     messages: state.chatReducer.messages,
     user: state.userReducer.user,
     chat: state.chatReducer.chat,
-    isAuth: state.userReducer.isAuth
+    isAuth: state.userReducer.isAuth,
+    chats: state.chatReducer.chats
   }
 }
 

@@ -52,7 +52,6 @@ const ContactList = (props) => {
           friends.map((friend, index) =>
             <ContactListItem
               key={performance.now()}
-              // data={conversations[index]}
               friend={friend}
             />
           )
