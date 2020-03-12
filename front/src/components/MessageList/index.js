@@ -71,6 +71,7 @@ const MessageList = props => {
             messages[unreadMessage].isSeen = true;
             database.ref(`chats/${chat}/${unreadMessage}`).update(messages[unreadMessage]);
           })
+          console.log(keysOfMessages.reverse().filter(key => !messages[key].isSeen && messages[key].user !== user));
           props.setMessages(messages)
         }
       })

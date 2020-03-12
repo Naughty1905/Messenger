@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import ConversationSearch from '../ConversationSearch';
 import ConversationListItem from '../ConversationListItem';
 import Loader from '../Loader'
@@ -19,8 +19,10 @@ const ConversationList = (props) => {
       getConversationsReq(isAuth)
     }
   }, [])
-  let sortedChat;
-  useMemo(() => {
+
+
+  useEffect(() => {
+    debugger
     const chatsRef = database.ref(`chats/`);
     chatsRef.on('value', snapshot => {
       const allChats = snapshot.val();
@@ -29,11 +31,6 @@ const ConversationList = (props) => {
         chatStructure[chat]["messages"] = allChats[chat]
       })
       getConversationsRec(chatStructure)
-      sortedChat = keys(chats).sort((chat1, chat2) => {
-        const message1 = last(keys(chats[chat1]['messages']));
-        const message2 = last(keys(chats[chat2]['messages']));
-        console.log(message1, message2)
-      })
     })
   }, [chats.length])
 
