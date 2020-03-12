@@ -33,7 +33,8 @@ import {
 
   SET_RECORDING,
 
-  GET_DATA_FROM_USER_INPUTS
+  GET_DATA_FROM_USER_INPUTS,
+  START_CHAT
 } from './action-types';
 
 export const getMessage = (payload) => ({
@@ -137,8 +138,6 @@ export const startChatRec = (payload) => ({
   payload
 })
 
-
-
 export const getConversationsReq = (isAuth) => ({
   type: GET_CONVERSATIONS_REQUEST,
   isAuth
@@ -155,14 +154,12 @@ export const setRecording = () => ({
 });
 
 
-
 export const getDataFromUserInputs = (payload) => ({
   type: GET_DATA_FROM_USER_INPUTS,
   payload
 })
 
-
-// export const setMessages = payload => ({
-//   type: SET_MESSAGES,
-//   payload
-// })
+export const startChat = payload => ({
+  type: START_CHAT,
+  payload
+})

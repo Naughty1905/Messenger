@@ -35,5 +35,5 @@ export const GET_AUDIOS = 'GET_AUDIOS'
 
 export const GET_DATA_FROM_USER_INPUTS = 'GET_DATA_FROM_USER_INPUTS';
 
-
+export const START_CHAT = 'START_CHAT';
 
