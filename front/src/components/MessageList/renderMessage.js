@@ -1,19 +1,25 @@
 import React from 'react';
 import moment from 'moment';
+import { keys } from 'lodash'
 import Message from '../Message';
 
 const renderMessages = (messages, user) => {
+  const messagesKeys = keys(messages);
+  console.log(messagesKeys);
   let i = 0;
-  let messageCount = messages.length;
+  let messageCount = messagesKeys.length;
   let tempMessages = [];
 
   while (i < messageCount) {
-    let previous = messages[i - 1];
-    let current = messages[i];
+    let previousKey = messagesKeys[i - 1];
+    let currentKey = messagesKeys[i];
+    let current = messages[currentKey];
+    let previous = messages[previousKey];
     let currentType = current.messageType;
     let speechToText = current.speechToText;
     let date = current.date
-    let next = messages[i + 1];
+    let nextKey = messagesKeys[i + 1];
+    let next = messages[nextKey]
     let isMine = current.user === user;
     let isAvailableSpeechToText = current.isAvailableSpeechToText;
     let currentMoment = moment(current.timestamp);
@@ -49,7 +55,7 @@ const renderMessages = (messages, user) => {
 
     tempMessages.push(
       <Message
-        key={performance.now()}
+        key={currentKey}
         isMine={isMine}
         startsSequence={startsSequence}
         endsSequence={endsSequence}

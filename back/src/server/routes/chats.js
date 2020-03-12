@@ -29,7 +29,7 @@ router.post('/', auth, async (req, res) => {
   try {
     if ((checkChat === null) && (checkChatReverse === null)) {
       const chat = new Chat({
-        members: [userId, newContact._id]
+        members: [_id, newContact._id]
       })
       await chat.save()
       currentUser.friends.push({
@@ -56,6 +56,7 @@ router.post('/', auth, async (req, res) => {
     }
 
   } catch (e) {
+    console.error(e)
     if (checkChat === null && checkChatReverse === null) {
       const error = 'User does not exist!'
       res.status(404).send(error);
