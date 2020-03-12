@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { regNewUserReq, loginReq, setAuthError, getDataFromUserInputs } from '../../redux/actions/actions'
 import './dashboardPage.css';
 import AccountFields from './AccountFields';
+import AccountPassword from './AccountPassword';
 import Confirmation from './Confirmation';
 import Success from './Success';
 import SurveyFields from './SurveyFields'
@@ -10,7 +11,7 @@ import SurveyFields from './SurveyFields'
 const DashboardPage = (props) => {
   const [isReg, setIsReg] = useState(false);
   const [step, setStep] = useState(1);
-  const { regNewUserReq, loginReq, signUpInfo, getDataFromUserInputs } = props;
+  const { regNewUserReq, loginReq, setAuthError, signUpInfo, getDataFromUserInputs } = props;
   const [info, setInfo] = useState({});
 
   const loginHandler = (event) => {
@@ -40,6 +41,8 @@ const DashboardPage = (props) => {
   // };
 
   const changeInfo = obj => {
+    debugger
+    console.log('ya tut', obj);
     setInfo((info) => Object.assign(info, obj));
 
   }
@@ -65,19 +68,23 @@ const DashboardPage = (props) => {
           previousStep={previousStep}
           saveValues={getDataFromUserInputs} />
       case 2:
-        return <SurveyFields fieldValues={fieldValues}
+        return <AccountPassword fieldValues={fieldValues}
           nextStep={addInputAndNextStep}
           changeInfo={changeInfo}
           previousStep={previousStep}
           saveValues={getDataFromUserInputs} />
       case 3:
+        return <SurveyFields fieldValues={fieldValues}
+          nextStep={addInputAndNextStep}
+          changeInfo={changeInfo}
+          previousStep={previousStep}
+          saveValues={getDataFromUserInputs} />
+      case 4:
         return <Confirmation fieldValues={info}
           previousStep={previousStep}
           submitRegistration={submitRegistration} />
-      case 4:
+      case 5:
         return <Success fieldValues={fieldValues} />
-        default: 
-        return null
     }
   };
 
