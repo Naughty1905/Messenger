@@ -18,7 +18,7 @@ const ConversationListItem = (props) => {
 
   const chat = _id;
   const { messages, members } = chats[chat];
-  const keysOfMessages = Object.keys(messages);
+  const keysOfMessages = keys(messages);
   const unreadMessages = keysOfMessages.filter(key => !messages[key].isSeen && messages[key].user !== user).length
   const { messageType, content } = messages[last(keysOfMessages)]
 

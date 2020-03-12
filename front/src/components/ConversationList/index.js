@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import ConversationSearch from '../ConversationSearch';
 import ConversationListItem from '../ConversationListItem';
 import Loader from '../Loader'
@@ -14,6 +14,8 @@ import './ConversationList.css';
 const ConversationList = (props) => {
   const { loader, isAuth, getConversationsReq, chats, getConversationsRec } = props;
 
+  const [sortedChats, setSortedChats] = useState([]);
+
   useEffect(() => {
     if (chats.length === 0) {
       getConversationsReq(isAuth)
@@ -28,9 +30,16 @@ const ConversationList = (props) => {
       chatsRef.on('value', snapshot => {
         const allChats = snapshot.val();
         const chatStructure = { ...chats }
+        debugger
         keys(chatStructure).map((chat) => {
           chatStructure[chat]["messages"] = allChats[chat]
         })
+        setSortedChats(keys(chatStructure).sort((chat1, chat2) => {
+          debugger
+          const message1 = last(keys(chatStructure[chat1]['messages']));
+          const message2 = last(keys(chatStructure[chat2]['messages']));
+          return chatStructure[chat2]['messages'][message2].date - chatStructure[chat1]['messages'][message1].date
+        }))
         getConversationsRec(chatStructure)
       })
     }
@@ -52,7 +61,7 @@ const ConversationList = (props) => {
       <div style={{ color: 'transparent' }}>
         {
           loader ? <Loader /> :
-            Object.keys(chats).map((chat) =>
+            sortedChats.map((chat) =>
               keys(chats[chat]['messages']).length && <ConversationListItem
                 key={performance.now()}
                 chat={chats[chat]}
