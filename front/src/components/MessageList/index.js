@@ -45,7 +45,7 @@ const MessageList = props => {
       })
       setMessages(messages)
     }
-  }, [chat, message])
+  }, [chat, message, chats])
 
 
 
