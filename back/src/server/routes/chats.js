@@ -21,9 +21,10 @@ router.get('/', auth, async (req, res) => {
 })
 
 router.post('/', auth, async (req, res) => {
-  const { fullName, login, _id } = req.user;
+  const friendLogin = req.body.login
+  const { fullName, _id } = req.user;
   const currentUser = await User.findOne({ _id });
-  const newContact = await User.findOne({ login });
+  const newContact = await User.findOne({ login: friendLogin });
   const checkChat = await Chat.findOne({ members: [currentUser._id, newContact._id] })
   const checkChatReverse = await Chat.findOne({ members: [newContact._id, currentUser._id] })
   try {

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { database } from '../../Firebase';
 
 
 export const fetchReg = async (login, name, email, password, avatar, url = "http://localhost:5000/users") => {
@@ -43,15 +44,18 @@ export const fetchAllFriends = async (isAuth, url = "http://localhost:5000/users
 };
 
 
-export const fetchAddNewContact = async (isAuth, url = "http://localhost:5000/chats") => {
+export const fetchAddNewContact = async (login, isAuth, url = "http://localhost:5000/chats") => {
   const token = isAuth
   try {
     const { data } = await fetch(url, {
       method: 'post',
       headers: {
         "Authorization": `${token}`,
-      }
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({login})
     })
+    database.ref(`/chats/${data._id}`).push({})
     return data;
   } catch (err) {
     return err;
@@ -65,7 +69,6 @@ export const fetchStartChat = async (chat) => {
     method: 'get',
     headers: {
       "Authorization": `${token}`,
-      "content-type": "apllication/json",
     }
   })
 

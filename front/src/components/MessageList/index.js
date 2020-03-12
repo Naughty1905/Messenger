@@ -1,63 +1,30 @@
-import React, { useEffect, useRef, useMemo, useState, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import { keys } from 'lodash'
 import { database } from '../../Firebase';
 import ToolbarButton from '../ToolbarButton';
-import { startChat } from '../../redux/actions/actions';
-
 // Redux
 import { connect } from 'react-redux';
-
 //Redux actions
-import { setMessages } from '../../redux/actions/actions';
-
+import { setMessages, startChat } from '../../redux/actions/actions';
 // Styles
 import './MessageList.css';
-
 //Functions
 import renderMessages from './renderMessage';
-
 const MessageList = props => {
-  const { message, messages, user, chat, chats } = props;
-  // if (chat) {
-  //   const currentMes = chats[chat]['messages'];
-  //   console.log(currentMes)
-  // }
-  // const [currentMessages, setCurrentMessages] = useState(null);
+  const { message, messages, user, chat, chats, isAvailableToWrite, startChat } = props;
+
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "auto" })
   }
-
   useEffect(() => {
     if (!!message.content) {
       const chatRef = database.ref(`chats/${chat}`)
       chatRef.push(message)
     }
   }, [message])
-
-  // useEffect(() => {
-  //   if (chat) {
-  //     setCurrentMessages(Object.assign({}, currentMessages, {
-  //       ...chats[chat]['messages']
-  //     }))
-  //   }
-  // }, [chat])
-
-  // if (chat) {
-  //   if (chat) {
-  //     if (currentMessages) {
-  //       useMemo(() => {
-  //         setCurrentMessages(Object.assign({}, currentMessages, {
-  //           ...chats[chat]['messages']
-  //         }))
-  //       }, [chats[chat]['messages']])
-  //     }
-  //   }
-
-  // }
-
 
   useEffect(() => {
     if (chat) {
@@ -71,17 +38,13 @@ const MessageList = props => {
             messages[unreadMessage].isSeen = true;
             database.ref(`chats/${chat}/${unreadMessage}`).update(messages[unreadMessage]);
           })
-          console.log(keysOfMessages.reverse().filter(key => !messages[key].isSeen && messages[key].user !== user));
           props.setMessages(messages)
+          startChat(chat)
         }
       })
     }
   }, [chat])
-
-
-
   useEffect(scrollToBottom, [messages]);
-
   return (
     <div className="message-list">
       <Toolbar
@@ -95,15 +58,10 @@ const MessageList = props => {
       {
         renderMessages(messages, user)
       }
-      {/* {
-        !!audios.length && audios.map(audio => <audio controls="controls" src={audio} />)
-
-      } */}
       <div className="messages-bottom" ref={messagesEndRef} style={{ marginBottom: '40px' }} />
-
       <>
         {
-          <Compose rightItems={[
+          isAvailableToWrite && <Compose rightItems={[
             <ToolbarButton key="photo" icon="ion-ios-camera" />,
             <ToolbarButton key="image" icon="ion-ios-image" />,
             <ToolbarButton key="audio" icon="ion-ios-mic" />,
@@ -116,7 +74,6 @@ const MessageList = props => {
     </div >
   );
 }
-
 const mapStateToProps = state => {
   return {
     message: state.chatReducer.message,
@@ -128,7 +85,6 @@ const mapStateToProps = state => {
     isAvailableToWrite: state.chatEnvReducer.isAvailableToWrite
   }
 }
-
 export default connect(
   mapStateToProps,
   {
