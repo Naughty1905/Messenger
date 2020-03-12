@@ -102,6 +102,7 @@ const DashboardPage = (props) => {
                         <div className="wrap-input-auth" id="password">
                             <input name='password' type="password" className="input-auth" placeholder='Password'/>
                         </div>
+                        <div className="conpass"></div>
                         <div id='buttons' style={{gridRowStart: '6'}}>
                             <button className='firstButt' type='submit'>Login
                             </button>

@@ -44,30 +44,26 @@ export default class SurveyFields extends React.Component {
     }
 
     async lastStep() {
-      if(this.state.preview === null){
-        debugger
-        this.setState({
-          preview: this.state.previewDefault,
-          src:{name: 'default'}
-          // avatar: this.state.avatarDefault
-        })
-        await this.stepBy(this.state.previewDefault, 'default');
-        return this.props.nextStep(this.state);
-
-      }
-      await this.stepBy();
+        if (this.state.preview === null) {
+            this.setState({
+                preview: this.state.previewDefault,
+                src: {name: 'default'}
+                // avatar: this.state.avatarDefault
+            })
+            await this.stepBy(this.state.previewDefault, 'default');
+            return this.props.nextStep(this.state);
+        }
+        await this.stepBy();
         // this.props.changeInfo(this.state);
         this.props.nextStep(this.state);
     }
 
 
     async stepBy(preview, name) {
-      debugger
         const response = await fetch(preview || this.state.preview);
         const blob = await response.blob();
         const uploadTask = storage.ref(`avatar/${name || this.state.src.name}`).put(blob);
         console.log(blob);
-        debugger
         return new Promise(resolve => {
             uploadTask.on('state_changed',
                 (snapshot) => {
@@ -95,7 +91,6 @@ export default class SurveyFields extends React.Component {
         return (
             <div className="form">
                 <h2 id="fullName">Choose Avatar</h2>
-                <h6 id="email">You can skip this step</h6>
                 <div id="password">
                     <Avatar style={{
                         border: "2px",
@@ -112,6 +107,7 @@ export default class SurveyFields extends React.Component {
                             onBeforeFileLoad={this.onBeforeFileLoad}
                             src={this.state.preview}
                     />
+                    <h6 className="choose" id="email">You can skip this step</h6>
                 </div>
                 <div id="buttons">
                     <button className="firstButt" onClick={this.props.previousStep}>Back</button>
