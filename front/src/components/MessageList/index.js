@@ -3,6 +3,7 @@ import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import { keys } from 'lodash'
 import { database } from '../../Firebase';
+import { isMobile } from 'react-device-detect';
 import ToolbarButton from '../ToolbarButton';
 
 // Redux
@@ -53,6 +54,9 @@ const MessageList = props => {
     <div className="message-list">
       <Toolbar
         title="Conversation Title"
+        leftItems={
+          isMobile && <ToolbarButton key="phone" icon="ion-ios-arrow-back" />
+        }
         rightItems={[
           <ToolbarButton key="info" icon="ion-ios-information-circle-outline" />,
           <ToolbarButton key="video" icon="ion-ios-videocam" />,

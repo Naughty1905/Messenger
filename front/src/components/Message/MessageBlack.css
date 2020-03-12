@@ -1,8 +1,3 @@
-.message {
-  display: flex;
-  flex-direction: column;
-}
-
 .message .timestamp {
   display: flex;
   justify-content: center;
@@ -103,4 +98,47 @@
   font-size: 13px;
   max-width: 80%;
   margin: 0 auto;
+}
+
+
+@media only screen and (max-device-width: 480px) {
+  .message-content {
+    font-size: 1.1rem;
+    margin: 0.2rem;
+  }
+  .message-date {
+    color: rgb(196, 192, 192);
+    font-size: 0.7rem;
+    padding-bottom: 1px;
+  }
+  .my-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 8px !important;
+  }
+
+  .AudioTagContainer {
+    margin-left: 0.5rem;
+  }
+  .mine .bubble-container .my-message {
+    max-width: 80% !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center;
+    align-items: center !important;
+  }
+  .mine .bubble-container .my-message .icon-read-message {
+    margin-left: 5px;
+  }
+  .message.mine .bubble-container .bubble {
+    padding: 10px 8px 10px 15px !important;
+  }
+  .mine .bubble-container .my-message audio {
+    width: 17rem;
+  }
+  .mine .bubble-container .my-message .AudioTagContainer time {
+    padding-top: 0 !important;
+    margin-bottom: 3px !important;
+  }
 }

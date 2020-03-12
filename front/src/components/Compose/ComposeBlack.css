@@ -45,3 +45,26 @@
   color: rgb(220, 220, 220);
   background-color: transparent;
 }
+
+@media only screen and (max-device-width: 480px) {
+  .compose {
+    display: flex;
+    align-items: center;
+    background: rgb(22, 33, 43);
+    position: fixed;
+    height: 3rem;
+    width: 100%;
+    bottom: 0px;
+  }
+  .compose-input {
+    height: 100%;
+  }
+
+  .toolbar-input {
+   padding-right: 0;
+    margin-right: 0;
+  }
+  .toolbar-input:last-child {
+    padding-right: 10px;
+   }
+}
