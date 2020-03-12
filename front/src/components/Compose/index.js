@@ -15,7 +15,6 @@ const Compose = (props) => {
   const messegeHandler = (event) => {
     event.preventDefault();
     if (!content) return
-    debugger
     props.getMessage({ content, user, messageType: 'String' });
 
     setMessage('');

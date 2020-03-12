@@ -55,7 +55,6 @@ export const fetchAddNewContact = async (login, isAuth, url = "http://localhost:
       },
       body: JSON.stringify({ login })
     })
-    debugger
     database.ref(`/chats/${data._id}`).push({})
     return data;
   } catch (err) {

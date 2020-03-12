@@ -26,7 +26,6 @@ const MessageList = props => {
   }
 
   useEffect(() => {
-    debugger
     if (!!message.content) {
       const chatRef = database.ref(`chats/${chat}`)
       chatRef.push(message)

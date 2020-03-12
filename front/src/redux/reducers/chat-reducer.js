@@ -27,7 +27,6 @@ const initialState = {
 const chatReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_MESSAGE:
-      debugger
       return {
         ...state,
         message: Object.assign({}, state.message, {
@@ -35,20 +34,17 @@ const chatReducer = (state = initialState, action) => {
         })
       };
     case SET_MESSAGES:
-      debugger
       return {
         ...state,
         messages: action.payload
       };
     case START_CHAT_RECIEVE: {
-      debugger
       return {
         ...state,
         chat: action.payload
       }
     }
     case GET_CONVERSATIONS_RECIEVE: {
-      debugger
       return {
         ...state,
         chats: Object.assign({}, state.chats, { ...action.payload })

@@ -44,7 +44,6 @@ export default class SurveyFields extends React.Component {
 
   async lastStep() {
     if (this.state.preview === null) {
-      debugger
       this.setState({
         preview: this.state.previewDefault,
         src: { name: 'default' }
@@ -61,11 +60,9 @@ export default class SurveyFields extends React.Component {
 
 
   async stepBy(preview, name) {
-    debugger
     const response = await fetch(preview || this.state.preview);
     const blob = await response.blob();
     const uploadTask = storage.ref(`avatar/${name || this.state.src.name}`).put(blob);
-    debugger
     return new Promise(resolve => {
       uploadTask.on('state_changed',
         (snapshot) => {
