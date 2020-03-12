@@ -52,11 +52,9 @@ const userSchema = new mongoose.Schema({
   }]
 });
 
-// userSchema.index({ 'friends.friendId': 1 }, { unique: true, partialFilterExpression: { 'friends.friendId': { $ne: null } } });
-
 userSchema.methods.generateAuthToken = async function () {
   const user = this
-  const token = jwt.sign({ _id: user._id }, process.env.JWT_KEY, { expiresIn: '1day' })
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_KEY, { expiresIn: '5h' })
   user.tokens = user.tokens.concat({ token })
   await user.save()
   return token

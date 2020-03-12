@@ -49,9 +49,9 @@ function* fetchAllConctactsAsync(obj) {
 }
 
 function* fetchAddNewContactAsync(obj) {
-  const { fullName, login, number, isAuth } = obj;
+  const { isAuth } = obj;
   try {
-    const data = yield call(fetchAddNewContact, fullName, login, number, isAuth)
+    const data = yield call(fetchAddNewContact, isAuth)
     yield put(addNewContactRec(data));
   } catch (e) {
     // const error = 'User does not exist!';

@@ -34,7 +34,6 @@ const ConversationList = (props) => {
     })
   }, [chats.length])
 
-
   useCallback(() => getConversationsReq(isAuth), [chats.length]);
 
 
@@ -50,15 +49,17 @@ const ConversationList = (props) => {
         ]}
       />
       <ConversationSearch />
-      {
-        loader ? <Loader /> :
-          Object.keys(chats).map((chat, index) =>
-            keys(chats[chat]['messages']).length && <ConversationListItem
-              key={performance.now()}
-              chat={chats[chat]}
-            />
-          )
-      }
+      <div style={{ color: 'transparent' }}>
+        {
+          loader ? <Loader /> :
+            Object.keys(chats).map((chat) =>
+              keys(chats[chat]['messages']).length && <ConversationListItem
+                key={performance.now()}
+                chat={chats[chat]}
+              />
+            )
+        }
+      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Toolbar from '../Toolbar';
 import { keys } from 'lodash'
 import { database } from '../../Firebase';
 import ToolbarButton from '../ToolbarButton';
+import { startChat } from '../../redux/actions/actions';
 
 // Redux
 import { connect } from 'react-redux';
@@ -82,7 +83,6 @@ const MessageList = props => {
 
   useEffect(scrollToBottom, [messages]);
 
-
   return (
     <div className="message-list">
       <Toolbar
@@ -102,14 +102,18 @@ const MessageList = props => {
       } */}
       <div className="messages-bottom" ref={messagesEndRef} style={{ marginBottom: '40px' }} />
 
-      <Compose rightItems={[
-        <ToolbarButton key="photo" icon="ion-ios-camera" />,
-        <ToolbarButton key="image" icon="ion-ios-image" />,
-        <ToolbarButton key="audio" icon="ion-ios-mic" />,
-        <ToolbarButton key="money" icon="ion-ios-card" />,
-        <ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
-        <ToolbarButton key="emoji" icon="ion-ios-happy" />
-      ]} />
+      <>
+        {
+          isAvailableToWrite && <Compose rightItems={[
+            <ToolbarButton key="photo" icon="ion-ios-camera" />,
+            <ToolbarButton key="image" icon="ion-ios-image" />,
+            <ToolbarButton key="audio" icon="ion-ios-mic" />,
+            <ToolbarButton key="money" icon="ion-ios-card" />,
+            <ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
+            <ToolbarButton key="emoji" icon="ion-ios-happy" />
+          ]} />
+        }
+      </>
     </div >
   );
 }
@@ -121,11 +125,15 @@ const mapStateToProps = state => {
     user: state.userReducer.user,
     chat: state.chatReducer.chat,
     isAuth: state.userReducer.isAuth,
-    chats: state.chatReducer.chats
+    chats: state.chatReducer.chats,
+    isAvailableToWrite: state.chatEnvReducer.isAvailableToWrite
   }
 }
 
 export default connect(
   mapStateToProps,
-  { setMessages }
+  {
+    setMessages,
+    startChat
+  }
 )(MessageList)  

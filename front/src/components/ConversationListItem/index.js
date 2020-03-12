@@ -30,7 +30,7 @@ const ConversationListItem = (props) => {
     } else {
       chatItem.current.className = 'conversation-list-item';
     }
-  }, [currentChat])
+  },)
 
 
   return (
