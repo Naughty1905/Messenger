@@ -13,13 +13,14 @@ import './MessageList.css';
 //Functions
 import renderMessages from './renderMessage';
 const MessageList = props => {
-  const { message, messages, user, chat, isAvailableToWrite, startChat } = props;
+  const { message, messages, user, chats,chat, isAvailableToWrite, startChat } = props;
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "auto" })
   }
   useEffect(() => {
+    debugger
     if (!!message.content) {
       const chatRef = database.ref(`chats/${chat}`)
       chatRef.push(message)
@@ -28,22 +29,20 @@ const MessageList = props => {
 
   useEffect(() => {
     if (chat) {
-      const chatRef = database.ref(`chats/${chat}`).limitToLast(100);
-      chatRef.on('value', snapshot => {
-        if (snapshot.val()) {
-          const messages = { ...snapshot.val() };
-          const keysOfMessages = keys(messages);
-          const unreadMessages = keysOfMessages.reverse().filter(key => !messages[key].isSeen && messages[key].user !== user);
-          unreadMessages.map(unreadMessage => {
-            messages[unreadMessage].isSeen = true;
-            database.ref(`chats/${chat}/${unreadMessage}`).update(messages[unreadMessage]);
-          })
-          props.setMessages(messages)
-          startChat(chat)
-        }
+      const messages = chats[chat]['messages'];
+      console.log(messages)
+      const keysOfMessages = keys(messages);
+      const unreadMessages = keysOfMessages.reverse().filter(key => !messages[key].isSeen && messages[key].user !== user);
+      unreadMessages.map(unreadMessage => {
+        messages[unreadMessage].isSeen = true;
+        database.ref(`chats/${chat}/${unreadMessage}`).update(messages[unreadMessage]);
       })
+      setMessages(messages)
     }
-  }, [chat])
+  }, [chat, message])
+
+
+
   useEffect(scrollToBottom, [messages]);
   return (
     <div className="message-list">
@@ -88,7 +87,6 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    setMessages,
-    startChat
+    setMessages
   }
 )(MessageList)  

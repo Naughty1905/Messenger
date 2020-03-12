@@ -42,10 +42,13 @@ export const getMessage = (payload) => ({
   payload
 });
 
-export const setMessages = (payload) => ({
-  type: SET_MESSAGES,
-  payload
-});
+export const setMessages = (payload) => {
+  debugger
+  return {
+    type: SET_MESSAGES,
+    payload
+  }
+};
 
 export const setSidebar = () => ({
   type: SET_SIDEBAR

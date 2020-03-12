@@ -6,7 +6,7 @@ const AudiosMessage = (props) => {
   const { content, isAvailableSpeechToText, speechToText, date } = props;
   const friendlyTimestampMessage = moment(date).format('LT');
   return (
-    <div  className="AudioTagContainer">
+    <div className="AudioTagContainer">
       <time dateTime={date} className="message-date" >{friendlyTimestampMessage}</time>
       <audio controls="controls" src={content} />
       {

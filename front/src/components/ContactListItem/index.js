@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import shave from 'shave';
-import {connect} from 'react-redux';
-import {startChatReq} from '../../redux/actions/actions'
+import { connect } from 'react-redux';
+import { startChatRec, setConversations } from '../../redux/actions/actions'
 
 import './ContactListItem.css';
 
 const ContactListItem = (props) => {
 
-    const {startChatReq, isAuth} = props;
+  const { startChatRec, isAuth, setConversations } = props;
 
     useEffect(() => {
         shave('.conversation-snippet', 20);
@@ -15,9 +15,10 @@ const ContactListItem = (props) => {
 
     const {fullName, chat, friendId} = props.friend;
 
-    const startChat = () => {
-        startChatReq(chat, isAuth);
-    }
+  const startChat = () => {
+    startChatRec(chat);
+    setConversations()
+  }
 
 
     return (
@@ -35,4 +36,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {startChatReq})(ContactListItem)
+export default connect(mapStateToProps, { startChatRec, setConversations })(ContactListItem)

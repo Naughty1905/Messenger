@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useMemo } from 'react';
 import ConversationSearch from '../ConversationSearch';
 import ConversationListItem from '../ConversationListItem';
 import Loader from '../Loader'
@@ -20,6 +20,7 @@ const ConversationList = (props) => {
     }
   }, [])
 
+  const len = keys(chats).length;
 
   useEffect(() => {
     if (keys(chats).length) {
@@ -33,9 +34,7 @@ const ConversationList = (props) => {
         getConversationsRec(chatStructure)
       })
     }
-  }, [chats.length])
-
-  useCallback(() => getConversationsReq(isAuth), [chats.length]);
+  }, [len])
 
 
   return (

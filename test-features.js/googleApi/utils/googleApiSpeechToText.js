@@ -22,7 +22,6 @@ async function googleApiSpeechToText(buffer) {
 
   // Detects speech in the audio file
   client.recognize(request).then(R=>{
-    console.log('R',R)
   }).catch(err=>{
     console.error(err)
   });

@@ -59,18 +59,18 @@ function* fetchAddNewContactAsync(obj) {
   }
 }
 
-function* fetchStartChatAsync(obj) {
+// function* fetchStartChatAsync(obj) {
 
-  const { chat, isAuth } = obj;
-  try {
-    yield call(addReadMessages, chat, isAuth);
-    const data = yield call(fetchStartChat, chat)
-    yield put(startChatRec(data));
-  } catch (e) {
-    const error = 'ChatMessage Error!'
-    yield put(setAuthError(error))
-  }
-}
+//   const { chat, isAuth } = obj;
+//   try {
+//     yield call(addReadMessages, chat, isAuth);
+//     const data = yield call(fetchStartChat, chat)
+//     yield put(startChatRec(data));
+//   } catch (e) {
+//     const error = 'ChatMessage Error!'
+//     yield put(setAuthError(error))
+//   }
+// }
 
 function* fetchConversationsAsync(obj) {
   const { isAuth } = obj;
@@ -89,7 +89,7 @@ export default function* actionWatcher() {
   yield takeLatest(LOGIN_REQUEST, fetchLoginAsync);
   yield takeLatest(ADD_NEW_CONTACT_REQUEST, fetchAddNewContactAsync);
   yield takeLatest(GET_CONTACTS_REQUEST, fetchAllConctactsAsync);
-  yield takeLatest(START_CHAT_REQUEST, fetchStartChatAsync);
+  // yield takeLatest(START_CHAT_REQUEST, fetchStartChatAsync);
   yield takeLatest(GET_CONVERSATIONS_REQUEST, fetchConversationsAsync);
 }
 
