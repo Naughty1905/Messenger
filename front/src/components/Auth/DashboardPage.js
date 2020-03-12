@@ -41,8 +41,6 @@ const DashboardPage = (props) => {
   // };
 
   const changeInfo = obj => {
-    debugger
-    console.log('ya tut', obj);
     setInfo((info) => Object.assign(info, obj));
 
   }

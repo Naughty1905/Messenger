@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import ConversationSearch from '../ConversationSearch';
-import ContactListItem from '../ContactListItem';
+// import ContactListItem from '../ContactListItem';
 import Loader from '../Loader'
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
@@ -8,7 +8,11 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 import { setLoaderNav, getContactsReq } from '../../redux/actions/actions';
 
+
 import './Contacs.css';
+
+const ContactListItem = React.lazy(() => import('../ContactListItem'))
+
 
 const ContactList = (props) => {
   const [conversations, setConversations] = useState([]);
@@ -35,10 +39,11 @@ const ContactList = (props) => {
       {
         loader ? <Loader /> :
           friends.map((friend, index) =>
-            <ContactListItem
+            <Suspense fallback={<div>Loading...</div>}><ContactListItem
               key={performance.now()}
               friend={friend}
-            />
+            /></Suspense>
+
           )
       }
     </div>

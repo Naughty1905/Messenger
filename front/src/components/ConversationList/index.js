@@ -1,6 +1,6 @@
-import React, { useEffect, useCallback, useMemo, useState } from 'react';
+import React, { useEffect, useCallback, useMemo, useState, Suspense } from 'react';
 import ConversationSearch from '../ConversationSearch';
-import ConversationListItem from '../ConversationListItem';
+// import ConversationListItem from '../ConversationListItem';
 import Loader from '../Loader'
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
@@ -10,6 +10,9 @@ import { keys, last } from 'lodash'
 import { setLoaderNav, getConversationsReq, getConversationsRec } from '../../redux/actions/actions';
 
 import './ConversationList.css';
+
+const ConversationListItem = React.lazy(() => import('../ConversationListItem'))
+
 
 const ConversationList = (props) => {
   const { loader, isAuth, getConversationsReq, chats, getConversationsRec } = props;
@@ -64,10 +67,11 @@ const ConversationList = (props) => {
         {
           loader ? <Loader /> :
             sortedChats.map((chat) =>
-              keys(chats[chat]['messages']).length && <ConversationListItem
+              keys(chats[chat]['messages']).length &&
+              <Suspense fallback={<div>Loading...</div>}><ConversationListItem
                 key={performance.now()}
                 chat={chats[chat]}
-              />
+              /></Suspense>
             )
         }
       </div>

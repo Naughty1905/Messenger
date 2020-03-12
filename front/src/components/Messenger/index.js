@@ -1,10 +1,16 @@
-import React from 'react';
-import ConversationList from '../ConversationList';
-import MessageList from '../MessageList';
+import React, { Suspense } from 'react';
+// import ConversationList from '../ConversationList';
+// import MessageList from '../MessageList';
 import './MessengerBlack.css';
-import SidebarMenu from '../SidebarMenu';
+import Loader from '../Loader'
+// import SidebarMenu from '../SidebarMenu';
 import ContactList from '../ContactsList';
 import { connect } from 'react-redux';
+const ConversationList = React.lazy(() => import('../ConversationList'))
+const MessageList = React.lazy(() => import('../MessageList'))
+const SidebarMenu = React.lazy(() => import('../SidebarMenu'))
+
+
 
 const Messenger = (props) => {
   const { isNav, isConversation, isContact } = props;
@@ -13,10 +19,10 @@ const Messenger = (props) => {
     <div className="messenger">
       <div className="scrollable sidebar">
         {
-          isNav && <SidebarMenu />
+          isNav && <Suspense fallback={<Loader />}><SidebarMenu /></Suspense>
         }
         {
-          isConversation && <ConversationList />
+          isConversation && <Suspense fallback={<Loader />}> <ConversationList /> </Suspense>
         }
         {
           isContact && <ContactList />
@@ -24,9 +30,9 @@ const Messenger = (props) => {
       </div>
 
       <div className="scrollable content">
-        <MessageList />
+        <Suspense fallback={<Loader />}> <MessageList /></Suspense>
       </div>
-    </div>
+    </div >
   );
 }
 

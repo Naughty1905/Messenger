@@ -5,7 +5,6 @@ import Message from '../Message';
 
 const renderMessages = (messages, user) => {
   const messagesKeys = keys(messages);
-  console.log(messagesKeys);
   let i = 0;
   let messageCount = messagesKeys.length;
   let tempMessages = [];

@@ -36,7 +36,6 @@ const MessageList = props => {
   useEffect(() => {
     if (chat) {
       const messages = chats[chat]['messages'];
-      console.log(messages)
       const keysOfMessages = keys(messages);
       const unreadMessages = keysOfMessages.reverse().filter(key => !messages[key].isSeen && messages[key].user !== user);
       unreadMessages.map(unreadMessage => {

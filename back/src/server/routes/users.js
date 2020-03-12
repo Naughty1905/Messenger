@@ -40,17 +40,6 @@ router.post('/login', async (req, res) => {
 
 })
 
-// Не используется
-// router.get('/contacts/new', async (req, res) => {
-//   const { login } = req.body;
-//   try {
-//     const newContact = await User.findOne({ login });
-//     console.log(newContact)
-//     res.status(200).json(newContact);
-//   } catch (error) {
-//     res.status(404).send(error);
-//   }
-// })
 
 router.post('/contacts/all', auth, async (req, res) => {
   const userId = req.user._id;

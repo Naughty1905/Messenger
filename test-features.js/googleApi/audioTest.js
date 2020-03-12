@@ -21,9 +21,7 @@ class SpeechRecognition extends React.Component {
 
   async sendAudio(blob) {
     let fd = new FormData();
-    console.log(blob);
     fd.append('audioMessage', blob, 'audioMessage.webm');
-    console.log(fd);
 
     await fetch('http://localhost:5000/chats/audio-message', {
       method: 'POST',
@@ -83,7 +81,6 @@ class SpeechRecognition extends React.Component {
     this.setState({ recording: false });
     // save the video to memory 
     const blob = new Blob(this.chunks, { 'type': 'audio/ogg; codecs=opus' });
-    console.log(blob)
     this.sendAudio(blob)
     // generate video url from blob
     const audioUrl = window.URL.createObjectURL(blob);
@@ -91,7 +88,6 @@ class SpeechRecognition extends React.Component {
 
 
 
-    console.log(this.state.speechToTextMessages, '<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>')
     // append audioUrl to list of saved audios for rendering
     const uploadTask = storage.ref(`audios/${audioUrl}`).put(blob);
     uploadTask.on('state_changed',
