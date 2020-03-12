@@ -10,10 +10,10 @@ const AddContact = (props) => {
   const addNewContact = (event) => {
     event.preventDefault();
     const { target } = event;
-    const fullName = target[0].value;
+    const fullname = target[0].value;
     const login = target[1].value;
     const number = target[2].value;
-    addNewContactReq(fullName, login, number, isAuth);
+    addNewContactReq(fullname, login, number, isAuth);
     setModalAddContact()
   }
 
@@ -21,11 +21,11 @@ const AddContact = (props) => {
     <div className='modal-wrap-add-contact'>
       <form className="modal-form" onSubmit={addNewContact}>
         <h3>New Contact</h3>
-        <i className="ion-md-mail icon-input-1" />
+        <i className="ion-md-person icon-input-1" />
         <i className='ion-md-person-add icon-input-2' />
         <i className='ion-md-call icon-input-3' />
-        <input autoFocus className='input-name inp' placeholder='Email' type='search' autoComplete="on" required />
-        <input className='input-email inp' placeholder='Login' type='search' autoComplete="on" required />
+        <input className='input-name inp' placeholder='Full name' type='text' autoComplete="on" required />
+        <input autoFocus className='input-email inp' placeholder='Login' type='search' autoComplete="on" required />
         <input className='input-number inp' placeholder='Number' type='search' autoComplete="on" required />
         <div className='buttons'>
           <button onClick={() => setModalAddContact()} >Cancel</button>

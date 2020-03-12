@@ -32,11 +32,9 @@ const ConversationList = (props) => {
       sortedChat = keys(chats).sort((chat1, chat2) => {
         const message1 = last(keys(chats[chat1]['messages']));
         const message2 = last(keys(chats[chat2]['messages']));
-        console.log(message1, message2)
       })
     })
   }, [chats.length])
-
 
   useCallback(() => getConversationsReq(isAuth), [chats.length]);
 
@@ -53,15 +51,17 @@ const ConversationList = (props) => {
         ]}
       />
       <ConversationSearch />
+      <div style={{color: 'transparent'}}>
       {
         loader ? <Loader /> :
-          Object.keys(chats).map((chat, index) =>
+          Object.keys(chats).map((chat) =>
             keys(chats[chat]['messages']).length && <ConversationListItem
               key={performance.now()}
               chat={chats[chat]}
             />
           )
       }
+      </div>
     </div>
   );
 }

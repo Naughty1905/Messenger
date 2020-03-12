@@ -35,7 +35,6 @@ const MessageList = props => {
       const chatRef = database.ref(`chats/${chat}`).limitToLast(100);
       chatRef.on('value', snapshot => {
         const getChats = snapshot.val();
-
         if (getChats) {
           const messages = Object.values(getChats);
           props.setMessages(messages)
