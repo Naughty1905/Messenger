@@ -13,14 +13,13 @@ import './MessageList.css';
 //Functions
 import renderMessages from './renderMessage';
 const MessageList = props => {
-  const { message, messages, user, chats,chat, isAvailableToWrite, startChat } = props;
+  const { message, messages, user, chats, chat, setMessages, isAvailableToWrite, startChat } = props;
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "auto" })
   }
   useEffect(() => {
-    debugger
     if (!!message.content) {
       const chatRef = database.ref(`chats/${chat}`)
       chatRef.push(message)
@@ -30,16 +29,16 @@ const MessageList = props => {
   useEffect(() => {
     if (chat) {
       const messages = chats[chat]['messages'];
-      console.log(messages)
       const keysOfMessages = keys(messages);
       const unreadMessages = keysOfMessages.reverse().filter(key => !messages[key].isSeen && messages[key].user !== user);
       unreadMessages.map(unreadMessage => {
         messages[unreadMessage].isSeen = true;
         database.ref(`chats/${chat}/${unreadMessage}`).update(messages[unreadMessage]);
       })
+      startChat(chat)
       setMessages(messages)
     }
-  }, [chat, message])
+  }, [chat, message, chats])
 
 
 
@@ -87,6 +86,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    setMessages
+    setMessages,
+    startChat
   }
 )(MessageList)  

@@ -43,7 +43,6 @@ export const getMessage = (payload) => ({
 });
 
 export const setMessages = (payload) => {
-  debugger
   return {
     type: SET_MESSAGES,
     payload
