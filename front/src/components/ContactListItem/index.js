@@ -7,7 +7,7 @@ import './ContactListItem.css';
 
 const ContactListItem = (props) => {
 
-  const { startChatRec, isAuth, setConversations } = props;
+  const { startChatRec, setConversations } = props;
 
   useEffect(() => {
     shave('.conversation-snippet', 20);

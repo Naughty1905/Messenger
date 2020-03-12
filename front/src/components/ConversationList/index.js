@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo, useState, Suspense } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import ConversationSearch from '../ConversationSearch';
 // import ConversationListItem from '../ConversationListItem';
 import Loader from '../Loader'
@@ -66,7 +66,7 @@ const ConversationList = (props) => {
           loader ? <Loader /> :
             sortedChats.map((chat) =>
               keys(chats[chat]['messages']).length &&
-              <Suspense fallback={<div>Loading...</div>}><ConversationListItem
+              <Suspense key={performance.now()} fallback={<div>Loading...</div>}><ConversationListItem
                 key={performance.now()}
                 chat={chats[chat]}
               /></Suspense>

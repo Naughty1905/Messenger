@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { REG_NEW_USER_REQUEST, LOGIN_REQUEST, ADD_NEW_CONTACT_REQUEST, GET_CONTACTS_REQUEST, START_CHAT_REQUEST, GET_CONVERSATIONS_REQUEST } from '../actions/action-types';
-import { regNewUserRec, setAuthError, addNewContactRec, getContactsRec, startChatRec, getConversationsRec } from "../actions/actions";
-import { fetchReg, fetchLogin, fetchAddNewContact, fetchAllFriends, fetchStartChat, fetchConversations, addReadMessages } from '../utils/authFetch';
+import { REG_NEW_USER_REQUEST, LOGIN_REQUEST, ADD_NEW_CONTACT_REQUEST, GET_CONTACTS_REQUEST, GET_CONVERSATIONS_REQUEST } from '../actions/action-types';
+import { regNewUserRec, setAuthError, addNewContactRec, getContactsRec, getConversationsRec } from "../actions/actions";
+import { fetchReg, fetchLogin, fetchAddNewContact, fetchAllFriends, fetchConversations } from '../utils/authFetch';
 
 
 
