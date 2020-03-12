@@ -122,7 +122,7 @@ const DashboardPage = (props) => {
 
 
 const mapStateToProps = (state) => ({
-  signUpInfo: state.signUpInfo
+  signUpInfo: state.userReducer.signUpInfo
 })
 
 export default connect(
