@@ -42,3 +42,12 @@
   margin-top: 2px;
   margin-bottom: 0;
 }
+
+.unreadMessages {
+  padding: 6px;
+  border-radius: 50%;
+  margin-left: auto;
+  color: white;
+  background-color: gray;
+  
+}

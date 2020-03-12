@@ -6,7 +6,7 @@ import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import { connect } from 'react-redux'
 import { database } from '../../Firebase';
-import { keys } from 'lodash'
+import { keys, last } from 'lodash'
 import { setLoaderNav, getConversationsReq, getConversationsRec } from '../../redux/actions/actions';
 
 import './ConversationList.css';
@@ -19,17 +19,21 @@ const ConversationList = (props) => {
       getConversationsReq(isAuth)
     }
   }, [])
-
+  let sortedChat;
   useMemo(() => {
     const chatsRef = database.ref(`chats/`);
     chatsRef.on('value', snapshot => {
-      debugger
       const allChats = snapshot.val();
       const chatStructure = { ...chats }
       keys(chatStructure).map((chat) => {
         chatStructure[chat]["messages"] = allChats[chat]
       })
       getConversationsRec(chatStructure)
+      sortedChat = keys(chats).sort((chat1, chat2) => {
+        const message1 = last(keys(chats[chat1]['messages']));
+        const message2 = last(keys(chats[chat2]['messages']));
+        console.log(message1, message2)
+      })
     })
   }, [chats.length])
 

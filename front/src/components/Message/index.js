@@ -17,7 +17,7 @@ export default function Message(props) {
   } = props;
 
 
-
+  const friendlyTimestampMessage = moment(date).format('LT');
   const friendlyTimestamp = moment().format('LLLL');
   return (
     <div className={[
@@ -37,10 +37,10 @@ export default function Message(props) {
         <div className="bubble my-message" title={friendlyTimestamp}>
           {
             type === 'Audio' ?
-            <AudiosMessage isAvailableSpeechToText={isAvailableSpeechToText} speechToText={speechToText} content={data.content} date={date} />
-            :
-            <>
-            <time dateTime={date} className="message-date" >{ date }</time>
+              <AudiosMessage isAvailableSpeechToText={isAvailableSpeechToText} speechToText={speechToText} content={data.content} date={date} />
+              :
+              <>
+                <time dateTime={date} className="message-date" >{friendlyTimestampMessage}</time>
                 <p className="message-content" >{data.content}</p>
               </>
           }
