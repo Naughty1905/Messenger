@@ -66,8 +66,8 @@ export default class AccountFields extends React.Component {
     }
 
     isFormValid() {
-        return this.isConpassValid(this.state.conpass) &&
-            this.isPasswordValid(this.state.password);
+        return this.isPasswordValid(this.state.password) &&
+            this.isConpassValid(this.state.conpass);
     }
 
     render() {
@@ -84,32 +84,30 @@ export default class AccountFields extends React.Component {
                                this.changePassword(e.target.value);
                                this.isPasswordValid(e.target.value);
                            }}/>
-                    {this.state.errorPassword ? <span>{this.state.errorPassword}</span> : null}
+                    {this.state.errorPassword ? <span className="label">{this.state.errorPassword}</span> : null}
                 </div>
                 <div id="login">
                     <input type="password" className="input-auth" id="conpass" ref={this.conpass}
                            placeholder="Confirm password"
                            defaultValue={this.props.fieldValues.conpass}
-                    onChange={e => {
-                    this.changeConpass(e.target.value);
-                    this.isConpassValid(e.target.value);
-                }}/>
-                    {this.state.errorConpass ? <span>{this.state.errorConpass}</span> : null}
+                           onChange={e => {
+                               this.changeConpass(e.target.value);
+                               this.isConpassValid(e.target.value);
+                           }}/>
+                    {this.state.errorConpass ? <span className="label">{this.state.errorConpass}</span> : null}
                 </div>
                 <div id='buttons'>
                     <button className="firstButt" onClick={this.props.previousStep}>Back</button>
                     <button className="firstButt"
-                            onClick={() =>
-                                this.props.nextStep(this.state)}>Save &amp; Continue
+                            onClick={() => {
+                                if (!this.isFormValid()) {
+                                    return
+                                }
+                                return this.props.nextStep(this.state)
+                            }}>Save &amp; Continue
                     </button>
                 </div>
             </div>
         )
-    }
-
-
-    nextStep() {
-        this.props.changeInfo(this.state);
-        this.props.nextStep();
     }
 }

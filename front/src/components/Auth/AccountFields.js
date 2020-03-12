@@ -47,11 +47,6 @@ export default class AccountFields extends React.Component {
             this.setState({errorName});
             return false;
         }
-        // if (name.length < 6) {
-        //     errorName = 'Длина имени не может быть меньше 6 символов';
-        //     this.setState({errorName});
-        //     return false;
-        // }
         this.setState({errorName});
         return true;
     }
@@ -98,7 +93,7 @@ export default class AccountFields extends React.Component {
     render() {
         return (
             <div className="form">
-                 <h2 id="fullName">Account Details</h2>
+                <h2 id="fullName">Account Details</h2>
                 <div id="email">
                     <input autoComplete='off' type="text" className="input-auth" id="fullName"
                            onChange={e => {
@@ -109,7 +104,7 @@ export default class AccountFields extends React.Component {
                            defaultValue={this.props.fieldValues.name}
                            value={this.state.name}
                     />
-                    {this.state.errorName ? <span>{this.state.errorName}</span> : null}
+                    {this.state.errorName ? <span className="label">{this.state.errorName}</span> : null}
                 </div>
                 <div id="login">
                     <input autoComplete='off' type="text" className="input-auth" id="login"
@@ -122,7 +117,7 @@ export default class AccountFields extends React.Component {
                            defaultValue={this.props.fieldValues.login}
                            value={this.state.login}
                     />
-                    {this.state.errorLogin ? <span>{this.state.errorLogin}</span> : null}
+                    {this.state.errorLogin ? <span className="label">{this.state.errorLogin}</span> : null}
                 </div>
                 <div id="password">
                     <input autoComplete='off' type="email" className="input-auth" id="login"
@@ -134,23 +129,21 @@ export default class AccountFields extends React.Component {
                            }}
                            value={this.state.email}
                     />
-                    {this.state.errorEmail ? <span>{this.state.errorEmail}</span> : null}
+                    {this.state.errorEmail ? <span className="label">{this.state.errorEmail}</span> : null}
                 </div>
                 <div id='buttons'>
                     <button className="firstButt"
-                            onClick={() => this.nextStep()}>
+                            onClick={() => {
+                                if (!this.isFormValid()) {
+                                    return
+                                }
+                                return this.props.nextStep(this.state)
+                            }}>
                         Save &amp; Continue
                     </button>
                 </div>
             </div>
         )
-    }
-
-
-    nextStep() {
-        if(!this.isFormValid()){return}
-        this.props.changeInfo(this.state);
-        this.props.nextStep();
     }
 }
 
