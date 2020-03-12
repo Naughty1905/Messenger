@@ -76,7 +76,7 @@ export default class AccountFields extends React.Component {
             <div className="form">
                 <h2 id="fullName">Password</h2>
 
-                <div id="email">
+                <div className="wrap-input-auth" id="email">
                     <input type="password" className="input-auth" id="password" ref={this.password}
                            placeholder="Enter password"
                            defaultValue={this.props.fieldValues.password}
@@ -84,9 +84,9 @@ export default class AccountFields extends React.Component {
                                this.changePassword(e.target.value);
                                this.isPasswordValid(e.target.value);
                            }}/>
-                    {this.state.errorPassword ? <span className="label">{this.state.errorPassword}</span> : null}
+                    {this.state.errorPassword ? <span className="labelIvan">{this.state.errorPassword}</span> : null}
                 </div>
-                <div id="login">
+                <div className="wrap-input-auth" id="login">
                     <input type="password" className="input-auth" id="conpass" ref={this.conpass}
                            placeholder="Confirm password"
                            defaultValue={this.props.fieldValues.conpass}
@@ -94,7 +94,7 @@ export default class AccountFields extends React.Component {
                                this.changeConpass(e.target.value);
                                this.isConpassValid(e.target.value);
                            }}/>
-                    {this.state.errorConpass ? <span className="label">{this.state.errorConpass}</span> : null}
+                    {this.state.errorConpass ? <span className="labelIvan">{this.state.errorConpass}</span> : null}
                 </div>
                 <div id='buttons'>
                     <button className="firstButt" onClick={this.props.previousStep}>Back</button>

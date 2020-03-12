@@ -94,7 +94,7 @@ export default class AccountFields extends React.Component {
         return (
             <div className="form">
                 <h2 id="fullName">Account Details</h2>
-                <div id="email">
+                <div className="wrap-input-auth" id="email">
                     <input autoComplete='off' type="text" className="input-auth" id="fullName"
                            onChange={e => {
                                this.changeName(e.target.value);
@@ -104,9 +104,9 @@ export default class AccountFields extends React.Component {
                            defaultValue={this.props.fieldValues.name}
                            value={this.state.name}
                     />
-                    {this.state.errorName ? <span className="label">{this.state.errorName}</span> : null}
+                    {this.state.errorName ? <span className="labelIvan">{this.state.errorName}</span> : null}
                 </div>
-                <div id="login">
+                <div className="wrap-input-auth" id="login">
                     <input autoComplete='off' type="text" className="input-auth" id="login"
                            onChange={e => {
                                this.changeLogin(e.target.value);
@@ -117,9 +117,9 @@ export default class AccountFields extends React.Component {
                            defaultValue={this.props.fieldValues.login}
                            value={this.state.login}
                     />
-                    {this.state.errorLogin ? <span className="label">{this.state.errorLogin}</span> : null}
+                    {this.state.errorLogin ? <span className="labelIvan">{this.state.errorLogin}</span> : null}
                 </div>
-                <div id="password">
+                <div className="wrap-input-auth" id="password">
                     <input autoComplete='off' type="email" className="input-auth" id="login"
                            placeholder="Enter email"
                            defaultValue={this.props.fieldValues.email}
@@ -129,7 +129,7 @@ export default class AccountFields extends React.Component {
                            }}
                            value={this.state.email}
                     />
-                    {this.state.errorEmail ? <span className="label">{this.state.errorEmail}</span> : null}
+                    {this.state.errorEmail ? <span className="labelIvan">{this.state.errorEmail}</span> : null}
                 </div>
                 <div id='buttons'>
                     <button className="firstButt"

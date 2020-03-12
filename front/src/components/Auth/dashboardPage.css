@@ -13,9 +13,11 @@
     .auth-wrap {
         grid-template-columns: 24% auto 24%
     }
-
 }
 
+span:hover {
+    color:coral;
+}
 
 .form {
     width: 100%;
@@ -34,21 +36,35 @@
     align-items: center;
 }
 
+.labelIvan{
+    color:coral;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.3rem;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.choose{
+
+}
 
 .wrap-input-auth {
     width: 100%;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .input-auth {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 100%;
     padding: 0px;
     box-sizing: border-box;
     border: none;
     padding-bottom: 0.2rem;
     border-bottom: 0.05rem solid rgb(58, 133, 198);
     font-size: 1.5rem;
+    text-align: center;
     background: rgb(29, 50, 70);
 }
 
@@ -128,8 +144,8 @@
     font-size: 1.2rem;
     font-weight: 500;
     color: rgb(58, 133, 198);
-    width: 8rem;
-    height: 3rem;
+    width: 12rem;
+    height: 5rem;
     border: 0.04rem solid rgb(58, 133, 198);
     background: transparent;
     border-radius: 0.30rem;
@@ -138,7 +154,7 @@
 }
 
 #buttons button:first-child {
-    margin-right: 0.55rem;
+    margin-right: 1.85rem;
 }
 
 .firstButt {
