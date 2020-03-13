@@ -1,0 +1,144 @@
+.message .timestamp {
+  display: flex;
+  justify-content: center;
+  color: white  ;
+  font-weight: 600;
+  font-size: 12px;
+  margin: 10px 0px;
+  text-transform: uppercase;
+}
+
+.message .bubble-container {
+  font-size: 14px;
+  display: flex;
+  overflow: hidden;
+}
+
+.message.mine .bubble-container {
+  justify-content: flex-end;
+}
+
+.message.start .bubble-container .bubble {
+  /* margin-top: 10px; */
+  border-top-left-radius: 10px;
+}
+
+.message.end .bubble-container .bubble {
+  border-bottom-left-radius: 10px;
+  /* margin-bottom: 10px; */
+}
+
+.message.mine.start .bubble-container .bubble {
+  margin-top: 10px;
+  border-top-right-radius: 10px;
+}
+
+.message.mine.end .bubble-container .bubble {
+  border-bottom-right-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.message .bubble-container .bubble {
+  color: white;
+  margin: 1px 0px;
+  background: rgb(24,37,51);
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 75%;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.message.mine .bubble-container .bubble {
+  background: rgb(43,82,120);
+  color: white;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 18vw;
+  padding: 0 1vw;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.my-message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.AudioTagContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-content {
+  padding: 0;
+  margin: 0;
+}
+
+.message-date {
+  font-size: 10px;
+  color: rgb(108,120,131);
+  /* color: rgba(0,0,0, .5); */
+  padding: 5px 0;
+  margin-right: 0.2rem;
+}
+
+.speechFromText-message {
+  padding: 0;
+  padding-top: 5px;
+  font-size: 13px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+
+@media only screen and (max-device-width: 480px) {
+  .message-content {
+    font-size: 1.1rem;
+    margin: 0.2rem;
+  }
+  .message-date {
+    color: rgb(196, 192, 192);
+    font-size: 0.7rem;
+    padding-bottom: 1px;
+  }
+  .my-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 8px !important;
+  }
+
+  .AudioTagContainer {
+    margin-left: 0.5rem;
+  }
+  .mine .bubble-container .my-message {
+    max-width: 80% !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center;
+    align-items: center !important;
+  }
+  .mine .bubble-container .my-message .icon-read-message {
+    margin-left: 5px;
+  }
+  .message.mine .bubble-container .bubble {
+    padding: 10px 8px 10px 15px !important;
+  }
+  .mine .bubble-container .my-message audio {
+    width: 17rem;
+  }
+  .mine .bubble-container .my-message .AudioTagContainer time {
+    padding-top: 0 !important;
+    margin-bottom: 3px !important;
+  }
+}

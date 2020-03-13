@@ -1,0 +1,69 @@
+.sideBar {
+  animation-name: ui-move;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  transition-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  margin-left: 100%;
+}
+
+
+@keyframes ui-move{
+  from {
+    margin-left: 100%;
+  }
+  75% {
+    margin-left: -1.5%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+
+.conversation-list {
+  display: flex;
+  flex-direction: column;
+}
+
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+li {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+
+.menu i {
+  padding-left: 30px;
+  width: 30px;
+  color: rgb(108,120,131);
+  font-size: 40px;
+  transition: all 0.1s;
+  margin-right: 20px;
+}
+
+
+
+span {
+  font-weight: 600;
+  justify-self: last baseline;
+  color: white;
+  vertical-align: auto;
+  white-space: nowrap;
+}
+
+li:hover {
+  background: rgb(32,43,54);
+  cursor: pointer;
+}
+
+span:hover {
+  color: rgb(108,120,131);
+}
