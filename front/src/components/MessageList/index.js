@@ -1,15 +1,25 @@
 import React, { useEffect, useRef } from 'react';
-import Compose from '../Compose';
-import Toolbar from '../Toolbar';
+
+
+//Modules
 import { keys } from 'lodash'
 import { database } from '../../Firebase';
+
+// Components
 import ToolbarButton from '../ToolbarButton';
+import Compose from '../Compose';
+import Toolbar from '../Toolbar';
+
 // Redux
 import { connect } from 'react-redux';
+
 //Redux actions
-import { setMessages, startChat } from '../../redux/actions/actions';
+import { startChat } from '../../redux/actions/chat-actions';
+import { setMessages } from '../../redux/actions/users-actions';
+
 // Styles
 import './MessageList.css';
+
 //Functions
 import renderMessages from './renderMessage';
 const MessageList = props => {

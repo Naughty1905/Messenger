@@ -4,9 +4,9 @@ import ContactListItem from '../ContactListItem';
 import Loader from '../Loader'
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
-import axios from 'axios';
 import { connect } from 'react-redux'
-import { setLoaderNav, getContactsReq } from '../../redux/actions/actions';
+import { getContactsReq } from '../../redux/actions/chat-actions';
+import { setLoaderNav } from '../../redux/actions/chat-env-actions';
 import './Contacs.css';
 const ContactList = (props) => {
   const [conversations, setConversations] = useState([]);
@@ -19,16 +19,16 @@ const ContactList = (props) => {
   return (
     <div className="conversation-list">
       <>
-      <Toolbar
-        title="Messenger"
-        leftItems={[
-          <ToolbarButton key="cog" icon="ion-ios-cog" />
-        ]}
-        rightItems={[
-          <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
-        ]}
-      />
-      <ConversationSearch />
+        <Toolbar
+          title="Messenger"
+          leftItems={[
+            <ToolbarButton key="cog" icon="ion-ios-cog" />
+          ]}
+          rightItems={[
+            <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
+          ]}
+        />
+        <ConversationSearch />
       </>
       {
         loader ? <Loader /> :

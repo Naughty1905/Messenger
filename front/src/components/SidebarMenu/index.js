@@ -4,7 +4,7 @@ import ToolbarButton from '../ToolbarButton';
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { setContacts } from '../../redux/actions/actions'
+import { setContacts } from '../../redux/actions/chat-env-actions'
 import './SidebarMenu.css'
 
 

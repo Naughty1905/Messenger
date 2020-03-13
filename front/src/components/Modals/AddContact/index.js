@@ -1,7 +1,8 @@
 import React from 'react'
 import './AddContact.css'
 import { connect } from 'react-redux'
-import { setModalAddContact, addNewContactReq } from '../../../redux/actions/actions'
+import {  addNewContactReq } from '../../../redux/actions/chat-actions';
+import { setModalAddContact } from '../../../redux/actions/chat-env-actions';
 
 
 const AddContact = (props) => {

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+
+// Components
 import ToolbarButton from '../ToolbarButton';
 import SpeechRecognition from '../SpeechRecognition/index';
+
+// Styles
 import './ComposeBlack.css';
 
 // Redux
 import { connect } from 'react-redux';
-import { getMessage } from '../../redux/actions/actions';
+import { getMessage } from '../../redux/actions/users-actions';
 
 const Compose = (props) => {
   const [recording, setRecording] = useState(false);

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import shave from 'shave';
 import { connect } from 'react-redux';
 import { keys, last, isEmpty } from 'lodash'
-import { startChatRec } from '../../redux/actions/actions'
+import { startChatRec } from '../../redux/actions/chat-actions'
 
 import './ConversationListItemBlack.css';
 

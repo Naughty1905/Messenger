@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import { REG_NEW_USER_REQUEST, LOGIN_REQUEST, ADD_NEW_CONTACT_REQUEST, GET_CONTACTS_REQUEST, START_CHAT_REQUEST, GET_CONVERSATIONS_REQUEST } from '../actions/action-types';
-import { regNewUserRec, setAuthError, addNewContactRec, getContactsRec, startChatRec, getConversationsRec } from "../actions/actions";
+import { regNewUserRec, setAuthError } from "../actions/users-actions";
+import { addNewContactRec, getContactsRec, startChatRec, getConversationsRec } from "../actions/chat-actions";
 import { fetchReg, fetchLogin, fetchAddNewContact, fetchAllFriends, fetchStartChat, fetchConversations, addReadMessages } from '../utils/authFetch';
 
 
@@ -49,7 +50,7 @@ function* fetchAllConctactsAsync(obj) {
 }
 
 function* fetchAddNewContactAsync(obj) {
-  const { login,isAuth } = obj;
+  const { login, isAuth } = obj;
   try {
     const data = yield call(fetchAddNewContact, login, isAuth)
     yield put(addNewContactRec(data));

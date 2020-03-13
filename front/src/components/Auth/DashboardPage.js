@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+
+//Redux
 import { connect } from 'react-redux'
-import { regNewUserReq, loginReq, setAuthError, getDataFromUserInputs } from '../../redux/actions/actions'
+import { regNewUserReq, loginReq, setAuthError } from '../../redux/actions/users-actions';
+import { getDataFromUserInputs } from '../../redux/actions/chat-actions';
+
+// Styles
 import './dashboardPage.css';
+
+// Components
 import AccountFields from './AccountFields';
 import AccountPassword from './AccountPassword';
 import Confirmation from './Confirmation';
@@ -35,12 +42,6 @@ const DashboardPage = (props) => {
     getDataFromUserInputs(state);
     nextStep()
   }
-
-  // const saveValues = function (field_value) {
-  //   return function () {
-  //     fieldValues = assign({}, fieldValues, field_value)
-  //   }()
-  // };
 
   const changeInfo = obj => {
     setInfo((info) => Object.assign(info, obj));

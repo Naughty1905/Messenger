@@ -1,13 +1,14 @@
 import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import ConversationSearch from '../ConversationSearch';
 import ConversationListItem from '../ConversationListItem';
-import Loader from '../Loader'
+import Loader from '../Loader';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { database } from '../../Firebase';
-import { keys, last } from 'lodash'
-import { setLoaderNav, getConversationsReq, getConversationsRec } from '../../redux/actions/actions';
+import { keys, last } from 'lodash';
+import { getConversationsReq, getConversationsRec } from '../../redux/actions/chat-actions';
+import { setLoaderNav } from '../../redux/actions/chat-env-actions';
 
 import './ConversationList.css';
 
@@ -30,12 +31,10 @@ const ConversationList = (props) => {
       chatsRef.on('value', snapshot => {
         const allChats = snapshot.val();
         const chatStructure = { ...chats }
-        debugger
         keys(chatStructure).map((chat) => {
           chatStructure[chat]["messages"] = allChats[chat]
         })
         setSortedChats(keys(chatStructure).sort((chat1, chat2) => {
-          debugger
           const message1 = last(keys(chatStructure[chat1]['messages']));
           const message2 = last(keys(chatStructure[chat2]['messages']));
           return chatStructure[chat2]['messages'][message2].date - chatStructure[chat1]['messages'][message1].date

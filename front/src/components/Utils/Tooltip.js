@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './Tooltip.css'
-import { setAuthError } from '../../redux/actions/actions'
+import { setAuthError } from '../../redux/actions/users-actions'
 import { connect } from 'react-redux'
 
 const Tooltip = (props) => {

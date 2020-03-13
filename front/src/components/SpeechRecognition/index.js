@@ -1,6 +1,10 @@
 import React from 'react';
+
+// Redux
 import { connect } from 'react-redux';
-import { getMessage } from '../../redux/actions/actions';
+import { getMessage } from '../../redux/actions/users-actions';
+
+// Modules
 import { storage } from '../../Firebase';
 
 // Seech recorder

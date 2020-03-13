@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './ToolbarButtonBlack.css';
-import { setSidebar, setConversations, setContacts, setModalAddContact } from '../../redux/actions/actions';
+import { setSidebar, setConversations, setContacts, setModalAddContact } from '../../redux/actions/chat-env-actions';
 
 const ToolbarButton = (props) => {
   const { setSidebar, isNav, isConversation, setConversations, setModalAddContact, startRecording, stopRecording } = props;
