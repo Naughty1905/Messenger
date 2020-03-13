@@ -3,14 +3,14 @@ import 'firebase/storage';
 import 'firebase/database'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDF39_aZ0-iCye_3Tp_IM_8NTZ6_Ug8wIQ",
-  authDomain: "vue-elbrus-crm.firebaseapp.com",
-  databaseURL: "https://vue-elbrus-crm.firebaseio.com",
-  projectId: "vue-elbrus-crm",
-  storageBucket: "vue-elbrus-crm.appspot.com",
-  messagingSenderId: "759948209075",
-  appId: "1:759948209075:web:9fae0b93c982e62c2f79c6",
-  measurementId: "G-8CXQZCPMX0"
+  apiKey: process.env.REACT_APP_DB_APIKEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
 firebase.initializeApp(firebaseConfig);
