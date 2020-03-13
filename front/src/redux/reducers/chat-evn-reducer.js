@@ -4,7 +4,8 @@ import {
   SET_CONTACTS,
   SET_CONVERSATIONS,
   SET_MODAL_ADD_CONTACT,
-  START_CHAT
+  START_CHAT,
+  SET_CHAT
 } from '../actions/action-types';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
   isContact: false,
   isConversation: true,
   isModalAddContact: false,
-  isAvailableToWrite: false
+  isAvailableToWrite: false,
+  isChat: false
 };
 
 const chatEnvReducer = (state = initialState, action) => {
@@ -47,10 +49,17 @@ const chatEnvReducer = (state = initialState, action) => {
         ...state,
         isModalAddContact: !state.isModalAddContact
       }
-    case START_CHAT: 
-    return {
-      ...state,
-      isAvailableToWrite: !!action.payload
+    case START_CHAT:
+      return {
+        ...state,
+        isAvailableToWrite: !!action.payload
+      }
+    case SET_CHAT: {
+      return {
+        ...state,
+        isChat: !state.isChat,
+        isConversation: !state.isConversation
+      }
     }
     default:
       return state;

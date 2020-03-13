@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { isMobile } from 'react-device-detect';
 
 //Modules
 import { keys } from 'lodash'
@@ -54,6 +55,9 @@ const MessageList = props => {
     <div className="message-list">
       <Toolbar
         title="Conversation Title"
+        leftItems={
+          isMobile && <ToolbarButton key="phone" icon="ion-ios-arrow-back" />
+        }
         rightItems={[
           <ToolbarButton key="info" icon="ion-ios-information-circle-outline" />,
           <ToolbarButton key="video" icon="ion-ios-videocam" />,

@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './ToolbarButtonBlack.css';
 import { setSidebar, setConversations, setContacts, setModalAddContact } from '../../redux/actions/chat-env-actions';
+import { setChat } from '../../redux/actions/chat-actions';
 
 const ToolbarButton = (props) => {
-  const { setSidebar, isNav, isConversation, setConversations, setModalAddContact, startRecording, stopRecording } = props;
+  const { setSidebar, isNav, isConversation, setConversations, setModalAddContact, startRecording, stopRecording, setChat } = props;
 
 
   const showBtn = (event) => {
@@ -17,6 +18,8 @@ const ToolbarButton = (props) => {
       }
     } else if (btnName === 'toolbar-button ion-ios-add-circle-outline') {
       setModalAddContact()
+    } else if (btnName === 'toolbar-button ion-ios-arrow-back') {
+      setChat()
     }
   }
 
@@ -35,4 +38,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { setSidebar, setConversations, setContacts, setModalAddContact })(ToolbarButton)
+export default connect(mapStateToProps, { setSidebar, setConversations, setContacts, setModalAddContact, setChat })(ToolbarButton)

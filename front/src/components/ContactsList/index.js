@@ -19,8 +19,9 @@ import './Contacs.css';
 const ContactListItem = React.lazy(() => import('../ContactListItem'))
 
 const ContactList = (props) => {
-  // const [conversations, setConversations] = useState([]);
+
   const { loader, getContactsReq, isAuth, friends } = props;
+
   useEffect(() => {
     getContactsReq(isAuth)
   }, [])
@@ -42,8 +43,8 @@ const ContactList = (props) => {
       </>
       {
         loader ? <Loader /> :
-          friends.map((friend, index) =>
-            <Suspense fallback={<div>Loading...</div>}><ContactListItem
+          friends.map((friend) =>
+            <Suspense fallback={<Loader />}><ContactListItem
               key={performance.now()}
               friend={friend}
             /></Suspense>

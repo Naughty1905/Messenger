@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 
 // Components
 import ConversationSearch from '../ConversationSearch';
@@ -74,10 +74,11 @@ const ConversationList = (props) => {
         {
           loader ? <Loader /> :
             sortedChats.map((chat) =>
-              keys(chats[chat]['messages']).length && <ConversationListItem
+              keys(chats[chat]['messages']).length &&
+              <Suspense key={performance.now()} fallback={<div>Loading...</div>}><ConversationListItem
                 key={performance.now()}
                 chat={chats[chat]}
-              />
+              /></Suspense>
             )
         }
       </div>

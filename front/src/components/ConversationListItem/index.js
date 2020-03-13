@@ -2,7 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import shave from 'shave';
 import { connect } from 'react-redux';
 import { keys, last, isEmpty } from 'lodash'
-import { startChatRec } from '../../redux/actions/chat-actions'
+// import { startChatRec } from '../../redux/actions/chat-actions'
+import { startChatRec, setChat } from '../../redux/actions/chat-actions'
+import { isMobile } from 'react-device-detect';
 
 import './ConversationListItemBlack.css';
 
@@ -12,7 +14,7 @@ const ConversationListItem = (props) => {
   })
 
   const chatItem = useRef(null);
-  const { startChatRec, currentChat, chats, user } = props;
+  const { startChatRec, currentChat, chats, user, setChat } = props;
 
   const { _id } = props.chat;
 
@@ -24,6 +26,9 @@ const ConversationListItem = (props) => {
 
   const startChat = () => {
     startChatRec(chat);
+    if (isMobile) {
+      setChat()
+    }
   }
 
   useEffect(() => {
@@ -66,4 +71,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default connect(mapStateToProps, { startChatRec })(ConversationListItem)
+export default connect(mapStateToProps, { startChatRec, setChat })(ConversationListItem)

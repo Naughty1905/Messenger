@@ -14,7 +14,8 @@ import {
   SET_RECORDING,
 
   GET_DATA_FROM_USER_INPUTS,
-  START_CHAT
+  START_CHAT,
+  SET_CHAT
 } from './action-types';
 
 
@@ -76,9 +77,12 @@ export const getDataFromUserInputs = (payload) => ({
   payload
 })
 
-export const startChat = payload => {
-  return {
-    type: START_CHAT,
-      payload
-  }
-}
+export const startChat = payload => ({
+  type: START_CHAT,
+  payload
+})
+
+
+export const setChat = () => ({
+  type: SET_CHAT
+})
