@@ -39,7 +39,9 @@ const ConversationList = (props) => {
         setSortedChats(keys(chatStructure).sort((chat1, chat2) => {
           const message1 = last(keys(chatStructure[chat1]['messages']));
           const message2 = last(keys(chatStructure[chat2]['messages']));
-          return chatStructure[chat2]['messages'][message2].date - chatStructure[chat1]['messages'][message1].date
+          if (!!message1 && !!message2) {
+            return chatStructure[chat2]['messages'][message2].date - chatStructure[chat1]['messages'][message1].date
+          }
         }))
         getConversationsRec(chatStructure)
       })
