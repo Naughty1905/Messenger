@@ -32,13 +32,14 @@ app.use('/users', usersRouter);
 app.use('/chats', chatsRouter);
 
 // Static assets for production
+const publicPath = path.join(__dirname, 'build');
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../front/build'))
+// if (process.env.NODE_ENV === 'production') {
+  // app.use(express.static('../front/build'))
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../front', 'build', 'index.html'))
-  })
-}
+  app.get('*', (res, req) => {
+    res.sendfile(path.join(publicPath, 'index.html'));
+  });
+// }
 
 app.listen(PORT, () => console.log(`Server has started on ${PORT}`));

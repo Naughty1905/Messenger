@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "npx nodemon server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix ../front && npm run build --prefix ../front"
+    "heroku-postbuild": "cd front && npm install && npm run build"
   },
   "keywords": [
     "chat",
