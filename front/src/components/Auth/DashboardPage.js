@@ -15,12 +15,12 @@ import Confirmation from './Confirmation';
 import Success from './Success';
 import SurveyFields from './SurveyFields'
 
-const assign = require('object-assign');
+// const assign = require('object-assign');
 
 const DashboardPage = (props) => {
   const [isReg, setIsReg] = useState(false);
   const [step, setStep] = useState(1);
-  const { regNewUserReq, loginReq, setAuthError, signUpInfo, getDataFromUserInputs } = props;
+  const { regNewUserReq, loginReq, signUpInfo, getDataFromUserInputs } = props;
   const [info, setInfo] = useState({});
 
   const loginHandler = (event) => {
@@ -86,6 +86,8 @@ const DashboardPage = (props) => {
           submitRegistration={submitRegistration} />
       case 5:
         return <Success fieldValues={fieldValues} />
+      default:
+        return
     }
   };
 

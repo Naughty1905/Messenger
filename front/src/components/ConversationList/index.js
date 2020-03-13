@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ConversationSearch from '../ConversationSearch';
 import ConversationListItem from '../ConversationListItem';
 import Loader from '../Loader';
@@ -32,12 +32,14 @@ const ConversationList = (props) => {
         const allChats = snapshot.val();
         const chatStructure = { ...chats }
         keys(chatStructure).map((chat) => {
-          chatStructure[chat]["messages"] = allChats[chat]
+          return chatStructure[chat]["messages"] = allChats[chat]
         })
         setSortedChats(keys(chatStructure).sort((chat1, chat2) => {
           const message1 = last(keys(chatStructure[chat1]['messages']));
           const message2 = last(keys(chatStructure[chat2]['messages']));
-          return chatStructure[chat2]['messages'][message2].date - chatStructure[chat1]['messages'][message1].date
+          if (!!message1 && !!message2) {
+            return chatStructure[chat2]['messages'][message2].date - chatStructure[chat1]['messages'][message1].date
+          }
         }))
         getConversationsRec(chatStructure)
       })

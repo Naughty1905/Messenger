@@ -43,14 +43,12 @@ const MessageList = props => {
       const unreadMessages = keysOfMessages.reverse().filter(key => !messages[key].isSeen && messages[key].user !== user);
       unreadMessages.map(unreadMessage => {
         messages[unreadMessage].isSeen = true;
-        database.ref(`chats/${chat}/${unreadMessage}`).update(messages[unreadMessage]);
+       return database.ref(`chats/${chat}/${unreadMessage}`).update(messages[unreadMessage]);
       })
       startChat(chat)
       setMessages(messages)
     }
   }, [chat, message, chats])
-
-
 
   useEffect(scrollToBottom, [messages]);
   return (

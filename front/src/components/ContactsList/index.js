@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ConversationSearch from '../ConversationSearch';
 import ContactListItem from '../ContactListItem';
 import Loader from '../Loader'
@@ -9,8 +9,8 @@ import { getContactsReq } from '../../redux/actions/chat-actions';
 import { setLoaderNav } from '../../redux/actions/chat-env-actions';
 import './Contacs.css';
 const ContactList = (props) => {
-  const [conversations, setConversations] = useState([]);
-  const { setLoaderNav, loader, getContactsReq, isAuth, friends } = props;
+  // const [conversations, setConversations] = useState([]);
+  const { loader, getContactsReq, isAuth, friends } = props;
   useEffect(() => {
     getContactsReq(isAuth)
   }, [])

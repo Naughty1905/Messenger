@@ -10,7 +10,7 @@ import './SidebarMenu.css'
 
 const SidebarMenu = (props) => {
 
-  const { setContacts, history } = props;
+  const { setContacts } = props;
 
   const changeSidebar = (event) => {
     event.stopPropagation();

@@ -12,7 +12,7 @@ const ConversationListItem = (props) => {
   })
 
   const chatItem = useRef(null);
-  const { startChatRec, currentChat, isAuth, chats, user } = props;
+  const { startChatRec, currentChat, chats, user } = props;
 
   const { _id } = props.chat;
 
