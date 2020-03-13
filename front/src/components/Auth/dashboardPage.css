@@ -11,7 +11,7 @@
 
 @media (max-width: 1440px) {
     .auth-wrap {
-        grid-template-columns: 24% auto 24%
+        grid-template-columns: 1fr 5fr 1fr;
     }
 }
 
@@ -28,7 +28,7 @@ span:hover {
     grid-column-start: 2;
     border-radius: 0.5rem;
     display: grid;
-    grid-template-columns: 10% auto 10%;
+    grid-template-columns: 1fr 5fr 1fr;
     grid-template-rows: 5% auto auto auto auto auto 15%;
     grid-column-gap: 1px;
     grid-row-gap: 1px;
@@ -56,11 +56,12 @@ input{
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: stretch;
 }
 
 .input-auth {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    width: 100%;
+    /* width: 100%; */
     padding: 0px;
     box-sizing: border-box;
     border: none;
@@ -106,7 +107,6 @@ input{
 
 #login {
     color: white;
-
     align-self: center;
     justify-self: center;
     grid-row-start: 4;
@@ -226,7 +226,7 @@ input{
     margin-top: 10px;
 }
 
-@media (max-width: 376px) {
+@media (max-width: 440px) {
     .form {
         display: flex;
         width: 100%;

@@ -15,7 +15,7 @@ class Confirmation extends React.Component {
           <div><b>Email:</b> {this.props.signUpInfo.email}</div>
         </div>
         <div id="password">
-          <div><img src={this.props.signUpInfo.avatar} /></div>
+          <div><img src={this.props.signUpInfo.avatar} alt="IMG" /></div>
           <div className="avatarConf"><b>Avatar</b></div>
         </div>
         <div id='buttons' >
