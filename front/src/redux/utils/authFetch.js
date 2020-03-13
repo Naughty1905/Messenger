@@ -1,9 +1,9 @@
- 
+
 import axios from "axios";
 import { database } from '../../Firebase';
 
 
-export const fetchReg = async (login, name, email, password, avatar, url = "http://localhost:5000/users") => {
+export const fetchReg = async (login, name, email, password, avatar, url = "/users") => {
   const { data } = await axios.post(url, {
     login,
     name,
@@ -19,7 +19,7 @@ export const fetchReg = async (login, name, email, password, avatar, url = "http
 };
 
 
-export const fetchLogin = async (login, password, url = "http://localhost:5000/users/login") => {
+export const fetchLogin = async (login, password, url = "/users/login") => {
   const { data } = await axios.post(url, {
     login,
     password
@@ -31,7 +31,7 @@ export const fetchLogin = async (login, password, url = "http://localhost:5000/u
   return data;
 };
 
-export const fetchAllFriends = async (isAuth, url = "http://localhost:5000/users/contacts/all") => {
+export const fetchAllFriends = async (isAuth, url = "/users/contacts/all") => {
   const token = isAuth
   const response = await fetch(url, {
     method: 'post',
@@ -45,7 +45,7 @@ export const fetchAllFriends = async (isAuth, url = "http://localhost:5000/users
 };
 
 
-export const fetchAddNewContact = async (login, isAuth, url = "http://localhost:5000/chats") => {
+export const fetchAddNewContact = async (login, isAuth, url = "/chats") => {
   const token = isAuth
   debugger
   try {
@@ -55,7 +55,7 @@ export const fetchAddNewContact = async (login, isAuth, url = "http://localhost:
         "Authorization": `${token}`,
         "content-type": "application/json",
       },
-      body: JSON.stringify({login})
+      body: JSON.stringify({ login })
     })
     database.ref(`/chats/${data._id}`).push({})
     return data;
@@ -67,7 +67,7 @@ export const fetchAddNewContact = async (login, isAuth, url = "http://localhost:
 
 export const fetchStartChat = async (chat) => {
   const token = localStorage.getItem('token');
-  const response = await fetch(`http://localhost:5000/chats/?id=${chat}`, {
+  const response = await fetch(`/chats/?id=${chat}`, {
     method: 'get',
     headers: {
       "Authorization": `${token}`,
@@ -78,7 +78,7 @@ export const fetchStartChat = async (chat) => {
   return data;
 };
 
-export const fetchConversations = async (isAuth, url = "http://localhost:5000/chats/conversations") => {
+export const fetchConversations = async (isAuth, url = "/chats/conversations") => {
   const token = isAuth;
   const response = await fetch(url, {
     method: 'get',
@@ -93,7 +93,7 @@ export const fetchConversations = async (isAuth, url = "http://localhost:5000/ch
   return data;
 };
 
-export const addReadMessages = async (chat, isAuth, url = "http://localhost:5000/chats/seen") => {
+export const addReadMessages = async (chat, isAuth, url = "/chats/seen") => {
   const token = isAuth;
   try {
     const response = await fetch(url, {

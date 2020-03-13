@@ -2,13 +2,13 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const fileUpload = require('express-fileupload');
+const path = require('path');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
 
 // DB conncetion
-const DB = require('../DB/dbConnection');
+const DB = require('./src/DB/dbConnection');
 DB()
   .then(() => console.log('DB connected'))
   .catch(() => console.error('Errors'));
@@ -30,5 +30,11 @@ app.use(cookieParser());
 // Routs
 app.use('/users', usersRouter);
 app.use('/chats', chatsRouter);
+
+// Static assets for production
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(''))
+}
 
 app.listen(PORT, () => console.log(`Server has started on ${PORT}`));

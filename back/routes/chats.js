@@ -3,11 +3,11 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 
 // Models
-const Chat = require('../../models/chat');
-const User = require('../../models/user');
+const Chat = require('../src/models/chat');
+const User = require('../src/models/user');
 
 // isAuth
-const auth = require('../../middleware/auth');
+const auth = require('../src/middleware/auth');
 
 router.get('/', auth, async (req, res) => {
   const { id } = req.query;

@@ -1,11 +1,11 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../../models/user');
-const Chat = require('../../models/chat')
+const User = require('../src/models/user');
+const Chat = require('../src/models/chat')
 
 const router = express.Router();
-const auth = require('../../middleware/auth');
+const auth = require('../src/middleware/auth');
 
 // Create new user
 router.post('/', async (req, res) => {
