@@ -79,6 +79,7 @@ export default class AccountFields extends React.Component {
                 <div className="wrap-input-auth" id="email">
                     <input type="password" className="input-auth" id="password" ref={this.password}
                            placeholder="Enter password"
+                           autoComplete='off'
                            defaultValue={this.props.fieldValues.password}
                            onChange={e => {
                                this.changePassword(e.target.value);
@@ -89,6 +90,7 @@ export default class AccountFields extends React.Component {
                 <div className="wrap-input-auth" id="login">
                     <input type="password" className="input-auth" id="conpass" ref={this.conpass}
                            placeholder="Confirm password"
+                           autoComplete='off'
                            defaultValue={this.props.fieldValues.conpass}
                            onChange={e => {
                                this.changeConpass(e.target.value);
@@ -98,7 +100,7 @@ export default class AccountFields extends React.Component {
                 </div>
                 <div id='buttons'>
                     <button className="firstButt" onClick={this.props.previousStep}>Back</button>
-                    <button className="firstButt"
+                    <button className="seconButt"
                             onClick={() => {
                                 if (!this.isFormValid()) {
                                     return
