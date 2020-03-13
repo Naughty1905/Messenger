@@ -1,6 +1,9 @@
 {
   "name": "back",
   "version": "1.0.0",
+  "engines": {
+    "node": "13.5.0"
+  },
   "description": "Web socket real time chat",
   "main": "index.js",
   "scripts": {
