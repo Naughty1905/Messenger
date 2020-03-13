@@ -15,6 +15,7 @@ const AddContact = (props) => {
     const login = target[1].value;
     const number = target[2].value;
     addNewContactReq(fullname, login, number, isAuth);
+    debugger
     setModalAddContact()
   }
 

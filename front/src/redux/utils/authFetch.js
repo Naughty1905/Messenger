@@ -47,6 +47,7 @@ export const fetchAllFriends = async (isAuth, url = "http://localhost:5000/users
 
 export const fetchAddNewContact = async (login, isAuth, url = "http://localhost:5000/chats") => {
   const token = isAuth
+  debugger
   try {
     const { data } = await fetch(url, {
       method: 'post',

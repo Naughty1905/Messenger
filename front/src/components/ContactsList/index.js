@@ -1,13 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import ConversationSearch from '../ConversationSearch';
-import ContactListItem from '../ContactListItem';
+
+//Components
 import Loader from '../Loader'
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
+
+// Redux
 import { connect } from 'react-redux'
+
+// Actions
 import { getContactsReq } from '../../redux/actions/chat-actions';
 import { setLoaderNav } from '../../redux/actions/chat-env-actions';
+
+// Styles
 import './Contacs.css';
+
+const ContactListItem = React.lazy(() => import('../ContactListItem'))
+
 const ContactList = (props) => {
   // const [conversations, setConversations] = useState([]);
   const { loader, getContactsReq, isAuth, friends } = props;
@@ -33,10 +43,11 @@ const ContactList = (props) => {
       {
         loader ? <Loader /> :
           friends.map((friend, index) =>
-            <ContactListItem
+            <Suspense fallback={<div>Loading...</div>}><ContactListItem
               key={performance.now()}
               friend={friend}
-            />
+            /></Suspense>
+
           )
       }
     </div>

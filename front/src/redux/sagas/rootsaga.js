@@ -51,6 +51,7 @@ function* fetchAllConctactsAsync(obj) {
 
 function* fetchAddNewContactAsync(obj) {
   const { login, isAuth } = obj;
+  debugger
   try {
     const data = yield call(fetchAddNewContact, login, isAuth)
     yield put(addNewContactRec(data));

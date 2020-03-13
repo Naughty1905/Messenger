@@ -10,6 +10,7 @@ const auth = require('../../middleware/auth');
 // Create new user
 router.post('/', async (req, res) => {
   const { login, email, password, name, avatar } = req.body;
+  console.log(login)
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ login, email, password: hashedPassword, fullName: name, avatar });
@@ -40,17 +41,6 @@ router.post('/login', async (req, res) => {
 
 })
 
-// Не используется
-// router.get('/contacts/new', async (req, res) => {
-//   const { login } = req.body;
-//   try {
-//     const newContact = await User.findOne({ login });
-//     console.log(newContact)
-//     res.status(200).json(newContact);
-//   } catch (error) {
-//     res.status(404).send(error);
-//   }
-// })
 
 router.post('/contacts/all', auth, async (req, res) => {
   const userId = req.user._id;

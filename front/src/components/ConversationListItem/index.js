@@ -36,7 +36,7 @@ const ConversationListItem = (props) => {
 
 
   return (
-    <div ref={chatItem} onClick={startChat}>
+    <div className="conversation-body" ref={chatItem} onClick={startChat}>
       <img className="conversation-photo" src={members[0].avatar} alt="conversation" />
       <div className="conversation-info">
         <h1 className="conversation-title">{members[0].name}</h1>

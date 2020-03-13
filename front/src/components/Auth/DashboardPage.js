@@ -48,8 +48,6 @@ const DashboardPage = (props) => {
   }
 
   const changeInfo = obj => {
-    debugger
-    console.log('ya tut', obj);
     setInfo((info) => Object.assign(info, obj));
   }
   const nextStep = function () {
@@ -123,7 +121,7 @@ const DashboardPage = (props) => {
   );
 };
 const mapStateToProps = (state) => ({
-  signUpInfo: state.signUpInfo
+  signUpInfo: state.userReducer.signUpInfo
 })
 export default connect(
   mapStateToProps,

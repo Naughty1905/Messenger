@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from 'react';
+
+// Components
 import ConversationSearch from '../ConversationSearch';
-import ConversationListItem from '../ConversationListItem';
 import Loader from '../Loader';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
-import { connect } from 'react-redux';
+
+// Modules
 import { database } from '../../Firebase';
 import { keys, last } from 'lodash';
+
+// Redux
+import { connect } from 'react-redux';
+
+// Actions
 import { getConversationsReq, getConversationsRec } from '../../redux/actions/chat-actions';
 import { setLoaderNav } from '../../redux/actions/chat-env-actions';
 
+// Styles
 import './ConversationList.css';
+
+const ConversationListItem = React.lazy(() => import('../ConversationListItem'))
+
 
 const ConversationList = (props) => {
   const { loader, isAuth, getConversationsReq, chats, getConversationsRec } = props;
