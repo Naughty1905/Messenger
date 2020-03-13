@@ -91,26 +91,26 @@ export default class SurveyFields extends React.Component {
         return (
             <div className="form">
                 <h2 id="fullName">Choose Avatar</h2>
-                <div id="password">
+                <div id="login">
                     <Avatar style={{
                         border: "2px",
                         dashed: "rgb(151, 151, 151)",
                         borderRadius: "8px",
                         textAlign: "center",
-                        width: "100%",
-                        height: "100%"
+                        width: "90%",
+                        height: "90%"
                     }}
-                            width={390}
+                            width={350}
                             height={295}
                             onCrop={this.onCrop}
                             onClose={this.onClose}
                             onBeforeFileLoad={this.onBeforeFileLoad}
                             src={this.state.preview}
                     />
-                    <h6 className="choose" id="email">You can skip this step</h6>
+                    <h6 className="choose" id="email"  style={{gridRowStart: '5'}}>You can skip this step</h6>
                 </div>
                 <div id="buttons">
-                    <button className="firstButt" onClick={this.props.previousStep}>Back</button>
+                    <button className="firstButtAvatar" onClick={this.props.previousStep}>Back</button>
                     <button className="secondButt" onClick={this.lastStep}>Save &amp;
                         Continue
                     </button>

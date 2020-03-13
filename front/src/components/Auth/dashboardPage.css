@@ -9,14 +9,14 @@
     grid-row-gap: 1px;
 }
 
-@media  (max-width: 1440px) {
+@media (max-width: 1440px) {
     .auth-wrap {
         grid-template-columns: 24% auto 24%
     }
 }
 
 span:hover {
-    color:coral;
+    color: coral;
 }
 
 .form {
@@ -32,23 +32,26 @@ span:hover {
     grid-template-rows: 5% auto auto auto auto auto 15%;
     grid-column-gap: 1px;
     grid-row-gap: 1px;
-    justify-items: center;
-    align-items: center;
 }
 
-.labelIvan{
-    color:coral;
+.labelIvan {
+    color: coral;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1.3rem;
     padding: 10px;
     font-weight: 500;
 }
 
-.choose{
+.choose {
 
 }
 
+input{
+    color: white;
+}
+
 .wrap-input-auth {
+    color: white;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -130,7 +133,7 @@ span:hover {
 
 #buttons {
     position: relative;
-    align-self: start;
+    align-self: center;
     grid-row-start: 7;
     grid-column-start: 2;
     display: flex;
@@ -153,9 +156,9 @@ span:hover {
     align-items: center;
 }
 
-#buttons button:first-child {
-    margin-right: 1.85rem;
-}
+/*#buttons button:first-child {*/
+/*    !*margin-right: 1.85rem;*!*/
+/*}*/
 
 .firstButt {
     color: #2196f3;
@@ -196,6 +199,106 @@ span:hover {
     flex-direction: column;
     justify-items: center;
     align-items: center;
-
 }
 
+input{
+    display: block;
+    text-align: center;
+}
+
+::-webkit-input-placeholder {
+    text-align:center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    text-align:center;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    text-align:center;
+}
+
+:-ms-input-placeholder {
+    text-align:center;
+}
+
+.avatarConf{
+    margin-top: 10px;
+}
+
+@media (max-width: 376px) {
+    .form {
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+    }
+
+    .auth-wrap{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .wrap-input-auth{
+        justify-content: initial;
+        align-items: center;
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+    }
+
+    .input-auth{
+        display: flex;
+        width:70%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #buttons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .firstButt {
+        color: #2196f3;
+        margin-bottom: 20px;
+        margin-top: 60px;
+    }
+
+    .labelIvan {
+        display: inline-block;
+        width:80%;
+        color: coral;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 0.7rem;
+        padding: 10px;
+        font-weight: 500;
+    }
+
+    .secondButt{
+        margin-top: 0px;
+    }
+
+    .firstButtAvatar{
+        color: #2196f3;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .choose {
+        margin-bottom: 15px;
+    }
+
+    .avatarConf{
+        margin-top: 5px;
+    }
+
+    .confirmReg{
+        font-size: 2rem;
+    }
+}

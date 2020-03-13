@@ -96,13 +96,12 @@ const DashboardPage = (props) => {
                 !isReg ?
                     <form onSubmit={loginHandler} method="POST" className="form">
                         <div className="wrap-input-auth" id="login">
-                            <input autoComplete='none' name='login' type="search" className="input-auth"
+                            <input autoComplete='off' name='login' type="search" className="input-auth"
                                    placeholder='Login'/>
                         </div>
                         <div className="wrap-input-auth" id="password">
-                            <input name='password' type="password" className="input-auth" placeholder='Password'/>
+                            <input autoComplete='off' name='password' type="password" className="input-auth" placeholder='Password'/>
                         </div>
-                        <div className="conpass"></div>
                         <div id='buttons' style={{gridRowStart: '6'}}>
                             <button className='firstButt' type='submit'>Login
                             </button>
@@ -112,8 +111,8 @@ const DashboardPage = (props) => {
                             }}>Sign Up
                             </button>
                         </div>
-                    </form> :
-
+                    </form>
+                    :
                     <>
                         {showStep()}
                     </>
