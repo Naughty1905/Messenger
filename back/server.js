@@ -7,6 +7,8 @@ require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
 
+const publicPath = path.join(__dirname, 'build');
+
 // DB conncetion
 const DB = require('./src/DB/dbConnection');
 DB()
@@ -32,7 +34,6 @@ app.use('/users', usersRouter);
 app.use('/chats', chatsRouter);
 
 // Static assets for production
-const publicPath = path.join(__dirname, 'build');
 
 // if (process.env.NODE_ENV === 'production') {
   // app.use(express.static('../front/build'))
