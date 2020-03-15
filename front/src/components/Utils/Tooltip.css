@@ -1,0 +1,42 @@
+.authError {
+  position: absolute;
+  z-index: 10;
+  width: 12rem;
+  height: 4rem;
+  right: 4.4rem;
+  top: 5rem;
+  border-radius: 0.35rem;
+  background-color: white;
+  animation-name: ui-fade;
+  animation-duration: 1.2s;
+  animation-iteration-count: 1;
+  transition-timing-function: linear;
+  animation-fill-mode: forwards;
+  background: rgb(29,50,70);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes ui-fade{
+  from {
+    opacity: 0;
+    top: 10rem;
+    box-shadow: 0 0 5rem hsl(344, 82%, 35%);
+  }
+  50% {
+    box-shadow: 0 0 3rem hsl(344, 82%, 35%);
+  }
+  to {
+    opacity: 1;
+    top: 4.5rem;
+  }
+}
+
+.authError p {
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: hsl(344, 82%, 35%);
+  text-transform: capitalize;
+  letter-spacing: 0.15rem;
+}
