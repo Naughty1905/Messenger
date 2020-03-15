@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import shave from 'shave';
 import { connect } from 'react-redux';
 import { keys, last, isEmpty } from 'lodash'
 // import { startChatRec } from '../../redux/actions/chat-actions'
@@ -9,9 +8,6 @@ import { isMobile } from 'react-device-detect';
 import './ConversationListItemBlack.css';
 
 const ConversationListItem = (props) => {
-  useEffect(() => {
-    shave('.conversation-snippet', 20);
-  })
 
   const chatItem = useRef(null);
   const { startChatRec, currentChat, chats, user, setChat } = props;

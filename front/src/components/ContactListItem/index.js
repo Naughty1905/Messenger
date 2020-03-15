@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react';
 
-// Npm modules
-import shave from 'shave';
-
 // Redux
 import { connect } from 'react-redux';
 import { setConversations } from '../../redux/actions/chat-env-actions';
@@ -14,10 +11,6 @@ import './ContactListItem.css';
 const ContactListItem = (props) => {
 
   const { startChatRec, setConversations } = props;
-
-  useEffect(() => {
-    shave('.conversation-snippet', 20);
-  })
 
   const { fullName, chat, friendId } = props.friend;
 
