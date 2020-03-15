@@ -5,8 +5,5 @@
   "scripts": {
     "start": "cd back && npm install && npm start",
     "heroku-postbuild": "cd front && npm install && npm run build && cp -r build ../back/"
-  },
-  "dependencies": {
-    "serialize-javascript": "^3.0.0"
   }
 }
