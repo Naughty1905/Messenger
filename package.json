@@ -1,6 +1,9 @@
 {
-  "name": "Messanger",
+  "name": "messanger",
   "version": "0.1.0",
+  "engines": {
+    "node": "13.5.0"
+  },
   "private": true,
   "scripts": {
     "start": "cd back && npm install && npm start",
