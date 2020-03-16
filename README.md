@@ -1,4 +1,4 @@
-# VoiceText
+VoiceText
 Final project in bootcamp
 
 Main idea of the project was to add converting voice messages to text, and it was succseed only in Chrome browser.
