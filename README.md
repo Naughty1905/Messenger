@@ -25,7 +25,7 @@ To convert speech in text was used SpeecRcognition api witch currently is in Chr
   Converting speech messages to text
 
 # Authors
-  Beluaev Artem - https://github.com/Oberin98
+  Beluaev Artem - https://github.com/Oberin98 </br>
   Airat Mananov - https://github.com/AiratMannanov
   Safiullin Alexey - https://github.com/Leshkaj 
   Istomin Ivan - https://github.com/Naughty1905
