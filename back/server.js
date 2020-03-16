@@ -36,7 +36,7 @@ app.use('/chats', chatsRouter);
 // Static assets for production
 
 // if (process.env.NODE_ENV === 'production') {
-  // app.use(express.static('../front/build'))
+  // app.use(express.static('build'))
 
   app.get('*', (res, req) => {
     res.sendfile(path.join(publicPath, 'index.html'));
