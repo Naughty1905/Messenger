@@ -9,10 +9,10 @@ First version was written with socket io, the second one with firebase database
 
 # Technologies:
 
-React/ redux(redux-saga), </br>
-  Node js (express), </br>
-  MongoDB, </br>
-  Firebase, </br>
+React/ redux(redux-saga) </br>
+  Node js (express) </br>
+  MongoDB </br>
+  Firebase </br>
   Socket io </br>
 
 Converting speech in text was used SpeecRcognition api witch currently is in Chrome and FireFox browsers.
