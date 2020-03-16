@@ -26,10 +26,9 @@ To convert speech in text was used SpeecRcognition api witch currently is in Chr
 
 # Authors
   <a href="https://github.com/Oberin98"> Beluaev Artem </a> </br>
-  Beluaev Artem - https://github.com/Oberin98 </br>
-  Airat Mananov - https://github.com/AiratMannanov </br>
-  Safiullin Alexey - https://github.com/Leshkaj </br>
-  Istomin Ivan - https://github.com/Naughty1905 </br>
+  <a href="https://github.com/AiratMannanov"> Airat Mananov </a> </br>
+  <a href="https://github.com/Leshkaj"> Safiullin Alexey </a> </br>
+  <a href="https://github.com/Naughty1905"> Istomin Ivan </a> </br>
 
 # Next steps:
  Video chat </br>
