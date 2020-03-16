@@ -5,19 +5,25 @@ Main idea of the project was to add converting voice messages to text, and it wa
 
 First version was written with socket io, the second one with firebase database
 
+![Example](https://github.com/Oberin98/Messenger/blob/master/ReadMeAssets/gifExample.gif)
+
 # Technologies:
 
-React/ redux(redux-saga), </br>
-  Node js (express), </br>
-  MongoDB, </br>
-  Firebase, </br>
+React/ redux(redux-saga) </br>
+  Node js (express) </br>
+  MongoDB </br>
+  Firebase </br>
   Socket io </br>
 
 Converting speech in text was used SpeecRcognition api witch currently is in Chrome and FireFox browsers.
 
 # Getting Started:
-  cd back && npm i || yarn && npm run dev || yarn run dev </br>
-  cd ../front && npm i || yarn && npm start || yarn start </br>
+  At first you nedd to set yout own env propeties and add your own MongoDB link
+
+``` 
+   cd back && npm i || yarn && npm run dev || yarn run dev </br>
+   cd ../front && npm i || yarn && npm start || yarn start </br> 
+```
 
 # MVP Functionality
   Login / Register </br>
