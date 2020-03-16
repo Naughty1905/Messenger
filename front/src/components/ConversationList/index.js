@@ -32,7 +32,7 @@ const ConversationList = (props) => {
     if (chats.length === 0) {
       getConversationsReq(isAuth)
     }
-  }, [])
+  }, [chats.length, getConversationsReq, isAuth])
 
   const len = keys(chats).length;
 
@@ -51,6 +51,7 @@ const ConversationList = (props) => {
           if (!!message1 && !!message2) {
             return chatStructure[chat2]['messages'][message2].date - chatStructure[chat1]['messages'][message1].date
           }
+          return null
         }))
         getConversationsRec(chatStructure)
       })

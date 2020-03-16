@@ -34,7 +34,7 @@ const MessageList = props => {
       const chatRef = database.ref(`chats/${chat}`)
       chatRef.push(message)
     }
-  }, [message])
+  }, [message, chat])
 
   useEffect(() => {
     if (chat) {
@@ -48,7 +48,7 @@ const MessageList = props => {
       startChat(chat)
       setMessages(messages)
     }
-  }, [chat, message, chats])
+  }, [chat, message, chats, setMessages, startChat, user])
 
   useEffect(scrollToBottom, [messages]);
   return (

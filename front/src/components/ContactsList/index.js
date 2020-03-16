@@ -24,7 +24,7 @@ const ContactList = (props) => {
 
   useEffect(() => {
     getContactsReq(isAuth)
-  }, [])
+  }, [getContactsReq, isAuth])
 
 
   return (

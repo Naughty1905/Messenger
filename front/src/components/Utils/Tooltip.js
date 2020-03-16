@@ -11,7 +11,7 @@ const Tooltip = (props) => {
     setTimeout(() => {
       setAuthError()
     }, 1700)
-  }, [])
+  }, [setAuthError])
 
   return (
     <div className='authError'>

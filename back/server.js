@@ -1,4 +1,5 @@
 const express = require('express');
+const favicon = require('express-favicon');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
@@ -35,12 +36,14 @@ app.use('/chats', chatsRouter);
 
 // Static assets for production
 
-// if (process.env.NODE_ENV === 'production') {
-  // app.use(express.static('build'))
+if (process.env.NODE_ENV === 'production') {
+  app.use(favicon(__dirname + '/build/favicon.ico'));
+  
+  app.use(express.static(path.join(__dirname, 'build')));
 
   app.get('*', (res, req) => {
     res.sendfile(path.join(publicPath, 'index.html'));
   });
-// }
+}
 
 app.listen(PORT, () => console.log(`Server has started on ${PORT}`));

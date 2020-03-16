@@ -2,10 +2,9 @@ import React from 'react';
 import './ToolbarBlack.css';
 import { connect } from 'react-redux'
 import { setChat } from '../../redux/actions/chat-actions'
-import { isMobile } from 'react-device-detect';
 
 const Toolbar = (props) => {
-  const { leftItems, rightItems, setChat } = props;
+  const { leftItems, rightItems } = props;
 
   const goBack = () => {
     // if ()
