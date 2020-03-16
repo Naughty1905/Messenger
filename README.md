@@ -15,3 +15,25 @@ Socket io
 
 To convert speech in text was used SpeecRcognition api witch currently is in Chrome and FireFox browsers.
 
+Goodprice
+Goodprice - Cервис с помощью которого можно найти самые низкие цены на продукты питания в интернет магазинах.
+
+Our Mission
+goodprice
+
+Getting Started
+npm install
+npm run start-dev 
+MVP Functionality
+Выбор товара
+Информация о корзине, лучшая цена
+Сохранение списка корзин
+Authors
+Владимир Хван
+Михаил Левин
+Next Steps
+Сделать адаптивную верстку
+Мобильное приложение
+Расширить продуктовую линейку
+Contributing
+We conform to the AirBnB JavaScript Style Guide
