@@ -13,7 +13,7 @@ React/ redux(redux-saga), </br>
   Firebase, </br>
   Socket io </br>
 
-To convert speech in text was used SpeecRcognition api witch currently is in Chrome and FireFox browsers.
+Converting speech in text was used SpeecRcognition api witch currently is in Chrome and FireFox browsers.
 
 # Getting Started:
   cd back && npm i || yarn && npm run dev || yarn run dev </br>
